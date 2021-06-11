@@ -1,0 +1,25 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+
+abstract class LogInEvent extends Equatable {}
+
+class IniciarSesion extends LogInEvent {
+  final String usuario;
+  final String contrasena;
+  final bool recuerdame;
+
+  IniciarSesion(this.usuario, this.contrasena, this.recuerdame);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [this.usuario, this.contrasena];
+}
+
+class CerrarSesion extends LogInEvent {
+  final BuildContext context;
+  CerrarSesion(this.context);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [];
+}
