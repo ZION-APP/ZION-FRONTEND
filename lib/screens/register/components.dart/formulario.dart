@@ -43,7 +43,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
                 child: DefaultInput(
                   controller: widget.usuarioController,
                   isContrasena: false,
-                  //validacion: Validadores.validarUsername,
+                  validacion: Validadores.validarUsername,
                   label: "Nombre de usuario",
                 ),
               ),
@@ -58,7 +58,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
                 child: DefaultInput(
                   controller: widget.cedulaController,
                   isContrasena: false,
-                  //validacion: Validadores.validarCedula,
+                  validacion: Validadores.validarCedula,
                   label: "Cédula/RUC",
                 ),
               ),
@@ -101,7 +101,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
                 child: DefaultInput(
                   controller: widget.correoController,
                   isContrasena: false,
-                  //validacion: Validadores.validarCorreo,
+                  validacion: Validadores.validarCorreo,
                   label: "Correo electrónico",
                 ),
               ),
@@ -131,7 +131,11 @@ class _FormularioRegisterState extends State<FormularioRegister> {
                 child: DefaultInput(
                   controller: widget.contrasenaConfirmController,
                   isContrasena: true,
-                  validacion: Validadores.validarContrasena,
+                  validacion: (confContrasena) {
+                    if(confContrasena.compareTo(widget.contrasenaController.text)!=0){
+                      return "Ingrese la misma contraseña";
+                    }
+                  },
                   label: "Confirmar contraseña",
                 ),
               ),

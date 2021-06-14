@@ -54,7 +54,7 @@ class _RegisterState extends State<Register> {
 
   List<Widget> _botones() {
     return [
-      SizedBox(height: getProportionateScreenHeight(70)),
+      SizedBox(height: getProportionateScreenHeight(40)),
       Flexible(
           flex: 5,
           child: FormularioRegister(
@@ -73,7 +73,8 @@ class _RegisterState extends State<Register> {
             padding: EdgeInsets.symmetric(
                 vertical: getProportionateScreenHeight(30)),
             child: DefaultButton(
-              func: () => ({}),
+              func: () => ({print(usuarioController.text + ' ' + cedulaController.text + ' ' + tipoPersona.toString() + ' '
+                            + correoController.text + ' ' + contrasenaController.text + ' ' + contrasenaConfirmController.text)}),
               label: "Registrar cuenta",
               colorFondo: kPrimaryColor,
               colorTexto: kSecondaryColor,
