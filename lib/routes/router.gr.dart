@@ -5,13 +5,14 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
 
 import '../screens/alicuotas/alicuota.dart' as _i4;
 import '../screens/home/home.dart' as _i3;
 import '../screens/login/login.dart' as _i2;
 import '../screens/menu/menu.dart' as _i6;
 import '../screens/perfil/perfil.dart' as _i5;
+import '../screens/register/register.dart' as _i7;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter();
@@ -40,6 +41,12 @@ class AppRouter extends _i1.RootStackRouter {
     },
     MenuHomeRoute.name: (entry) {
       return _i1.MaterialPageX(entry: entry, child: _i6.MenuHome());
+    },
+    RegisterRoute.name: (entry) {
+      var args = entry.routeData
+          .argsAs<RegisterRouteArgs>(orElse: () => RegisterRouteArgs());
+      return _i1.MaterialPageX(
+          entry: entry, child: _i7.Register(key: args.key));
     }
   };
 
@@ -49,12 +56,13 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(HomeRoute.name, path: '/home'),
         _i1.RouteConfig(AlicuotaHomeRoute.name, path: '/alicuotas'),
         _i1.RouteConfig(PerfilHomeRoute.name, path: '/perfil'),
-        _i1.RouteConfig(MenuHomeRoute.name, path: '/menu')
+        _i1.RouteConfig(MenuHomeRoute.name, path: '/menu'),
+        _i1.RouteConfig(RegisterRoute.name, path: '/register')
       ];
 }
 
 class LoginRoute extends _i1.PageRouteInfo<LoginRouteArgs> {
-  LoginRoute({_i7.Key key})
+  LoginRoute({_i8.Key key})
       : super(name, path: '/', args: LoginRouteArgs(key: key));
 
   static const String name = 'LoginRoute';
@@ -63,11 +71,11 @@ class LoginRoute extends _i1.PageRouteInfo<LoginRouteArgs> {
 class LoginRouteArgs {
   const LoginRouteArgs({this.key});
 
-  final _i7.Key key;
+  final _i8.Key key;
 }
 
 class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i7.Key key, String titulo})
+  HomeRoute({_i8.Key key, String titulo})
       : super(name,
             path: '/home', args: HomeRouteArgs(key: key, titulo: titulo));
 
@@ -77,13 +85,13 @@ class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key, this.titulo});
 
-  final _i7.Key key;
+  final _i8.Key key;
 
   final String titulo;
 }
 
 class AlicuotaHomeRoute extends _i1.PageRouteInfo<AlicuotaHomeRouteArgs> {
-  AlicuotaHomeRoute({_i7.Key key})
+  AlicuotaHomeRoute({_i8.Key key})
       : super(name, path: '/alicuotas', args: AlicuotaHomeRouteArgs(key: key));
 
   static const String name = 'AlicuotaHomeRoute';
@@ -92,7 +100,7 @@ class AlicuotaHomeRoute extends _i1.PageRouteInfo<AlicuotaHomeRouteArgs> {
 class AlicuotaHomeRouteArgs {
   const AlicuotaHomeRouteArgs({this.key});
 
-  final _i7.Key key;
+  final _i8.Key key;
 }
 
 class PerfilHomeRoute extends _i1.PageRouteInfo {
@@ -105,4 +113,17 @@ class MenuHomeRoute extends _i1.PageRouteInfo {
   const MenuHomeRoute() : super(name, path: '/menu');
 
   static const String name = 'MenuHomeRoute';
+}
+
+class RegisterRoute extends _i1.PageRouteInfo<RegisterRouteArgs> {
+  RegisterRoute({_i8.Key key})
+      : super(name, path: '/register', args: RegisterRouteArgs(key: key));
+
+  static const String name = 'RegisterRoute';
+}
+
+class RegisterRouteArgs {
+  const RegisterRouteArgs({this.key});
+
+  final _i8.Key key;
 }

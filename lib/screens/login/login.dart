@@ -124,7 +124,7 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(
                     vertical: getProportionateScreenHeight(15)),
                 child: DefaultButton(
-                  func: () => logIn(context),
+                  func: () => {context.router.push(RegisterRoute())},
                   label: "Registrate",
                 ),
               ),

@@ -5,6 +5,7 @@ import 'package:zionApp/screens/home/home.dart';
 import 'package:zionApp/screens/login/login.dart';
 import 'package:zionApp/screens/menu/menu.dart';
 import 'package:zionApp/screens/perfil/perfil.dart';
+import 'package:zionApp/screens/register/register.dart';
 
 @MaterialAutoRouter(routes: <AutoRoute>[
   MaterialRoute(page: Login, path: "/", initial: true),
@@ -17,6 +18,7 @@ import 'package:zionApp/screens/perfil/perfil.dart';
     path: '/alicuotas',
   ),
   MaterialRoute(page: PerfilHome, path: "/perfil"),
-  MaterialRoute(page: MenuHome, path: "/menu")
+  MaterialRoute(page: MenuHome, path: "/menu"),
+  MaterialRoute(page: Register, path: "/register"),
 ])
 class $AppRouter {}
