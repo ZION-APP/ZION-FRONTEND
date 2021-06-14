@@ -6,6 +6,7 @@ import 'package:zionApp/bloc/auth/authBloc.dart';
 import 'package:zionApp/bloc/auth/authEvent.dart';
 import 'package:zionApp/screens/alicuotas/alicuota.dart';
 import 'package:zionApp/screens/buzon/buzon.dart';
+import 'package:zionApp/screens/inversiones/inversiones.dart';
 import 'package:zionApp/screens/menu/menu.dart';
 import 'package:zionApp/screens/perfil/perfil.dart';
 
@@ -18,12 +19,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<String> _titulos = ["Metas", "Inversiones", "Aportes", "Configuración"];
+  List<String> _titulos = ["Metas", "Aportes", "Inversiones", "Configuración"];
 
   List<Widget> _screens = [
     BuzonHome(),
     AlicuotaHome(),
-    PerfilHome(),
+    InversionesHome(),
     MenuHome()
   ];
   int page = 0;
@@ -31,7 +32,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_titulos[page]),
+        title: Text(
+          _titulos[page],
+          style: TextStyle(color: kPrimaryLightColor),
+        ),
+        backgroundColor: kSecondaryColor,
       ),
       body: _screens[page],
       bottomNavigationBar: _navigationBar(),

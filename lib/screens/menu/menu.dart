@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zionApp/Constants.dart';
+import 'package:zionApp/routes/router.gr.dart';
 import 'package:zionApp/screens/menu/components.dart/botonCerrarSesion.dart';
 import 'package:zionApp/screens/menu/components.dart/opcion.dart';
 import 'package:zionApp/sizeConfig.dart';
@@ -73,6 +74,7 @@ class _MenuHomeState extends State<MenuHome> {
           children: [
             OptionMenuItem(
               titulo: "Mi Perfil",
+              ruta: PerfilHomeRoute(),
             ),
             OptionMenuItem(
               titulo: "Cuenta Bancaria",
