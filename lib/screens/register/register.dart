@@ -25,8 +25,6 @@ class _RegisterState extends State<Register> {
   final contrasenaConfirmController = TextEditingController();
   TipoPersona tipoPersona;
 
-  final List<String> tiposPersona = ['Persona natural', 'Persona jurídica'];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,31 +54,15 @@ class _RegisterState extends State<Register> {
     return [
       SizedBox(height: getProportionateScreenHeight(40)),
       Flexible(
-          flex: 5,
-          child: FormularioRegister(
-            usuarioController: usuarioController,
-            cedulaController: cedulaController,
-            tipoPersona: tipoPersona,
-            correoController: correoController,
-            contrasenaController: contrasenaController,
-            contrasenaConfirmController: contrasenaConfirmController,
-          )),
-      Flexible(
-        flex: 1,
-        child: Container(
-          height: double.infinity,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: getProportionateScreenHeight(30)),
-            child: DefaultButton(
-              func: () => ({print(usuarioController.text + ' ' + cedulaController.text + ' ' + tipoPersona.toString() + ' '
-                            + correoController.text + ' ' + contrasenaController.text + ' ' + contrasenaConfirmController.text)}),
-              label: "Registrar cuenta",
-              colorFondo: kPrimaryColor,
-              colorTexto: kSecondaryColor,
-            ),
-          ),
-        ),
+        flex: 5,
+        child: FormularioRegister(
+          usuarioController: usuarioController,
+          cedulaController: cedulaController,
+          tipoPersona: tipoPersona,
+          correoController: correoController,
+          contrasenaController: contrasenaController,
+          contrasenaConfirmController: contrasenaConfirmController,
+        )
       ),
     ];
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zionApp/Constants.dart';
+import 'package:zionApp/components/button_default.dart';
 import 'package:zionApp/components/input_default.dart';
 import 'package:zionApp/models/tipoPersona.dart';
 import 'package:zionApp/sizeConfig.dart';
@@ -86,6 +87,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
                   onChanged: (value) {
                     setState(() {
                       _tipoSeleccionado = value;
+                      widget.tipoPersona = _tipoSeleccionado;
                     });
                   }
                 ),
@@ -142,6 +144,19 @@ class _FormularioRegisterState extends State<FormularioRegister> {
             ],
           ),
           SizedBox(height: getProportionateScreenHeight(25)),
+          Container(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenHeight(30)),
+              child: DefaultButton(
+                func: () => ({print(widget.usuarioController.text + ' ' + widget.cedulaController.text + ' ' + _tipoSeleccionado.toString() + ' '
+                              + widget.correoController.text + ' ' + widget.contrasenaController.text + ' ' + widget.contrasenaConfirmController.text)}),
+                label: "Registrar cuenta",
+                colorFondo: kPrimaryColor,
+                colorTexto: kSecondaryColor,
+              ),
+            ),
+          ),
         ]
       ),
     );
