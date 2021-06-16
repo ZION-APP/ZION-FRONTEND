@@ -25,6 +25,7 @@ class _PerfilHomeState extends State<PerfilHome> {
 
   @override
   Widget build(BuildContext context) {
+    final bottom = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
