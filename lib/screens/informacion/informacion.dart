@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zionApp/Constants.dart';
 import 'package:zionApp/components/button_default.dart';
 import 'package:zionApp/routes/router.gr.dart';
-import 'package:zionApp/screens/contactanos/contactanos.dart';
+
 import 'package:zionApp/sizeConfig.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -40,7 +40,7 @@ class Informacion extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(25)),
               child: DefaultButton(
-                func: () => {},
+                func: () => {context.router.push(PreguntasFRoute())},
                 label: "Preguntas Frecuentes",
               ),
             ),
