@@ -33,7 +33,7 @@ class Informacion extends StatelessWidget {
                   vertical: getProportionateScreenHeight(25)),
               child: DefaultButton(
                 func: () => {context.router.push(VisionyMisionRoute())},
-                label: "Mision y Vision",
+                label: "Quienes Somos",
               ),
             ),
             Padding(

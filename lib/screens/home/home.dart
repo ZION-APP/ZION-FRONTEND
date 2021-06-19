@@ -47,7 +47,6 @@ class _HomeState extends State<Home> {
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: kPrimaryColor,
-        showSelectedLabels: false,
         showUnselectedLabels: true,
         currentIndex: page,
         onTap: _navigationHandler,
@@ -64,9 +63,5 @@ class _HomeState extends State<Home> {
     setState(() {
       page = newPage;
     });
-  }
-
-  void _cerrarSesion() {
-    BlocProvider.of<LogInBloc>(context).add(CerrarSesion(context));
   }
 }

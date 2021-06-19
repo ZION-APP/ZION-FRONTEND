@@ -16,7 +16,7 @@ class PerfilHome extends StatefulWidget {
 
 class _PerfilHomeState extends State<PerfilHome> {
   bool loading = true;
-  dynamic usuario = null;
+  dynamic usuario;
   @override
   void initState() {
     _obtenerUsuario();

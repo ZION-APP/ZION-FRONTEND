@@ -50,7 +50,6 @@ class _FormularioLoginState extends State<FormularioLogin> {
             child: DefaultInput(
               controller: widget.contrasenaController,
               isContrasena: true,
-              validacion: Validadores.validarContrasena,
               label: "Contrasena",
             ),
           ),

@@ -1,0 +1,33 @@
+Analyzing zion-app...                                           
+
+   info • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: GetBuzon.context • lib/bloc/buzon/buzonEvent.dart:6:7 • must_be_immutable
+   info • 'FlatButton' is deprecated and shouldn't be used. Use TextButton instead. See the migration guide in flutter.dev/go/material-button-migration-guide). This feature was deprecated after v1.25.0-8.1.pre. • lib/components/button_default.dart:18:12 • deprecated_member_use
+   info • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: BuzonList.noticias • lib/screens/buzon/completed/buzonList.dart:5:7 • must_be_immutable
+   info • Unused import: 'package:auto_route/auto_route.dart' • lib/screens/home/home.dart:1:8 • unused_import
+   info • Unused import: 'package:flutter_bloc/flutter_bloc.dart' • lib/screens/home/home.dart:3:8 • unused_import
+   info • Unused import: 'package:zionApp/bloc/auth/authBloc.dart' • lib/screens/home/home.dart:5:8 • unused_import
+   info • Unused import: 'package:zionApp/bloc/auth/authEvent.dart' • lib/screens/home/home.dart:6:8 • unused_import
+   info • Unused import: 'package:zionApp/screens/perfil/perfil.dart' • lib/screens/home/home.dart:11:8 • unused_import
+   info • Unused import: 'package:zionApp/screens/contactanos/contactanos.dart' • lib/screens/informacion/informacion.dart:5:8 • unused_import
+   info • Unused import: 'package:zionApp/validator/validator.dart' • lib/screens/login/components.dart/formulario.dart:5:8 • unused_import
+   info • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: FormularioLogin.usuarioController, FormularioLogin.contrasenaController, FormularioLogin.recuerdameCallback, FormularioLogin.recuerdame, FormularioLogin.formKey • lib/screens/login/components.dart/formulario.dart:7:7 • must_be_immutable
+   info • Unused import: 'package:zionApp/components/input_default.dart' • lib/screens/login/login.dart:9:8 • unused_import
+   info • Unused import: 'package:zionApp/validator/validator.dart' • lib/screens/login/login.dart:14:8 • unused_import
+   info • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: OptionMenuItem.titulo, OptionMenuItem.ruta • lib/screens/menu/components.dart/opcion.dart:6:7 • must_be_immutable
+   info • Unused import: 'package:zionApp/components/button_default.dart' • lib/screens/misionyvision/misionyvision.dart:3:8 • unused_import
+   info • Unused import: 'package:zionApp/routes/router.gr.dart' • lib/screens/misionyvision/misionyvision.dart:4:8 • unused_import
+   info • Unused import: 'package:auto_route/auto_route.dart' • lib/screens/misionyvision/misionyvision.dart:5:8 • unused_import
+   info • Unused import: 'package:zionApp/components/button_default.dart' • lib/screens/perfil/components/botonCambiarContrasena.dart:3:8 • unused_import
+   info • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: FotoSection.usuario • lib/screens/perfil/components/foto.dart:5:7 • must_be_immutable
+   info • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: InfoPerfil.usuario • lib/screens/perfil/components/info.dart:5:7 • must_be_immutable
+   info • The value of the local variable 'bottom' isn't used • lib/screens/perfil/perfil.dart:28:11 • unused_local_variable
+   info • Unused import: 'package:zionApp/Constants.dart' • lib/screens/register/components.dart/formulario.dart:2:8 • unused_import
+   info • This class (or a class that this class inherits from) is marked as '@immutable', but one or more of its instance fields aren't final: FormularioRegister.usuarioController, FormularioRegister.cedulaController, FormularioRegister.tipoPersona, FormularioRegister.correoController, FormularioRegister.contrasenaController, FormularioRegister.contrasenaConfirmController, FormularioRegister.formKey • lib/screens/register/components.dart/formulario.dart:8:7 • must_be_immutable
+   info • Unused import: 'package:auto_route/auto_route.dart' • lib/screens/register/register.dart:1:8 • unused_import
+   info • Unused import: 'package:flutter_bloc/flutter_bloc.dart' • lib/screens/register/register.dart:2:8 • unused_import
+   info • Unused import: 'package:zionApp/components/cargando.dart' • lib/screens/register/register.dart:5:8 • unused_import
+   info • Unused import: 'package:zionApp/routes/router.gr.dart' • lib/screens/register/register.dart:7:8 • unused_import
+   info • The value of the field '_formKey' isn't used • lib/screens/register/register.dart:20:9 • unused_field
+   info • This function has a return type of 'String', but doesn't end with a return statement • lib/validator/validator.dart:6:17 • missing_return
+   info • Use `lowercase_with_underscores` for package names • pubspec.yaml:1:7 • package_names
+

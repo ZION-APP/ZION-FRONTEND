@@ -10,7 +10,7 @@ class DefaultInput extends StatelessWidget {
       {@required this.controller,
       this.validacion,
       @required this.isContrasena,
-      this.label = null});
+      this.label});
 
   @override
   Widget build(BuildContext context) {

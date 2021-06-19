@@ -37,7 +37,11 @@ class _LoginState extends State<Login> {
     usuarioController.text = await storage.read(key: "usuario");
     contrasenaController.text = await storage.read(key: "contrasena");
     var rec = await storage.read(key: "recuerdame");
-    if (rec == "true") this.recuerdame = true;
+    if (rec == "true") {
+      setState(() {
+        this.recuerdame = true;
+      });
+    }
   }
 
   @override
@@ -124,7 +128,7 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(
                     vertical: getProportionateScreenHeight(15)),
                 child: DefaultButton(
-                  func: () => logIn(context),
+                  func: () => {context.router.push(RegisterRoute())},
                   label: "Registrate",
                 ),
               ),

@@ -48,12 +48,14 @@ class _MenuHomeState extends State<MenuHome> {
           children: [
             OptionMenuItem(
               titulo: "Quiénes Somos",
+              ruta: VisionyMisionRoute(),
             ),
             OptionMenuItem(
               titulo: "Preguntas frecuentes",
             ),
             OptionMenuItem(
               titulo: "Contáctanos",
+              ruta: ContactanosRoute(),
             )
           ],
         )

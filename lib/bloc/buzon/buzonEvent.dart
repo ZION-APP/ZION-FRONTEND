@@ -8,6 +8,5 @@ class GetBuzon extends BuzonEvent {
   GetBuzon(this.context);
 
   @override
-  // TODO: implement props
   List<Object> get props => [];
 }
