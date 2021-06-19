@@ -6,6 +6,7 @@ import 'package:zionApp/bloc/auth/authBloc.dart';
 import 'package:zionApp/bloc/auth/authEvent.dart';
 import 'package:zionApp/screens/alicuotas/alicuota.dart';
 import 'package:zionApp/screens/buzon/buzon.dart';
+import 'package:zionApp/screens/inversiones/inversiones.dart';
 import 'package:zionApp/screens/menu/menu.dart';
 import 'package:zionApp/screens/perfil/perfil.dart';
 
@@ -18,10 +19,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<String> _titulos = ["Metas", "Aportes", "Inversiones", "Configuración"];
+
   List<Widget> _screens = [
     BuzonHome(),
     AlicuotaHome(),
-    PerfilHome(),
+    InversionesHome(),
     MenuHome()
   ];
   int page = 0;
@@ -29,7 +32,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.titulo),
+        title: Text(
+          _titulos[page],
+          style: TextStyle(color: kPrimaryLightColor),
+        ),
+        backgroundColor: kSecondaryColor,
       ),
       body: _screens[page],
       bottomNavigationBar: _navigationBar(),
@@ -40,16 +47,15 @@ class _HomeState extends State<Home> {
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: kPrimaryColor,
-        showSelectedLabels: false,
         showUnselectedLabels: true,
         currentIndex: page,
         onTap: _navigationHandler,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: _titulos[0]),
           BottomNavigationBarItem(
-              icon: Icon(Icons.monetization_on), label: "Alicuotas"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Perfil"),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Menu"),
+              icon: Icon(Icons.monetization_on), label: _titulos[1]),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: _titulos[2]),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: _titulos[3]),
         ]);
   }
 
@@ -57,9 +63,5 @@ class _HomeState extends State<Home> {
     setState(() {
       page = newPage;
     });
-  }
-
-  void _cerrarSesion() {
-    BlocProvider.of<LogInBloc>(context).add(CerrarSesion(context));
   }
 }
