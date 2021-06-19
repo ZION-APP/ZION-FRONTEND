@@ -31,7 +31,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
         await storage.write(
             key: "user", value: json.encode(response.data["respuesta"]));
         await storage.write(
-            key: "token", value: response.data["respuesta"]["token"]);
+            key: "token", value: response.data["respuesta"]["token"] as String);
         if (event.recuerdame) {
           await storage.write(key: "usuario", value: event.usuario);
           await storage.write(key: "contrasena", value: event.contrasena);
@@ -43,7 +43,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
         }
         yield LogInCompleted("H");
       } on DioError catch (e) {
-        yield LoginFailed(e.response.data["respuesta"]);
+        yield LoginFailed(e.response.data["respuesta"] as String);
       }
     }
     if (event is CerrarSesion) {

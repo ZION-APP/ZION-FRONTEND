@@ -86,7 +86,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
                   ],
                   onChanged: (value) {
                     setState(() {
-                      _tipoSeleccionado = value;
+                      _tipoSeleccionado = value as TipoPersona;
                       widget.tipoPersona = _tipoSeleccionado;
                     });
                   }
