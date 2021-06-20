@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
+import 'package:zionApp/constants.dart';
 import 'package:zionApp/components/button_default.dart';
 import 'package:zionApp/components/input_default.dart';
-import 'package:zionApp/models/tipoPersona.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/models/tipo_persona.dart';
+import 'package:zionApp/size_config.dart';
 import 'package:zionApp/validator/validator.dart';
 
 class FormularioRegister extends StatefulWidget {
@@ -21,7 +21,8 @@ class FormularioRegister extends StatefulWidget {
      this.tipoPersona,
      this.correoController,
      this.contrasenaController,
-     this.contrasenaConfirmController});
+     this.contrasenaConfirmController,
+     this.formKey});
 
   @override
   _FormularioRegisterState createState() => _FormularioRegisterState();
@@ -72,16 +73,16 @@ class _FormularioRegisterState extends State<FormularioRegister> {
                 padding: EdgeInsets.symmetric(
                     horizontal: getProportionateScreenWidth(50)),
                 child: DropdownButtonFormField(
-                  hint: Text('Tipo de persona'),
+                  hint: const Text('Tipo de persona'),
                   value: _tipoSeleccionado,
-                  items: [
+                  items: const [
                     DropdownMenuItem(
-                      child: Text("Persona Natural"),
                       value: TipoPersona.PersonaNatural,
+                      child: Text("Persona Natural"),
                     ),
                     DropdownMenuItem(
-                      child: Text("Persona Jurídica"),
                       value: TipoPersona.PersonaJuridica,
+                      child: Text("Persona Jurídica"),
                     ),
                   ],
                   onChanged: (value) {
@@ -144,17 +145,14 @@ class _FormularioRegisterState extends State<FormularioRegister> {
             ],
           ),
           SizedBox(height: getProportionateScreenHeight(25)),
-          Container(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: getProportionateScreenHeight(30)),
-              child: DefaultButton(
-                func: () => ({print(widget.usuarioController.text + ' ' + widget.cedulaController.text + ' ' + _tipoSeleccionado.toString() + ' '
-                              + widget.correoController.text + ' ' + widget.contrasenaController.text + ' ' + widget.contrasenaConfirmController.text)}),
-                label: "Registrar cuenta",
-                colorFondo: kPrimaryColor,
-                colorTexto: kSecondaryColor,
-              ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                vertical: getProportionateScreenHeight(30)),
+            child: DefaultButton(
+              func: () => {print('${widget.usuarioController.text} ${widget.cedulaController.text} $_tipoSeleccionado ${widget.correoController.text} ${widget.contrasenaController.text} ${widget.contrasenaConfirmController.text}')},
+              label: "Registrar cuenta",
+              colorFondo: kPrimaryColor,
+              colorTexto: kSecondaryColor,
             ),
           ),
         ]

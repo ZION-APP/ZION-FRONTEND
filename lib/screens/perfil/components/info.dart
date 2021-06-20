@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/constants.dart';
+import 'package:zionApp/size_config.dart';
 
 class InfoPerfil extends StatelessWidget {
   dynamic usuario;
@@ -17,13 +17,13 @@ class InfoPerfil extends StatelessWidget {
         child: Column(
           children: [
             _mostrarDetalle(
-                "Usuario", usuario["usuario"]["usuario"] ?? "Sin especificar"),
+                "Usuario", (usuario["usuario"]["usuario"] ?? "Sin especificar") as String),
             _mostrarDetalle("Correo electronico",
-                usuario["usuario"]["correo"] ?? "Sin especificar"),
+                (usuario["usuario"]["correo"] ?? "Sin especificar") as String),
             _mostrarDetalle(
-                "Cedula identidad", usuario["cedula"] ?? "Sin especificar"),
+                "Cedula identidad", (usuario["cedula"] ?? "Sin especificar") as String),
             _mostrarDetalle("Numero de celular",
-                usuario["usuario"]["celular"] ?? "Sin especificar")
+                (usuario["usuario"]["celular"] ?? "Sin especificar") as String)
           ],
         ),
       ),

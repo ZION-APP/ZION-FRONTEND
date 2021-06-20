@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/constants.dart';
+import 'package:zionApp/size_config.dart';
 
 class Contactanos extends StatelessWidget {
-  Contactanos({Key key}) : super(key: key);
+  const Contactanos({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: kPrimaryLightColor,
           ),
-          title: Text(
+          title: const Text(
             'Contactanos',
             style: TextStyle(color: kPrimaryLightColor),
           ),
@@ -20,32 +20,32 @@ class Contactanos extends StatelessWidget {
         ),
         resizeToAvoidBottomInset: false,
         body: Container(
-            margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Card(
                   elevation: 10,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: Column(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.phone,
                           size: 40,
                         ),
                         SizedBox(height: getProportionateScreenHeight(10)),
-                        Text(
+                        const Text(
                           "PBX",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: getProportionateScreenHeight(10)),
-                        Text(
+                        const Text(
                             "¡Llámanos! y  pregunta por nuestros fondos de inversión. "),
                         SizedBox(height: getProportionateScreenHeight(10)),
-                        Text("04-2136-479")
+                        const Text("04-2136-479")
                       ],
                     ),
                   ),
@@ -53,26 +53,26 @@ class Contactanos extends StatelessWidget {
                 SizedBox(height: getProportionateScreenHeight(30)),
                 Card(
                   elevation: 10,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: Column(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.email,
                           size: 40,
                         ),
                         SizedBox(height: getProportionateScreenHeight(10)),
-                        Text(
+                        const Text(
                           "Email",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: getProportionateScreenHeight(10)),
-                        Text(
+                        const Text(
                             "¡Escríbenos! Responderemos tus requerimientos con la brevedad posible. "),
                         SizedBox(height: getProportionateScreenHeight(10)),
-                        Text("info@zion.com.ec")
+                        const Text("info@zion.com.ec")
                       ],
                     ),
                   ),
@@ -80,26 +80,26 @@ class Contactanos extends StatelessWidget {
                 SizedBox(height: getProportionateScreenHeight(30)),
                 Card(
                   elevation: 10,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: Column(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.location_on,
                           size: 40,
                         ),
                         SizedBox(height: getProportionateScreenHeight(10)),
-                        Text(
+                        const Text(
                           "Ubicacion",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: getProportionateScreenHeight(10)),
-                        Text(
+                        const Text(
                             "Parque Empresarial Colon Edif. Corporativo 4, Piso 2 Ofi.201 "),
                         SizedBox(height: getProportionateScreenHeight(10)),
-                        Text("Guayaquil")
+                        const Text("Guayaquil")
                       ],
                     ),
                   ),

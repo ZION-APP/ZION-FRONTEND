@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
+import 'package:zionApp/constants.dart';
 import 'package:zionApp/components/input_default.dart';
-import 'package:zionApp/sizeConfig.dart';
-import 'package:zionApp/validator/validator.dart';
+import 'package:zionApp/size_config.dart';
 
 class FormularioLogin extends StatefulWidget {
   TextEditingController usuarioController;
@@ -67,8 +66,8 @@ class _FormularioLoginState extends State<FormularioLogin> {
         Checkbox(
             value: widget.recuerdame,
             activeColor: kPrimaryColor,
-            onChanged: widget.recuerdameCallback),
-        Text("Recuerdame")
+            onChanged: widget.recuerdameCallback as void Function(bool)),
+        const Text("Recuerdame")
       ],
     );
   }

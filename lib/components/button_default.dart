@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/constants.dart';
+import 'package:zionApp/size_config.dart';
 
 class DefaultButton extends StatelessWidget {
   final Function func;
   final String label;
   final Color colorFondo;
   final Color colorTexto;
-  DefaultButton(
+
+  const DefaultButton(
       {@required this.label,
       this.func,
       this.colorFondo = kSecondaryColor,
-      this.colorTexto = kPrimaryLightColor});
+      this.colorTexto = kPrimaryLightColor,});
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +20,14 @@ class DefaultButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
             borderRadius:
                 BorderRadius.circular(getProportionateScreenHeight(20))),
-        color: this.colorFondo,
-        onPressed: func,
+        color: colorFondo,
+        onPressed: func as void Function(),
         height: getProportionateScreenHeight(50),
         minWidth: getProportionateScreenHeight(250),
         child: Text(
           label,
           style: TextStyle(
-              color: this.colorTexto,
+              color: colorTexto,
               fontSize: getProportionateScreenHeight(20)),
         ));
   }

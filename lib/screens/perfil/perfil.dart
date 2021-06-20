@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
+import 'package:zionApp/constants.dart';
 import 'package:zionApp/components/cargando.dart';
 import 'package:zionApp/screens/perfil/components/info.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/size_config.dart';
 
-import 'components/botonCambiarContrasena.dart';
+import 'components/boton_cambiar_contrasena.dart';
 import 'components/foto.dart';
 
 class PerfilHome extends StatefulWidget {
@@ -29,7 +29,7 @@ class _PerfilHomeState extends State<PerfilHome> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Mi Perfil",
             style: TextStyle(color: kPrimaryLightColor),
           ),
@@ -51,17 +51,17 @@ class _PerfilHomeState extends State<PerfilHome> {
                           horizontal: getProportionateScreenWidth(18)),
                       child: Container(
                         color: kPrimaryLightColor,
-                        child: BotonCambiarContrasena(),
+                        child: const BotonCambiarContrasena(),
                       ),
                     ))
               ])
             : Cargando());
   }
 
-  _obtenerUsuario() async {
-    String userString = await storage.read(key: "user");
+  Future<void> _obtenerUsuario() async {
+    final String userString = await storage.read(key: "user");
     setState(() {
-      this.usuario = json.decode(userString);
+      usuario = json.decode(userString);
       loading = false;
     });
   }

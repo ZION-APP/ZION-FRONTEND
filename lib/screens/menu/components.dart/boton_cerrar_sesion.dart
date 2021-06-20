@@ -1,18 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
+import 'package:zionApp/constants.dart';
 import 'package:zionApp/routes/router.gr.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/size_config.dart';
 
 class LogOutButton extends StatelessWidget {
-  LogOutButton();
+  const LogOutButton();
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
           minimumSize: MaterialStateProperty.all<Size>(
-              Size(double.infinity, double.minPositive)),
+              const Size(double.infinity, double.minPositive)),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),

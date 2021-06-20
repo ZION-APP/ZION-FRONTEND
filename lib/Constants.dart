@@ -11,7 +11,7 @@ const kPrimaryGradientColor = LinearGradient(
   end: Alignment.bottomRight,
   colors: [Color(0xFFFFECDF), Color(0xFF33BECA)],
 );
-final storage = FlutterSecureStorage();
+const storage = FlutterSecureStorage();
 const kAnimationDuration = Duration(milliseconds: 200);
 const kAnimationMiliseconds = 500;
 const kapiUrl =

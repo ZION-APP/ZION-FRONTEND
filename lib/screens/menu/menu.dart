@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
+import 'package:zionApp/constants.dart';
 import 'package:zionApp/routes/router.gr.dart';
-import 'package:zionApp/screens/menu/components.dart/botonCerrarSesion.dart';
+import 'package:zionApp/screens/menu/components.dart/boton_cerrar_sesion.dart';
 import 'package:zionApp/screens/menu/components.dart/opcion.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/size_config.dart';
 
 class MenuHome extends StatefulWidget {
   @override
@@ -17,20 +17,18 @@ class _MenuHomeState extends State<MenuHome> {
       padding: EdgeInsets.symmetric(
           horizontal: getProportionateScreenHeight(14),
           vertical: getProportionateScreenWidth(30)),
-      child: Container(
-        child: Column(
-          children: [
-            _submenuZion(),
-            SizedBox(
-              height: getProportionateScreenHeight(35),
-            ),
-            _submenuCuenta(),
-            SizedBox(
-              height: getProportionateScreenHeight(50),
-            ),
-            LogOutButton()
-          ],
-        ),
+      child: Column(
+        children: [
+          _submenuZion(),
+          SizedBox(
+            height: getProportionateScreenHeight(35),
+          ),
+          _submenuCuenta(),
+          SizedBox(
+            height: getProportionateScreenHeight(50),
+          ),
+          const LogOutButton()
+        ],
       ),
     );
   }
@@ -76,7 +74,7 @@ class _MenuHomeState extends State<MenuHome> {
           children: [
             OptionMenuItem(
               titulo: "Mi Perfil",
-              ruta: PerfilHomeRoute(),
+              ruta: const PerfilHomeRoute(),
             ),
             OptionMenuItem(
               titulo: "Cuenta Bancaria",

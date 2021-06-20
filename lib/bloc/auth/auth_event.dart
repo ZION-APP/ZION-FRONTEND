@@ -12,7 +12,7 @@ class IniciarSesion extends LogInEvent {
 
   @override
   // TODO: implement props
-  List<Object> get props => [this.usuario, this.contrasena];
+  List<Object> get props => [usuario, contrasena];
 }
 
 class CerrarSesion extends LogInEvent {

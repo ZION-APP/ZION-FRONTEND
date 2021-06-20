@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/constants.dart';
+import 'package:zionApp/size_config.dart';
 
 class OptionMenuItem extends StatelessWidget {
   String titulo;
@@ -11,7 +11,7 @@ class OptionMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: GestureDetector(
         onTap: () {
           _irOpcion(context);
@@ -30,13 +30,12 @@ class OptionMenuItem extends StatelessWidget {
               children: [
                 Flexible(
                   flex: 10,
+                  fit: FlexFit.tight,
                   child: Text(titulo),
-                  fit: FlexFit.tight,
                 ),
-                Flexible(
-                  flex: 1,
-                  child: Icon(Icons.arrow_forward_ios_outlined),
+                const Flexible(
                   fit: FlexFit.tight,
+                  child: Icon(Icons.arrow_forward_ios_outlined),
                 )
               ],
             ),
@@ -46,17 +45,17 @@ class OptionMenuItem extends StatelessWidget {
     );
   }
 
-  _irOpcion(BuildContext context) {
-    if (this.ruta != null) {
-      AutoRouter.of(context).push(this.ruta);
+  void _irOpcion(BuildContext context) {
+    if (ruta != null) {
+      AutoRouter.of(context).push(ruta);
     } else {
       final snackBar = SnackBar(
         content: Text(
-          "Opcion ${this.titulo} no implementada",
+          "Opcion $titulo no implementada",
           textAlign: TextAlign.center,
         ),
         backgroundColor: kDangerColor,
-        duration: Duration(milliseconds: 1500),
+        duration: const Duration(milliseconds: 1500),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }

@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
-import 'package:zionApp/components/button_default.dart';
-import 'package:zionApp/routes/router.gr.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/constants.dart';
+import 'package:zionApp/size_config.dart';
 
 class VisionyMision extends StatelessWidget {
-  VisionyMision({Key key}) : super(key: key);
+  const VisionyMision({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: kPrimaryLightColor,
           ),
-          title: Text(
+          title: const Text(
             'Vision y Mision',
             style: TextStyle(color: kPrimaryLightColor),
           ),
@@ -38,12 +35,12 @@ class VisionyMision extends StatelessWidget {
                       letterSpacing: 5.0),
                 ),
                 SizedBox(height: getProportionateScreenHeight(10)),
-                Card(
+                const Card(
                   elevation: 10,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Padding(
-                    padding: const EdgeInsets.all(18.0),
+                    padding: EdgeInsets.all(18.0),
                     child: Text(
                       "Ofrecer servicios fiduciarios que permitan fomentar el ahorro, contribuir positivamente con el rendimiento y desarrollo económico de nuestros clientes.",
                       textAlign: TextAlign.justify,
@@ -60,12 +57,12 @@ class VisionyMision extends StatelessWidget {
                       letterSpacing: 5.0),
                 ),
                 SizedBox(height: getProportionateScreenHeight(10)),
-                Card(
+                const Card(
                   elevation: 10,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Padding(
-                    padding: const EdgeInsets.all(18.0),
+                    padding: EdgeInsets.all(18.0),
                     child: Text(
                       "Ser reconocidos como la administradora de fondos y fideicomisos más destacada del Ecuador, respecto a la administración responsable de su patrimonio, fomentando el desarrollo sostenible.",
                       textAlign: TextAlign.justify,

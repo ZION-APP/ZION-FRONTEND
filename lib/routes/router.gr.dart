@@ -23,19 +23,19 @@ class AppRouter extends _i1.RootStackRouter {
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
     LoginRoute.name: (entry) {
-      var args = entry.routeData
-          .argsAs<LoginRouteArgs>(orElse: () => LoginRouteArgs());
+      final args = entry.routeData
+          .argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
       return _i1.MaterialPageX(entry: entry, child: _i2.Login(key: args.key));
     },
     HomeRoute.name: (entry) {
-      var args =
-          entry.routeData.argsAs<HomeRouteArgs>(orElse: () => HomeRouteArgs());
+      final args =
+          entry.routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i3.Home(key: args.key, titulo: args.titulo));
     },
     AlicuotaHomeRoute.name: (entry) {
-      var args = entry.routeData
-          .argsAs<AlicuotaHomeRouteArgs>(orElse: () => AlicuotaHomeRouteArgs());
+      final args = entry.routeData
+          .argsAs<AlicuotaHomeRouteArgs>(orElse: () => const AlicuotaHomeRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i4.AlicuotaHome(key: args.key));
     },
@@ -46,26 +46,26 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: _i6.MenuHome());
     },
     InformacionRoute.name: (entry) {
-      var args = entry.routeData
-          .argsAs<InformacionRouteArgs>(orElse: () => InformacionRouteArgs());
+      final args = entry.routeData
+          .argsAs<InformacionRouteArgs>(orElse: () => const InformacionRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i7.Informacion(key: args.key));
     },
     VisionyMisionRoute.name: (entry) {
-      var args = entry.routeData.argsAs<VisionyMisionRouteArgs>(
-          orElse: () => VisionyMisionRouteArgs());
+      final args = entry.routeData.argsAs<VisionyMisionRouteArgs>(
+          orElse: () => const VisionyMisionRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i8.VisionyMision(key: args.key));
     },
     ContactanosRoute.name: (entry) {
-      var args = entry.routeData
-          .argsAs<ContactanosRouteArgs>(orElse: () => ContactanosRouteArgs());
+      final args = entry.routeData
+          .argsAs<ContactanosRouteArgs>(orElse: () => const ContactanosRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i9.Contactanos(key: args.key));
     },
     RegisterRoute.name: (entry) {
-      var args = entry.routeData
-          .argsAs<RegisterRouteArgs>(orElse: () => RegisterRouteArgs());
+      final args = entry.routeData
+          .argsAs<RegisterRouteArgs>(orElse: () => const RegisterRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i10.Register(key: args.key));
     }

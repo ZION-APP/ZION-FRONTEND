@@ -20,7 +20,7 @@ class LoginFailed extends LogInState {
 
   @override
   // TODO: implement props
-  List<Object> get props => [this.error];
+  List<Object> get props => [error];
 }
 
 // Only the LogInLoaded event needs to contain data
@@ -31,5 +31,5 @@ class LogInCompleted extends LogInState {
 
   @override
   // TODO: implement props
-  List<Object> get props => [this.login];
+  List<Object> get props => [login];
 }

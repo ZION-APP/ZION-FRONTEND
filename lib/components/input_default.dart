@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/size_config.dart';
 
 class DefaultInput extends StatelessWidget {
   final TextEditingController controller;
   final Function validacion;
   final bool isContrasena;
   final String label;
-  DefaultInput(
+  const DefaultInput(
       {@required this.controller,
       this.validacion,
       @required this.isContrasena,
@@ -15,13 +15,13 @@ class DefaultInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: this.validacion,
-      controller: this.controller,
+      validator: validacion as String Function(String),
+      controller: controller,
       obscureText: isContrasena,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-          labelText: this.label,
-          border: OutlineInputBorder(),
+          labelText: label,
+          border: const OutlineInputBorder(),
           contentPadding: EdgeInsets.symmetric(
               vertical: getProportionateScreenWidth(10),
               horizontal: getProportionateScreenHeight(5))),

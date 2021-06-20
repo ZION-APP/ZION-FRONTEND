@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zionApp/Constants.dart';
+import 'package:zionApp/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:zionApp/bloc/auth/authState.dart';
-import 'package:zionApp/bloc/buzon/buzonBloc.dart';
-import 'package:zionApp/bloc/buzon/buzonState.dart';
+import 'package:zionApp/bloc/auth/auth_state.dart';
+import 'package:zionApp/bloc/buzon/buzon_bloc.dart';
+import 'package:zionApp/bloc/buzon/buzon_state.dart';
 import 'package:zionApp/routes/router.gr.dart';
 
-import 'bloc/auth/authBloc.dart';
+import 'bloc/auth/auth_bloc.dart';
 
 final _appRouter = AppRouter();
 

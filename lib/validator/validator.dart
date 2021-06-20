@@ -6,12 +6,17 @@ class Validadores {
   static String validarContrasena(String contrasena) {
     if(contrasena.length<8){
       return "La contraseña debe tener mínimo 8 caracteres";
-    }else if(!(RegExp(r'[A-Z]').hasMatch(contrasena))){
+    // ignore: unnecessary_raw_strings
+    }else if(!RegExp(r'[A-Z]').hasMatch(contrasena)){
       return "La contraseña debe incluir por lo menos 1 Mayúscula";
-    }else if(!(RegExp(r'[a-z]').hasMatch(contrasena))){
+    // ignore: unnecessary_raw_strings
+    }else if(!RegExp(r'[a-z]').hasMatch(contrasena)){
       return "La contraseña debe incluir por lo menos 1 Minúscula";
-    }else if(!(RegExp(r'[0-9]').hasMatch(contrasena))){
+    // ignore: unnecessary_raw_strings
+    }else if(!RegExp(r'[0-9]').hasMatch(contrasena)){
       return "La contraseña debe incluir por lo menos 1 número";
+    }else{
+      return null;
     }
   }
 
