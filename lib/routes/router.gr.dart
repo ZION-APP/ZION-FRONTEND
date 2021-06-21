@@ -5,10 +5,11 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 
 import '../screens/alicuotas/alicuota.dart' as _i4;
 import '../screens/contactanos/contactanos.dart' as _i9;
+import '../screens/cuenta_bancaria/cuenta_bancaria.dart' as _i11;
 import '../screens/home/home.dart' as _i3;
 import '../screens/informacion/informacion.dart' as _i7;
 import '../screens/login/login.dart' as _i2;
@@ -23,21 +24,16 @@ class AppRouter extends _i1.RootStackRouter {
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
     LoginRoute.name: (entry) {
-      final args = entry.routeData
-          .argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
-      return _i1.MaterialPageX(entry: entry, child: _i2.Login(key: args.key));
+      return _i1.MaterialPageX(entry: entry, child: const _i2.Login());
     },
     HomeRoute.name: (entry) {
-      final args =
-          entry.routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
+      var args =
+          entry.routeData.argsAs<HomeRouteArgs>(orElse: () => HomeRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i3.Home(key: args.key, titulo: args.titulo));
     },
     AlicuotaHomeRoute.name: (entry) {
-      final args = entry.routeData
-          .argsAs<AlicuotaHomeRouteArgs>(orElse: () => const AlicuotaHomeRouteArgs());
-      return _i1.MaterialPageX(
-          entry: entry, child: _i4.AlicuotaHome(key: args.key));
+      return _i1.MaterialPageX(entry: entry, child: const _i4.AlicuotaHome());
     },
     PerfilHomeRoute.name: (entry) {
       return _i1.MaterialPageX(entry: entry, child: _i5.PerfilHome());
@@ -46,28 +42,20 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: _i6.MenuHome());
     },
     InformacionRoute.name: (entry) {
-      final args = entry.routeData
-          .argsAs<InformacionRouteArgs>(orElse: () => const InformacionRouteArgs());
-      return _i1.MaterialPageX(
-          entry: entry, child: _i7.Informacion(key: args.key));
+      return _i1.MaterialPageX(entry: entry, child: const _i7.Informacion());
     },
     VisionyMisionRoute.name: (entry) {
-      final args = entry.routeData.argsAs<VisionyMisionRouteArgs>(
-          orElse: () => const VisionyMisionRouteArgs());
-      return _i1.MaterialPageX(
-          entry: entry, child: _i8.VisionyMision(key: args.key));
+      return _i1.MaterialPageX(entry: entry, child: const _i8.VisionyMision());
     },
     ContactanosRoute.name: (entry) {
-      final args = entry.routeData
-          .argsAs<ContactanosRouteArgs>(orElse: () => const ContactanosRouteArgs());
-      return _i1.MaterialPageX(
-          entry: entry, child: _i9.Contactanos(key: args.key));
+      return _i1.MaterialPageX(entry: entry, child: const _i9.Contactanos());
     },
     RegisterRoute.name: (entry) {
-      final args = entry.routeData
-          .argsAs<RegisterRouteArgs>(orElse: () => const RegisterRouteArgs());
+      return _i1.MaterialPageX(entry: entry, child: const _i10.Register());
+    },
+    CuentaBancariaRoute.name: (entry) {
       return _i1.MaterialPageX(
-          entry: entry, child: _i10.Register(key: args.key));
+          entry: entry, child: const _i11.CuentaBancaria());
     }
   };
 
@@ -81,25 +69,19 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(InformacionRoute.name, path: '/informacion'),
         _i1.RouteConfig(VisionyMisionRoute.name, path: '/misionyvision'),
         _i1.RouteConfig(ContactanosRoute.name, path: '/contactanos'),
-        _i1.RouteConfig(RegisterRoute.name, path: '/register')
+        _i1.RouteConfig(RegisterRoute.name, path: '/register'),
+        _i1.RouteConfig(CuentaBancariaRoute.name, path: '/cuenta_bancaria')
       ];
 }
 
-class LoginRoute extends _i1.PageRouteInfo<LoginRouteArgs> {
-  LoginRoute({_i11.Key key})
-      : super(name, path: '/', args: LoginRouteArgs(key: key));
+class LoginRoute extends _i1.PageRouteInfo {
+  const LoginRoute() : super(name, path: '/');
 
   static const String name = 'LoginRoute';
 }
 
-class LoginRouteArgs {
-  const LoginRouteArgs({this.key});
-
-  final _i11.Key key;
-}
-
 class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i11.Key key, String titulo})
+  HomeRoute({_i12.Key key, String titulo})
       : super(name,
             path: '/home', args: HomeRouteArgs(key: key, titulo: titulo));
 
@@ -109,22 +91,15 @@ class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key, this.titulo});
 
-  final _i11.Key key;
+  final _i12.Key key;
 
   final String titulo;
 }
 
-class AlicuotaHomeRoute extends _i1.PageRouteInfo<AlicuotaHomeRouteArgs> {
-  AlicuotaHomeRoute({_i11.Key key})
-      : super(name, path: '/alicuotas', args: AlicuotaHomeRouteArgs(key: key));
+class AlicuotaHomeRoute extends _i1.PageRouteInfo {
+  const AlicuotaHomeRoute() : super(name, path: '/alicuotas');
 
   static const String name = 'AlicuotaHomeRoute';
-}
-
-class AlicuotaHomeRouteArgs {
-  const AlicuotaHomeRouteArgs({this.key});
-
-  final _i11.Key key;
 }
 
 class PerfilHomeRoute extends _i1.PageRouteInfo {
@@ -139,55 +114,32 @@ class MenuHomeRoute extends _i1.PageRouteInfo {
   static const String name = 'MenuHomeRoute';
 }
 
-class InformacionRoute extends _i1.PageRouteInfo<InformacionRouteArgs> {
-  InformacionRoute({_i11.Key key})
-      : super(name, path: '/informacion', args: InformacionRouteArgs(key: key));
+class InformacionRoute extends _i1.PageRouteInfo {
+  const InformacionRoute() : super(name, path: '/informacion');
 
   static const String name = 'InformacionRoute';
 }
 
-class InformacionRouteArgs {
-  const InformacionRouteArgs({this.key});
-
-  final _i11.Key key;
-}
-
-class VisionyMisionRoute extends _i1.PageRouteInfo<VisionyMisionRouteArgs> {
-  VisionyMisionRoute({_i11.Key key})
-      : super(name,
-            path: '/misionyvision', args: VisionyMisionRouteArgs(key: key));
+class VisionyMisionRoute extends _i1.PageRouteInfo {
+  const VisionyMisionRoute() : super(name, path: '/misionyvision');
 
   static const String name = 'VisionyMisionRoute';
 }
 
-class VisionyMisionRouteArgs {
-  const VisionyMisionRouteArgs({this.key});
-
-  final _i11.Key key;
-}
-
-class ContactanosRoute extends _i1.PageRouteInfo<ContactanosRouteArgs> {
-  ContactanosRoute({_i11.Key key})
-      : super(name, path: '/contactanos', args: ContactanosRouteArgs(key: key));
+class ContactanosRoute extends _i1.PageRouteInfo {
+  const ContactanosRoute() : super(name, path: '/contactanos');
 
   static const String name = 'ContactanosRoute';
 }
 
-class ContactanosRouteArgs {
-  const ContactanosRouteArgs({this.key});
-
-  final _i11.Key key;
-}
-
-class RegisterRoute extends _i1.PageRouteInfo<RegisterRouteArgs> {
-  RegisterRoute({_i11.Key key})
-      : super(name, path: '/register', args: RegisterRouteArgs(key: key));
+class RegisterRoute extends _i1.PageRouteInfo {
+  const RegisterRoute() : super(name, path: '/register');
 
   static const String name = 'RegisterRoute';
 }
 
-class RegisterRouteArgs {
-  const RegisterRouteArgs({this.key});
+class CuentaBancariaRoute extends _i1.PageRouteInfo {
+  const CuentaBancariaRoute() : super(name, path: '/cuenta_bancaria');
 
-  final _i11.Key key;
+  static const String name = 'CuentaBancariaRoute';
 }

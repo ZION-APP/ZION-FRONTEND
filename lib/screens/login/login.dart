@@ -126,7 +126,7 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(
                     vertical: getProportionateScreenHeight(15)),
                 child: DefaultButton(
-                  func: () => {context.router.push(RegisterRoute())},
+                  func: () => {context.router.push(const RegisterRoute())},
                   label: "Registrate",
                 ),
               ),
@@ -134,7 +134,7 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(
                     vertical: getProportionateScreenHeight(15)),
                 child: DefaultButton(
-                  func: () => {AutoRouter.of(context).push(InformacionRoute())},
+                  func: () => {AutoRouter.of(context).push(const InformacionRoute())},
                   label: "Mas Informacion",
                 ),
               ),

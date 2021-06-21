@@ -46,14 +46,14 @@ class _MenuHomeState extends State<MenuHome> {
           children: [
             OptionMenuItem(
               titulo: "Quiénes Somos",
-              ruta: VisionyMisionRoute(),
+              ruta: const VisionyMisionRoute(),
             ),
             OptionMenuItem(
               titulo: "Preguntas frecuentes",
             ),
             OptionMenuItem(
               titulo: "Contáctanos",
-              ruta: ContactanosRoute(),
+              ruta: const ContactanosRoute(),
             )
           ],
         )
@@ -78,6 +78,7 @@ class _MenuHomeState extends State<MenuHome> {
             ),
             OptionMenuItem(
               titulo: "Cuenta Bancaria",
+              ruta: const CuentaBancariaRoute(),
             ),
             OptionMenuItem(
               titulo: "Notificaciones",

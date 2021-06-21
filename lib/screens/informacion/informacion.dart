@@ -31,7 +31,7 @@ class Informacion extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(25)),
               child: DefaultButton(
-                func: () => {context.router.push(VisionyMisionRoute())},
+                func: () => {context.router.push(const VisionyMisionRoute())},
                 label: "Quienes Somos",
               ),
             ),
@@ -55,7 +55,7 @@ class Informacion extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(25)),
               child: DefaultButton(
-                func: () => {context.router.push(ContactanosRoute())},
+                func: () => {context.router.push(const ContactanosRoute())},
                 label: "Contactanos",
               ),
             ),

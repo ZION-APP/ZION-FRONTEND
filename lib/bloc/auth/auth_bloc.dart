@@ -47,14 +47,14 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
       }
     }
     if (event is CerrarSesion) {
-      AutoRouter.of(event.context).replaceAll([LoginRoute()]);
+      AutoRouter.of(event.context).replaceAll([const LoginRoute()]);
       yield LoginInitial();
     }
   }
 
   static void verificarToken(int statusCode, BuildContext context) {
     if (statusCode == 401) {
-      AutoRouter.of(context).replaceAll([LoginRoute()]);
+      AutoRouter.of(context).replaceAll([const LoginRoute()]);
     }
   }
 }
