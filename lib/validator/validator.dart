@@ -1,3 +1,5 @@
+import 'package:zionApp/routes/router.gr.dart';
+
 class Validadores {
   static String validarCorreo(String correo) {
     return (RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(correo)) ? null : "Por favor ingrese un correo válido";
@@ -24,6 +26,18 @@ class Validadores {
     return ((5<username.length)&&(username.length<20))
         ? null
         : "Por favor ingrese un nombre de usuario válido";
+  }
+
+  static String validarNombreLargo(String name) {
+    return ((5<name.length)&&(name.length<30))
+        ? null
+        : "Por favor ingrese un nombre válido";
+  }
+
+  static String validarValorMonetario(String value) {
+    return (RegExp(r'^[0-9]*\.[0-9]{2}$').hasMatch(value))
+        ? null
+        : "Por favor ingrese un número como 100000.00";
   }
   
   static String validarCedula(String cedula) {

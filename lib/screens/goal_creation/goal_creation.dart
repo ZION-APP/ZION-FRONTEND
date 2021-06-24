@@ -1,4 +1,3 @@
-import 'package:zionApp/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:zionApp/screens/goal_creation/components.dart/formulario.dart';
 

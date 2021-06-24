@@ -53,7 +53,7 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
             child: DefaultInput(
               controller: widget.nombreController,
               isContrasena: false,
-              //validacion: Validadores.validarNombre,
+              validacion: Validadores.validarNombreLargo,
               label: "Nombre de la meta",
             ),
           ),
@@ -64,7 +64,7 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
             child: DefaultInput(
               controller: widget.totalController,
               isContrasena: false,
-              //validacion: Validadores.validarValorMonetario,
+              validacion: Validadores.validarValorMonetario,
               label: "Cuánto es el monto total para la meta?",
             ),
           ),
@@ -99,7 +99,7 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
             child: DefaultInput(
               controller: widget.inversionInicialController,
               isContrasena: false,
-              //validacion: Validadores.validarValorMonetario,
+              validacion: Validadores.validarValorMonetario,
               label: "Inversión inicial a revisar",
             ),
           ),
@@ -108,7 +108,7 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
             padding: EdgeInsets.symmetric(
                 vertical: getProportionateScreenHeight(30)),
             child: DefaultButton(
-              func: () => {print('${widget.nombreController.text} ${widget.totalController.text} ${widget.inversionInicialController.text}')},
+              func: () => {print('${widget.nombreController.text} ${widget.totalController.text} ${_dateTime.month}/${_dateTime.day}/${_dateTime.year} ${widget.inversionInicialController.text}')},
               label: "Registrar",
               colorFondo: kPrimaryColor,
               colorTexto: kSecondaryColor,
