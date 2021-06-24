@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zionApp/constants.dart';
 import 'package:zionApp/screens/alicuotas/alicuota.dart';
-import 'package:zionApp/screens/buzon/buzon.dart';
+//import 'package:zionApp/screens/buzon/buzon.dart';
+import 'package:zionApp/screens/goal_creation/goal_creation.dart';
 import 'package:zionApp/screens/inversiones/inversiones.dart';
 import 'package:zionApp/screens/menu/menu.dart';
 
@@ -17,7 +18,8 @@ class _HomeState extends State<Home> {
   final List<String> _titulos = ["Metas", "Aportes", "Inversiones", "Configuración"];
 
   final List<Widget> _screens = [
-    const BuzonHome(),
+    //const BuzonHome(), ¿Hay que remover buzon?
+    const GoalCreation(),
     const AlicuotaHome(),
     InversionesHome(),
     MenuHome()
