@@ -108,7 +108,11 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
             padding: EdgeInsets.symmetric(
                 vertical: getProportionateScreenHeight(30)),
             child: DefaultButton(
-              func: () => {print('${widget.nombreController.text} ${widget.totalController.text} ${_dateTime.month}/${_dateTime.day}/${_dateTime.year} ${widget.inversionInicialController.text}')},
+              func: () => {
+                  if(Validadores.validarNombreLargo(widget.nombreController.text)==null && Validadores.validarValorMonetario(widget.totalController.text)==null 
+                  && _dateTime!=null && Validadores.validarValorMonetario(widget.inversionInicialController.text)==null )
+                    print('${widget.nombreController.text} ${widget.totalController.text} ${_dateTime.month}/${_dateTime.day}/${_dateTime.year} ${widget.inversionInicialController.text}')
+                },
               label: "Registrar",
               colorFondo: kPrimaryColor,
               colorTexto: kSecondaryColor,
