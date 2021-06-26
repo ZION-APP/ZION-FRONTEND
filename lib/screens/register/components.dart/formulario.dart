@@ -37,112 +37,89 @@ class _FormularioRegisterState extends State<FormularioRegister> {
       key: widget.formKey,
       child: Column(
         children: [
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(50)),
-                child: DefaultInput(
-                  controller: widget.usuarioController,
-                  isContrasena: false,
-                  validacion: Validadores.validarUsername,
-                  label: "Nombre de usuario",
-                ),
-              ),
-            ],
+          SizedBox(height: getProportionateScreenHeight(40)),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(50)),
+            child: DefaultInput(
+              controller: widget.usuarioController,
+              isContrasena: false,
+              validacion: Validadores.validarUsername,
+              label: "Nombre de usuario",
+            ),
           ),
           SizedBox(height: getProportionateScreenHeight(25)),
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(50)),
-                child: DefaultInput(
-                  controller: widget.cedulaController,
-                  isContrasena: false,
-                  validacion: Validadores.validarCedula,
-                  label: "Cédula/RUC",
-                ),
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(50)),
+            child: DefaultInput(
+              controller: widget.cedulaController,
+              isContrasena: false,
+              validacion: Validadores.validarCedula,
+              label: "Cédula/RUC",
+            ),
           ),
           SizedBox(height: getProportionateScreenHeight(25)),
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(50)),
-                child: DropdownButtonFormField(
-                  hint: const Text('Tipo de persona'),
-                  value: _tipoSeleccionado,
-                  items: const [
-                    DropdownMenuItem(
-                      value: TipoPersona.PersonaNatural,
-                      child: Text("Persona Natural"),
-                    ),
-                    DropdownMenuItem(
-                      value: TipoPersona.PersonaJuridica,
-                      child: Text("Persona Jurídica"),
-                    ),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      _tipoSeleccionado = value as TipoPersona;
-                      widget.tipoPersona = _tipoSeleccionado;
-                    });
-                  }
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(50)),
+            child: DropdownButtonFormField(
+              hint: const Text('Tipo de persona'),
+              value: _tipoSeleccionado,
+              items: const [
+                DropdownMenuItem(
+                  value: TipoPersona.PersonaNatural,
+                  child: Text("Persona Natural"),
                 ),
-              ),
-            ],
+                DropdownMenuItem(
+                  value: TipoPersona.PersonaJuridica,
+                  child: Text("Persona Jurídica"),
+                ),
+              ],
+              onChanged: (value) {
+                setState(() {
+                  _tipoSeleccionado = value as TipoPersona;
+                  widget.tipoPersona = _tipoSeleccionado;
+                });
+              }
+            ),
           ),
           SizedBox(height: getProportionateScreenHeight(25)),
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(50)),
-                child: DefaultInput(
-                  controller: widget.correoController,
-                  isContrasena: false,
-                  validacion: Validadores.validarCorreo,
-                  label: "Correo electrónico",
-                ),
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(50)),
+            child: DefaultInput(
+              controller: widget.correoController,
+              isContrasena: false,
+              validacion: Validadores.validarCorreo,
+              label: "Correo electrónico",
+            ),
           ),
           SizedBox(height: getProportionateScreenHeight(25)),
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(50)),
-                child: DefaultInput(
-                  controller: widget.contrasenaController,
-                  isContrasena: true,
-                  validacion: Validadores.validarContrasena,
-                  label: "Contraseña",
-                ),
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(50)),
+            child: DefaultInput(
+              controller: widget.contrasenaController,
+              isContrasena: true,
+              validacion: Validadores.validarContrasena,
+              label: "Contraseña",
+            ),
           ),
           SizedBox(height: getProportionateScreenHeight(25)),
-          Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(50)),
-                child: DefaultInput(
-                  controller: widget.contrasenaConfirmController,
-                  isContrasena: true,
-                  validacion: (confContrasena) {
-                    if(confContrasena.compareTo(widget.contrasenaController.text)!=0){
-                      return "Ingrese la misma contraseña";
-                    }
-                  },
-                  label: "Confirmar contraseña",
-                ),
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(50)),
+            child: DefaultInput(
+              controller: widget.contrasenaConfirmController,
+              isContrasena: true,
+              validacion: (confContrasena) {
+                if(confContrasena.compareTo(widget.contrasenaController.text)!=0){
+                  return "Ingrese la misma contraseña";
+                }
+              },
+              label: "Confirmar contraseña",
+            ),
           ),
           SizedBox(height: getProportionateScreenHeight(25)),
           Padding(

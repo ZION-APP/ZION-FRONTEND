@@ -1,7 +1,6 @@
 import 'package:zionApp/constants.dart';
 import 'package:zionApp/models/tipo_persona.dart';
 import 'package:zionApp/screens/register/components.dart/formulario.dart';
-import 'package:zionApp/size_config.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -34,31 +33,26 @@ class _RegisterState extends State<Register> {
         centerTitle: true,
         backgroundColor: kSecondaryColor,
       ),
-      resizeToAvoidBottomInset: false,
       body: SizedBox(
         width: double.infinity,
-        child: Column(
-          children: _botones(),
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: FormularioRegister(
+                usuarioController: usuarioController,
+                cedulaController: cedulaController,
+                tipoPersona: tipoPersona,
+                correoController: correoController,
+                contrasenaController: contrasenaController,
+                contrasenaConfirmController: contrasenaConfirmController,
+                formKey: _formKey,
+              )
+            ),
+          ],
         ),
       ),
     );
   }
 
-  List<Widget> _botones() {
-    return [
-      SizedBox(height: getProportionateScreenHeight(40)),
-      Flexible(
-        flex: 5,
-        child: FormularioRegister(
-          usuarioController: usuarioController,
-          cedulaController: cedulaController,
-          tipoPersona: tipoPersona,
-          correoController: correoController,
-          contrasenaController: contrasenaController,
-          contrasenaConfirmController: contrasenaConfirmController,
-          formKey: _formKey,
-        )
-      ),
-    ];
-  }
 }
