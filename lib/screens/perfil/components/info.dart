@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zionApp/Constants.dart';
 import 'package:zionApp/sizeConfig.dart';
 
+// ignore: must_be_immutable
 class InfoPerfil extends StatelessWidget {
   dynamic usuario;
   InfoPerfil(this.usuario);
@@ -30,7 +31,7 @@ class InfoPerfil extends StatelessWidget {
     );
   }
 
-  Widget _mostrarDetalle(String titulo, String descripcion) {
+  Widget _mostrarDetalle(String titulo, dynamic descripcion) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
