@@ -46,7 +46,7 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
             child: DefaultInput(
               controller: widget.titularController,
               isContrasena: false,
-              //validacion: Validadores.validarUsuario,
+              validacion: Validadores.validarNombreLargo,
               label: "Nombre completo del titular",
             ),
           ),
@@ -97,7 +97,9 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
             child: DefaultInput(
               controller: widget.numeroCuentaController,
               isContrasena: false,
-              //validacion: Validadores.validarNumCuenta,
+              validacion: (numCuenta) {
+                return Validadores.validarNumCuenta(numCuenta as String, _tipoBancoSeleccionado);
+              },
               label: "Número de la cuenta",
             ),
           ),
