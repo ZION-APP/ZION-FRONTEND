@@ -31,6 +31,28 @@ class FormularioRegister extends StatefulWidget {
 class _FormularioRegisterState extends State<FormularioRegister> {
   TipoPersona _tipoSeleccionado;
 
+  bool validateForm(){
+    if(Validadores.validarUsername(widget.usuarioController.text)==null && Validadores.validarCedula(widget.cedulaController.text)==null
+    && _tipoSeleccionado!=null && Validadores.validarCorreo(widget.correoController.text)==null && Validadores.validarContrasena(widget.contrasenaController.text)==null
+    && widget.contrasenaConfirmController.text.compareTo(widget.contrasenaController.text)==0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  void showErrorSnack(BuildContext context, String message){
+    final snackBar = SnackBar(
+        content: Text(
+          message,
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: kDangerColor,
+        duration: const Duration(milliseconds: 1500),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -126,7 +148,13 @@ class _FormularioRegisterState extends State<FormularioRegister> {
             padding: EdgeInsets.symmetric(
                 vertical: getProportionateScreenHeight(30)),
             child: DefaultButton(
-              func: () => {print('${widget.usuarioController.text} ${widget.cedulaController.text} $_tipoSeleccionado ${widget.correoController.text} ${widget.contrasenaController.text} ${widget.contrasenaConfirmController.text}')},
+              func: () => {
+                if(validateForm()){
+                  print('${widget.usuarioController.text} ${widget.cedulaController.text} $_tipoSeleccionado ${widget.correoController.text} ${widget.contrasenaController.text} ${widget.contrasenaConfirmController.text}')
+                }else{
+                  showErrorSnack(context, 'Los datos ingresados no son válidos')
+                }
+              },
               label: "Registrar cuenta",
               colorFondo: kPrimaryColor,
               colorTexto: kSecondaryColor,
