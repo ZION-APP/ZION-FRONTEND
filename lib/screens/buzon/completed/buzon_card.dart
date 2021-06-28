@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/constants.dart';
+import 'package:zionApp/size_config.dart';
 
 class BuzonCard extends StatelessWidget {
   final dynamic noticia;
-  BuzonCard({@required this.noticia});
+  const BuzonCard({@required this.noticia});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,7 +13,7 @@ class BuzonCard extends StatelessWidget {
           vertical: getProportionateScreenHeight(2)),
       child: Card(
         elevation: 10,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10))),
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -25,18 +25,18 @@ class BuzonCard extends StatelessWidget {
               Row(
                 children: [
                   Flexible(
-                    child: imagen(this.noticia["imagenes"]),
                     fit: FlexFit.tight,
+                    child: imagen(noticia["imagenes"]),
                   ),
                   Flexible(
                     flex: 3,
-                    child: textPublicacion(),
                     fit: FlexFit.tight,
+                    child: textPublicacion(),
                   ),
                 ],
               ),
-              fechaPublicacion(this.noticia["CreatedAt"]),
-              _autor(this.noticia["usuario"]["nombres"])
+              fechaPublicacion(noticia["CreatedAt"] as String),
+              _autor(noticia["usuario"]["nombres"] as String)
             ],
           ),
         ),
@@ -46,8 +46,8 @@ class BuzonCard extends StatelessWidget {
 
   Widget imagen(dynamic imagen) {
     try {
-      dynamic src = imagen[0];
-      return Image.network(src["imagen"]);
+      final src = imagen[0];
+      return Image.network(src["imagen"] as String);
     } catch (e) {
       return Image.network("https://practical.com.ec/assets/images/Logo-2.png");
     }
@@ -55,12 +55,12 @@ class BuzonCard extends StatelessWidget {
 
   Padding textPublicacion() {
     return Padding(
-      padding: EdgeInsets.only(left: 20.0),
+      padding: const EdgeInsets.only(left: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _titulo(this.noticia["titulo"]),
-          _descripcion(this.noticia["cuerpo"]),
+          _titulo(noticia["titulo"] as String),
+          _descripcion(noticia["cuerpo"] as String),
         ],
       ),
     );
@@ -68,10 +68,10 @@ class BuzonCard extends StatelessWidget {
 
   Widget _titulo(String titulo) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.only(bottom: 8.0),
       child: Text(
         titulo ?? "No hay titulo",
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: const TextStyle(fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -82,36 +82,36 @@ class BuzonCard extends StatelessWidget {
 
   Widget _autor(String autor) {
     return Padding(
-      padding: EdgeInsets.only(top: 8.0),
+      padding: const EdgeInsets.only(top: 8.0),
       child: RichText(
           text: TextSpan(
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: getProportionateScreenHeight(12)),
               children: [
-            TextSpan(text: "Autor,\n", style: TextStyle(color: Colors.black)),
+            const TextSpan(text: "Autor,\n", style: TextStyle(color: Colors.black)),
             TextSpan(
                 text: autor ?? "Sin autor",
-                style: TextStyle(color: kPrimaryColor))
+                style: const TextStyle(color: kPrimaryColor))
           ])),
     );
   }
 
   Widget fechaPublicacion(String fecha) {
     return Padding(
-      padding: EdgeInsets.only(top: 8.0),
+      padding: const EdgeInsets.only(top: 8.0),
       child: RichText(
           text: TextSpan(
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: getProportionateScreenHeight(12)),
               children: [
-            TextSpan(
+            const TextSpan(
                 text: "Fecha publicacion \t",
                 style: TextStyle(color: Colors.black)),
             TextSpan(
                 text: fecha.split('T')[0] ?? "Sin Fecha",
-                style: TextStyle(color: kPrimaryColor))
+                style: const TextStyle(color: kPrimaryColor))
           ])),
     );
   }

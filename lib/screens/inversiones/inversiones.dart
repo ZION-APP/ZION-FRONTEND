@@ -9,7 +9,7 @@ class _InversionesState extends State<InversionesHome> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Inversiones"),
+      child: const Text("Inversiones"),
     );
   }
 }

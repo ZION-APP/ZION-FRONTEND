@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/constants.dart';
+import 'package:zionApp/size_config.dart';
 
 class FotoSection extends StatefulWidget {
   dynamic usuario;
@@ -8,7 +8,7 @@ class FotoSection extends StatefulWidget {
 
   @override
   _FotoSectionState createState() =>
-      _FotoSectionState(this.usuario["usuario"]["imagen"]);
+      _FotoSectionState(usuario["usuario"]["imagen"] as String);
 }
 
 class _FotoSectionState extends State<FotoSection> {
@@ -27,20 +27,20 @@ class _FotoSectionState extends State<FotoSection> {
                 top: 8.0, bottom: getProportionateScreenHeight(30)),
             child: CircleAvatar(
               radius: getProportionateScreenHeight(60),
-              backgroundImage: NetworkImage(this.imagen ?? defaultImagen),
+              backgroundImage: NetworkImage(imagen ?? defaultImagen),
               backgroundColor: kPrimaryColor,
-              child: _botonCamara(),
               onBackgroundImageError: (obj, err) {
                 setState(() {
-                  this.imagen = defaultImagen;
+                  imagen = defaultImagen;
                 });
               },
+              child: _botonCamara(),
             ),
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
             child: Text(
-              widget.usuario["usuario"]["nombres"] ?? "Sin nombre",
+              (widget.usuario["usuario"]["nombres"] ?? "Sin nombre") as String,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: getProportionateScreenHeight(20),
@@ -60,10 +60,10 @@ class _FotoSectionState extends State<FotoSection> {
           onTap: () {},
           child: Container(
             decoration:
-                BoxDecoration(shape: BoxShape.circle, color: kPrimaryColor),
+                const BoxDecoration(shape: BoxShape.circle, color: kPrimaryColor),
             child: Padding(
               padding: EdgeInsets.all(getProportionateScreenHeight(8)),
-              child: Icon(
+              child: const Icon(
                 Icons.camera_alt,
                 color: kPrimaryLightColor,
               ),

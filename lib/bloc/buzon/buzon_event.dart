@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 abstract class BuzonEvent extends Equatable {}
 
 class GetBuzon extends BuzonEvent {
-  BuildContext context;
+  final BuildContext context;
   GetBuzon(this.context);
 
   @override

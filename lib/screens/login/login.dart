@@ -1,20 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zionApp/Constants.dart';
-import 'package:zionApp/bloc/auth/authBloc.dart';
-import 'package:zionApp/bloc/auth/authEvent.dart';
-import 'package:zionApp/bloc/auth/authState.dart';
+import 'package:zionApp/constants.dart';
+import 'package:zionApp/bloc/auth/auth_bloc.dart';
+import 'package:zionApp/bloc/auth/auth_event.dart';
+import 'package:zionApp/bloc/auth/auth_state.dart';
 import 'package:zionApp/components/button_default.dart';
 import 'package:zionApp/components/cargando.dart';
-import 'package:zionApp/components/input_default.dart';
 import 'package:zionApp/routes/router.gr.dart';
 import 'package:zionApp/screens/login/components.dart/formulario.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:zionApp/validator/validator.dart';
 
 class Login extends StatefulWidget {
-  Login({Key key}) : super(key: key);
+  const Login({Key key}) : super(key: key);
 
   @override
   _LoginState createState() => _LoginState();
@@ -33,13 +31,13 @@ class _LoginState extends State<Login> {
     super.initState();
   }
 
-  obtenerUsuarioStorage() async {
+  Future<void> obtenerUsuarioStorage() async {
     usuarioController.text = await storage.read(key: "usuario");
     contrasenaController.text = await storage.read(key: "contrasena");
-    var rec = await storage.read(key: "recuerdame");
+    final rec = await storage.read(key: "recuerdame");
     if (rec == "true") {
       setState(() {
-        this.recuerdame = true;
+        recuerdame = true;
       });
     }
   }
@@ -62,7 +60,7 @@ class _LoginState extends State<Login> {
               textAlign: TextAlign.center,
             ),
             backgroundColor: kDangerColor,
-            duration: Duration(milliseconds: 1500),
+            duration: const Duration(milliseconds: 1500),
           );
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
@@ -72,14 +70,14 @@ class _LoginState extends State<Login> {
           loading = false;
         }
       }, buildWhen: (previousState, newState) {
-        if (previousState is LoginInitial && newState is LoginFailed)
+        if (previousState is LoginInitial && newState is LoginFailed){
           return false;
+        }
         return true;
       }, builder: (context, state) {
-        return Container(
+        return SizedBox(
             width: double.infinity,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: _botones(),
             ));
       }),
@@ -90,7 +88,7 @@ class _LoginState extends State<Login> {
     return [
       Flexible(
         flex: 4,
-        child: Container(
+        child: SizedBox(
           height: double.infinity,
           child: Image.asset(
             "assets/img/zion-logo.png",
@@ -109,7 +107,7 @@ class _LoginState extends State<Login> {
           )),
       Flexible(
         flex: 5,
-        child: Container(
+        child: SizedBox(
           height: double.infinity,
           child: Column(
             children: [
@@ -128,7 +126,7 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(
                     vertical: getProportionateScreenHeight(15)),
                 child: DefaultButton(
-                  func: () => {context.router.push(RegisterRoute())},
+                  func: () => {context.router.push(const RegisterRoute())},
                   label: "Registrate",
                 ),
               ),
@@ -136,7 +134,7 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(
                     vertical: getProportionateScreenHeight(15)),
                 child: DefaultButton(
-                  func: () => {AutoRouter.of(context).push(InformacionRoute())},
+                  func: () => {AutoRouter.of(context).push(const InformacionRoute())},
                   label: "Mas Informacion",
                 ),
               ),

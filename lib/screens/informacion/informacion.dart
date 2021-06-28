@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
+import 'package:zionApp/constants.dart';
 import 'package:zionApp/components/button_default.dart';
 import 'package:zionApp/routes/router.gr.dart';
-import 'package:zionApp/screens/contactanos/contactanos.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/size_config.dart';
 import 'package:auto_route/auto_route.dart';
 
 class Informacion extends StatelessWidget {
-  Informacion({Key key}) : super(key: key);
+  const Informacion({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: kPrimaryLightColor,
         ),
-        title: Text(
+        title: const Text(
           'Mas informacion',
           style: TextStyle(color: kPrimaryLightColor),
         ),
@@ -23,7 +22,7 @@ class Informacion extends StatelessWidget {
         backgroundColor: kSecondaryColor,
       ),
       resizeToAvoidBottomInset: false,
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +31,7 @@ class Informacion extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(25)),
               child: DefaultButton(
-                func: () => {context.router.push(VisionyMisionRoute())},
+                func: () => {context.router.push(const VisionyMisionRoute())},
                 label: "Quienes Somos",
               ),
             ),
@@ -56,7 +55,7 @@ class Informacion extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(25)),
               child: DefaultButton(
-                func: () => {context.router.push(ContactanosRoute())},
+                func: () => {context.router.push(const ContactanosRoute())},
                 label: "Contactanos",
               ),
             ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/Constants.dart';
-import 'package:zionApp/components/button_default.dart';
+import 'package:zionApp/constants.dart';
 import 'package:zionApp/components/input_default.dart';
-import 'package:zionApp/sizeConfig.dart';
+import 'package:zionApp/size_config.dart';
 
 class BotonCambiarContrasena extends StatelessWidget {
   const BotonCambiarContrasena({
@@ -15,7 +14,7 @@ class BotonCambiarContrasena extends StatelessWidget {
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(kPrimaryColor),
           minimumSize: MaterialStateProperty.all<Size>(
-              Size(double.infinity, double.minPositive))),
+              const Size(double.infinity, double.minPositive))),
       onPressed: () {
         _showModalBottomSheet(context);
       },
@@ -23,7 +22,7 @@ class BotonCambiarContrasena extends StatelessWidget {
         padding: EdgeInsets.symmetric(
             vertical: getProportionateScreenHeight(8.0),
             horizontal: getProportionateScreenWidth(10)),
-        child: Text(
+        child: const Text(
           "Cambiar mi contrasena",
           style: TextStyle(color: kPrimaryLightColor),
         ),
@@ -32,8 +31,8 @@ class BotonCambiarContrasena extends StatelessWidget {
   }
 
   void _showModalBottomSheet(BuildContext context) {
-    TextEditingController viejaContrasenaController = TextEditingController();
-    TextEditingController nuevaContrasenaController = TextEditingController();
+    final TextEditingController viejaContrasenaController = TextEditingController();
+    final TextEditingController nuevaContrasenaController = TextEditingController();
     showModalBottomSheet(
         context: context,
         builder: (context) {
@@ -68,7 +67,7 @@ class BotonCambiarContrasena extends StatelessWidget {
                   },
                   style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all<Size>(
-                          Size(double.infinity, double.minPositive)),
+                          const Size(double.infinity, double.minPositive)),
                       backgroundColor:
                           MaterialStateProperty.all<Color>(kPrimaryColor)),
                   child: Text(
@@ -80,7 +79,7 @@ class BotonCambiarContrasena extends StatelessWidget {
             )
           ]);
         }).then((value) => {
-          if (value != null && value) {print(nuevaContrasenaController.text)}
+          if (value != null && (value as bool)) {print(nuevaContrasenaController.text)}
         });
   }
 }

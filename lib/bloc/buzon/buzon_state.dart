@@ -14,7 +14,7 @@ class BuzonFailed extends BuzonState {
 
   @override
   // TODO: implement props
-  List<Object> get props => [this.error];
+  List<Object> get props => [error];
 }
 
 // Only the BuzonLoaded event needs to contain data
@@ -25,5 +25,5 @@ class BuzonCompleted extends BuzonState {
 
   @override
   // TODO: implement props
-  List<Object> get props => [this.noticias];
+  List<Object> get props => [noticias];
 }
