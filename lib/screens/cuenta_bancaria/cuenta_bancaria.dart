@@ -1,4 +1,4 @@
-import 'package:zionapp/constants.dart';
+import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/models/tipo_banco.dart';
 import 'package:zionapp/models/tipo_cuenta.dart';
 import 'package:zionapp/screens/cuenta_bancaria/components.dart/formulario.dart';

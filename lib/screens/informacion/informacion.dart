@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zionapp/constants.dart';
+import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/size_config.dart';

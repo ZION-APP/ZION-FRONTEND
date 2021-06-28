@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zionapp/constants.dart';
+import 'package:zionapp/constants_config.dart';
 
 class Cargando extends StatelessWidget {
   @override

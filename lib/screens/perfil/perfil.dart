@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:zionapp/constants.dart';
+import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/cargando.dart';
 import 'package:zionapp/screens/perfil/components/info.dart';
 import 'package:zionapp/size_config.dart';

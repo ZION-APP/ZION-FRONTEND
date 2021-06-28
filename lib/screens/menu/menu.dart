@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zionapp/constants.dart';
+import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/screens/menu/components.dart/boton_cerrar_sesion.dart';
 import 'package:zionapp/screens/menu/components.dart/opcion.dart';

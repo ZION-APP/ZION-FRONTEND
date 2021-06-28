@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zionapp/constants.dart';
+import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/bloc/auth/auth_bloc.dart';
 import 'package:zionapp/bloc/auth/auth_event.dart';
 import 'package:zionapp/bloc/auth/auth_state.dart';

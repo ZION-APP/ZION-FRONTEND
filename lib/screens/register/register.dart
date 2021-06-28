@@ -1,4 +1,4 @@
-import 'package:zionapp/constants.dart';
+import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/models/tipo_persona.dart';
 import 'package:zionapp/screens/register/components.dart/formulario.dart';
 import 'package:flutter/material.dart';

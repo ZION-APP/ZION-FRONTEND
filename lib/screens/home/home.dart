@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zionapp/constants.dart';
+import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/screens/alicuotas/alicuota.dart';
 //import 'package:zionapp/screens/buzon/buzon.dart';
 import 'package:zionapp/screens/goal_creation/goal_creation.dart';

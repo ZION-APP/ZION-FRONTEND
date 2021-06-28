@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zionapp/constants.dart';
+import 'package:zionapp/constants_config.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/bloc/auth/auth_state.dart';
 import 'package:zionapp/bloc/buzon/buzon_bloc.dart';
