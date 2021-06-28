@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/size_config.dart';
 
 class DefaultInput extends StatelessWidget {
   final TextEditingController controller;

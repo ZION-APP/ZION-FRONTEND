@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/size_config.dart';
 
+// ignore: must_be_immutable
 class OptionMenuItem extends StatelessWidget {
   String titulo;
   PageRouteInfo<dynamic> ruta;

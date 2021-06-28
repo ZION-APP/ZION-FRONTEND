@@ -8,6 +8,7 @@ class IniciarSesion extends LogInEvent {
   final String contrasena;
   final bool recuerdame;
 
+  // ignore: avoid_positional_boolean_parameters
   IniciarSesion(this.usuario, this.contrasena, this.recuerdame);
 
   @override

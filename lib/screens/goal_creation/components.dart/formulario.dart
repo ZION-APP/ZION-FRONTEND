@@ -1,10 +1,12 @@
+import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/components/button_default.dart';
-import 'package:zionApp/components/input_default.dart';
-import 'package:zionApp/size_config.dart';
-import 'package:zionApp/validator/validator.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/components/button_default.dart';
+import 'package:zionapp/components/input_default.dart';
+import 'package:zionapp/size_config.dart';
+import 'package:zionapp/validator/validator.dart';
 
+// ignore: must_be_immutable
 class FormularioGoalCreation extends StatefulWidget {
   TextEditingController nombreController;
   TextEditingController totalController;
@@ -12,23 +14,22 @@ class FormularioGoalCreation extends StatefulWidget {
   GlobalKey<FormState> formKey;
 
   FormularioGoalCreation(
-    {this.nombreController,
-     this.totalController,
-     this.inversionInicialController,
-     this.formKey});
+      {this.nombreController,
+      this.totalController,
+      this.inversionInicialController,
+      this.formKey});
 
   @override
   _FormularioGoalCreationState createState() => _FormularioGoalCreationState();
 }
 
 class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
-
   DateTime _dateTime;
 
-  String getDateText(){
-    if(_dateTime == null){
+  String getDateText() {
+    if (_dateTime == null) {
       return 'Fecha final de la meta';
-    }else{
+    } else {
       return '${_dateTime.month}/${_dateTime.day}/${_dateTime.year}';
     }
   }
@@ -36,91 +37,98 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget.formKey,
-      child: Column(
-        children: [
-          SizedBox(height: getProportionateScreenHeight(40)),
-          const Text(
-            'Registro de una nueva Meta',
-            style: TextStyle(
-              fontSize: 21
+        key: widget.formKey,
+        child: Column(
+          children: [
+            SizedBox(height: getProportionateScreenHeight(40)),
+            const Text(
+              'Registro de una nueva Meta',
+              style: TextStyle(fontSize: 21),
             ),
-          ),
-          SizedBox(height: getProportionateScreenHeight(40)),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(50)),
-            child: DefaultInput(
-              controller: widget.nombreController,
-              isContrasena: false,
-              validacion: Validadores.validarNombreLargo,
-              label: "Nombre de la meta",
-            ),
-          ),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(50)),
-            child: DefaultInput(
-              controller: widget.totalController,
-              isContrasena: false,
-              validacion: Validadores.validarValorMonetario,
-              label: "Cuánto es el monto total para la meta?",
-            ),
-          ),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(50)),
-            child: OutlinedButton.icon(
-              icon: const IconTheme(
-                data: IconThemeData(color: Colors.black45),
-                child: Icon(Icons.date_range),
+            SizedBox(height: getProportionateScreenHeight(40)),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(50)),
+              child: DefaultInput(
+                controller: widget.nombreController,
+                isContrasena: false,
+                validacion: Validadores.validarNombreLargo,
+                label: "Nombre de la meta",
               ),
-              style: OutlinedButton.styleFrom(
-                minimumSize: Size.fromHeight(getProportionateScreenHeight(50)),
-                side: const BorderSide(
-                  color: Colors.black45,
+            ),
+            SizedBox(height: getProportionateScreenHeight(30)),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(50)),
+              child: DefaultInput(
+                controller: widget.totalController,
+                isContrasena: false,
+                validacion: Validadores.validarValorMonetario,
+                label: "Cuánto es el monto total para la meta?",
+              ),
+            ),
+            SizedBox(height: getProportionateScreenHeight(30)),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(50)),
+              child: OutlinedButton.icon(
+                icon: const IconTheme(
+                  data: IconThemeData(color: Colors.black45),
+                  child: Icon(Icons.date_range),
+                ),
+                style: OutlinedButton.styleFrom(
+                  minimumSize:
+                      Size.fromHeight(getProportionateScreenHeight(50)),
+                  side: const BorderSide(
+                    color: Colors.black45,
+                  ),
+                ),
+                onPressed: () => pickDate(context),
+                label: Text(
+                  getDateText(),
+                  style: const TextStyle(
+                    color: Colors.black45,
+                  ),
                 ),
               ),
-              onPressed: () => pickDate(context),
-              label: Text(
-                getDateText(),
-                style: const TextStyle(
-                  color: Colors.black45,
-                ),
+            ),
+            SizedBox(height: getProportionateScreenHeight(30)),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(50)),
+              child: DefaultInput(
+                controller: widget.inversionInicialController,
+                isContrasena: false,
+                validacion: Validadores.validarValorMonetario,
+                label: "Inversión inicial a revisar",
               ),
             ),
-          ),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(50)),
-            child: DefaultInput(
-              controller: widget.inversionInicialController,
-              isContrasena: false,
-              validacion: Validadores.validarValorMonetario,
-              label: "Inversión inicial a revisar",
-            ),
-          ),
-          SizedBox(height: getProportionateScreenHeight(40)),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: getProportionateScreenHeight(30)),
-            child: DefaultButton(
-              func: () => {
-                  if(Validadores.validarNombreLargo(widget.nombreController.text)==null && Validadores.validarValorMonetario(widget.totalController.text)==null 
-                  && _dateTime!=null && Validadores.validarValorMonetario(widget.inversionInicialController.text)==null )
-                    print('${widget.nombreController.text} ${widget.totalController.text} ${_dateTime.month}/${_dateTime.day}/${_dateTime.year} ${widget.inversionInicialController.text}')
+            SizedBox(height: getProportionateScreenHeight(40)),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenHeight(30)),
+              child: DefaultButton(
+                func: () => {
+                  if (Validadores.validarNombreLargo(
+                              widget.nombreController.text) ==
+                          null &&
+                      Validadores.validarValorMonetario(
+                              widget.totalController.text) ==
+                          null &&
+                      _dateTime != null &&
+                      Validadores.validarValorMonetario(
+                              widget.inversionInicialController.text) ==
+                          null)
+                    developer.log(
+                        '${widget.nombreController.text} ${widget.totalController.text} ${_dateTime.month}/${_dateTime.day}/${_dateTime.year} ${widget.inversionInicialController.text}')
                 },
-              label: "Registrar",
-              colorFondo: kPrimaryColor,
-              colorTexto: kSecondaryColor,
+                label: "Registrar",
+                colorFondo: kPrimaryColor,
+                colorTexto: kSecondaryColor,
+              ),
             ),
-          ),
-        ],
-      )
-    );
+          ],
+        ));
   }
 
   Future pickDate(BuildContext context) async {
@@ -131,7 +139,7 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
       firstDate: DateTime.now(),
       lastDate: DateTime(DateTime.now().year + 10),
     );
-    if(newDate==null) return;
+    if (newDate == null) return;
     setState(() => _dateTime = newDate);
   }
 }

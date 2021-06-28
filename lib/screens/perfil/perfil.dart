@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/components/cargando.dart';
-import 'package:zionApp/screens/perfil/components/info.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/components/cargando.dart';
+import 'package:zionapp/screens/perfil/components/info.dart';
+import 'package:zionapp/size_config.dart';
 
 import 'components/boton_cambiar_contrasena.dart';
 import 'components/foto.dart';
@@ -25,7 +25,6 @@ class _PerfilHomeState extends State<PerfilHome> {
 
   @override
   Widget build(BuildContext context) {
-    final bottom = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -41,7 +40,7 @@ class _PerfilHomeState extends State<PerfilHome> {
                 Flexible(
                     flex: 3,
                     child: FotoSection(
-                      usuario: usuario,
+                      usuario,
                     )),
                 Flexible(flex: 5, child: InfoPerfil(usuario)),
                 Flexible(

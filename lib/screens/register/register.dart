@@ -1,6 +1,6 @@
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/models/tipo_persona.dart';
-import 'package:zionApp/screens/register/components.dart/formulario.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/models/tipo_persona.dart';
+import 'package:zionapp/screens/register/components.dart/formulario.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -38,21 +38,19 @@ class _RegisterState extends State<Register> {
         child: CustomScrollView(
           slivers: [
             SliverFillRemaining(
-              hasScrollBody: false,
-              child: FormularioRegister(
-                usuarioController: usuarioController,
-                cedulaController: cedulaController,
-                tipoPersona: tipoPersona,
-                correoController: correoController,
-                contrasenaController: contrasenaController,
-                contrasenaConfirmController: contrasenaConfirmController,
-                formKey: _formKey,
-              )
-            ),
+                hasScrollBody: false,
+                child: FormularioRegister(
+                  usuarioController: usuarioController,
+                  cedulaController: cedulaController,
+                  tipoPersona: tipoPersona,
+                  correoController: correoController,
+                  contrasenaController: contrasenaController,
+                  contrasenaConfirmController: contrasenaConfirmController,
+                  formKey: _formKey,
+                )),
           ],
         ),
       ),
     );
   }
-
 }

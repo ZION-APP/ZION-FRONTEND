@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/size_config.dart';
 
 class FotoSection extends StatefulWidget {
-  dynamic usuario;
-  FotoSection({this.usuario});
+  final dynamic usuario;
+  const FotoSection(this.usuario);
 
   @override
-  _FotoSectionState createState() =>
-      _FotoSectionState(usuario["usuario"]["imagen"] as String);
+  _FotoSectionState createState() => _FotoSectionState();
 }
 
 class _FotoSectionState extends State<FotoSection> {
   String imagen;
   String defaultImagen = "https://api.practical.com.ec/public/user.png";
-  _FotoSectionState(this.imagen);
+  _FotoSectionState();
+  @override
+  void initState() {
+    imagen = widget.usuario["usuario"]["imagen"] as String;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,8 +64,8 @@ class _FotoSectionState extends State<FotoSection> {
         child: GestureDetector(
           onTap: () {},
           child: Container(
-            decoration:
-                const BoxDecoration(shape: BoxShape.circle, color: kPrimaryColor),
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle, color: kPrimaryColor),
             child: Padding(
               padding: EdgeInsets.all(getProportionateScreenHeight(8)),
               child: const Icon(

@@ -1,15 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:zionApp/screens/alicuotas/alicuota.dart';
-import 'package:zionApp/screens/contactanos/contactanos.dart';
-import 'package:zionApp/screens/cuenta_bancaria/cuenta_bancaria.dart';
-import 'package:zionApp/screens/goal_creation/goal_creation.dart';
-import 'package:zionApp/screens/home/home.dart';
-import 'package:zionApp/screens/informacion/informacion.dart';
-import 'package:zionApp/screens/login/login.dart';
-import 'package:zionApp/screens/menu/menu.dart';
-import 'package:zionApp/screens/misionyvision/misionyvision.dart';
-import 'package:zionApp/screens/perfil/perfil.dart';
-import 'package:zionApp/screens/register/register.dart';
+import 'package:zionapp/screens/alicuotas/alicuota.dart';
+import 'package:zionapp/screens/contactanos/contactanos.dart';
+import 'package:zionapp/screens/cuenta_bancaria/cuenta_bancaria.dart';
+import 'package:zionapp/screens/goal_creation/goal_creation.dart';
+import 'package:zionapp/screens/home/home.dart';
+import 'package:zionapp/screens/informacion/informacion.dart';
+import 'package:zionapp/screens/login/login.dart';
+import 'package:zionapp/screens/menu/menu.dart';
+import 'package:zionapp/screens/misionyvision/misionyvision.dart';
+import 'package:zionapp/screens/perfil/perfil.dart';
+import 'package:zionapp/screens/register/register.dart';
 
 @MaterialAutoRouter(routes: <AutoRoute>[
   MaterialRoute(page: Login, path: "/", initial: true),

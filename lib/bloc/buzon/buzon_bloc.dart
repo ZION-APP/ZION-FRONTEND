@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/bloc/auth/auth_bloc.dart';
-import 'package:zionApp/bloc/buzon/buzon_event.dart';
-import 'package:zionApp/bloc/buzon/buzon_state.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/bloc/auth/auth_bloc.dart';
+import 'package:zionapp/bloc/buzon/buzon_event.dart';
+import 'package:zionapp/bloc/buzon/buzon_state.dart';
 import 'package:dio/dio.dart';
 
 class BuzonBloc extends Bloc<BuzonEvent, BuzonState> {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/size_config.dart';
 
 // ignore: must_be_immutable
 class InfoPerfil extends StatelessWidget {
@@ -17,12 +17,12 @@ class InfoPerfil extends StatelessWidget {
             vertical: getProportionateScreenHeight(15)),
         child: Column(
           children: [
-            _mostrarDetalle(
-                "Usuario", (usuario["usuario"]["usuario"] ?? "Sin especificar") as String),
+            _mostrarDetalle("Usuario",
+                (usuario["usuario"]["usuario"] ?? "Sin especificar") as String),
             _mostrarDetalle("Correo electronico",
                 (usuario["usuario"]["correo"] ?? "Sin especificar") as String),
-            _mostrarDetalle(
-                "Cedula identidad", (usuario["cedula"] ?? "Sin especificar") as String),
+            _mostrarDetalle("Cedula identidad",
+                (usuario["cedula"] ?? "Sin especificar") as String),
             _mostrarDetalle("Numero de celular",
                 (usuario["usuario"]["celular"] ?? "Sin especificar") as String)
           ],
@@ -31,7 +31,7 @@ class InfoPerfil extends StatelessWidget {
     );
   }
 
-  Widget _mostrarDetalle(String titulo, dynamic descripcion) {
+  Widget _mostrarDetalle(String titulo, String descripcion) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

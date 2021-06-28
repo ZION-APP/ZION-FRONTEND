@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/routes/router.gr.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/routes/router.gr.dart';
+import 'package:zionapp/size_config.dart';
 
 class LogOutButton extends StatelessWidget {
   const LogOutButton();
@@ -20,7 +20,7 @@ class LogOutButton extends StatelessWidget {
                       color: kSecondaryColor,
                       width: getProportionateScreenHeight(1))))),
       onPressed: () {
-        AutoRouter.of(context).replaceAll([LoginRoute()]);
+        AutoRouter.of(context).replaceAll([const LoginRoute()]);
       },
       child: Text(
         "Cerrar sesión",

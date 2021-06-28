@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/size_config.dart';
 
 class VisionyMision extends StatelessWidget {
   const VisionyMision({Key key}) : super(key: key);

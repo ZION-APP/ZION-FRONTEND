@@ -1,14 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/bloc/auth/auth_bloc.dart';
-import 'package:zionApp/bloc/auth/auth_event.dart';
-import 'package:zionApp/bloc/auth/auth_state.dart';
-import 'package:zionApp/components/button_default.dart';
-import 'package:zionApp/components/cargando.dart';
-import 'package:zionApp/routes/router.gr.dart';
-import 'package:zionApp/screens/login/components.dart/formulario.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/bloc/auth/auth_bloc.dart';
+import 'package:zionapp/bloc/auth/auth_event.dart';
+import 'package:zionapp/bloc/auth/auth_state.dart';
+import 'package:zionapp/components/button_default.dart';
+import 'package:zionapp/components/cargando.dart';
+import 'package:zionapp/routes/router.gr.dart';
+import 'package:zionapp/screens/login/components.dart/formulario.dart';
+import 'package:zionapp/size_config.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -70,7 +70,7 @@ class _LoginState extends State<Login> {
           loading = false;
         }
       }, buildWhen: (previousState, newState) {
-        if (previousState is LoginInitial && newState is LoginFailed){
+        if (previousState is LoginInitial && newState is LoginFailed) {
           return false;
         }
         return true;
@@ -134,7 +134,8 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.symmetric(
                     vertical: getProportionateScreenHeight(15)),
                 child: DefaultButton(
-                  func: () => {AutoRouter.of(context).push(const InformacionRoute())},
+                  func: () =>
+                      {AutoRouter.of(context).push(const InformacionRoute())},
                   label: "Mas Informacion",
                 ),
               ),
@@ -152,7 +153,7 @@ class _LoginState extends State<Login> {
     }
   }
 
-  void recuerdameCallback(bool selected) {
+  void recuerdameCallback({bool selected}) {
     setState(() {
       recuerdame = selected;
     });

@@ -8,8 +8,6 @@ class InversionesHome extends StatefulWidget {
 class _InversionesState extends State<InversionesHome> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text("Inversiones"),
-    );
+    return const Text("Inversiones");
   }
 }

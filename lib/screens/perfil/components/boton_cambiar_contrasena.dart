@@ -1,7 +1,8 @@
+import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/components/input_default.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/components/input_default.dart';
+import 'package:zionapp/size_config.dart';
 
 class BotonCambiarContrasena extends StatelessWidget {
   const BotonCambiarContrasena({
@@ -31,8 +32,10 @@ class BotonCambiarContrasena extends StatelessWidget {
   }
 
   void _showModalBottomSheet(BuildContext context) {
-    final TextEditingController viejaContrasenaController = TextEditingController();
-    final TextEditingController nuevaContrasenaController = TextEditingController();
+    final TextEditingController viejaContrasenaController =
+        TextEditingController();
+    final TextEditingController nuevaContrasenaController =
+        TextEditingController();
     showModalBottomSheet(
         context: context,
         builder: (context) {
@@ -79,7 +82,8 @@ class BotonCambiarContrasena extends StatelessWidget {
             )
           ]);
         }).then((value) => {
-          if (value != null && (value as bool)) {print(nuevaContrasenaController.text)}
+          if (value != null && (value as bool))
+            {developer.log(nuevaContrasenaController.text)}
         });
   }
 }

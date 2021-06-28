@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/size_config.dart';
 
 class BuzonCard extends StatelessWidget {
   final dynamic noticia;
@@ -89,7 +89,8 @@ class BuzonCard extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: getProportionateScreenHeight(12)),
               children: [
-            const TextSpan(text: "Autor,\n", style: TextStyle(color: Colors.black)),
+            const TextSpan(
+                text: "Autor,\n", style: TextStyle(color: Colors.black)),
             TextSpan(
                 text: autor ?? "Sin autor",
                 style: const TextStyle(color: kPrimaryColor))

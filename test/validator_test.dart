@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:zionApp/models/tipo_banco.dart';
-import 'package:zionApp/validator/validator.dart';
+import 'package:zionapp/models/tipo_banco.dart';
+import 'package:zionapp/validator/validator.dart';
 
 void main() {
   //Pruebas para validarCorreo()
@@ -33,7 +33,6 @@ void main() {
     result = Validadores.validarCorreo('kbaksjd@skda.cdas.ds');
     expect(result, null);
   });
-
 
   //pruebas para validarContrasena()
   test('validarContrasena1', () {
@@ -72,7 +71,6 @@ void main() {
     expect(result, null);
   });
 
-
   //pruebas para validarUsername()
   test('validarUsername1', () {
     String result;
@@ -98,7 +96,6 @@ void main() {
     expect(result, null);
   });
 
-
   //pruebas para validarNombreLargo()
   test('validarNombreLargo1', () {
     String result;
@@ -114,7 +111,8 @@ void main() {
 
   test('validarNombreLargo3', () {
     String result;
-    result = Validadores.validarNombreLargo('xEcddjanfoJHJISHjahsdjak3_ksdJJI878__90=kjo');
+    result = Validadores.validarNombreLargo(
+        'xEcddjanfoJHJISHjahsdjak3_ksdJJI878__90=kjo');
     expect(result, 'Por favor ingrese un nombre válido');
   });
 
@@ -123,7 +121,6 @@ void main() {
     result = Validadores.validarNombreLargo('xEcdsdSds9');
     expect(result, null);
   });
-
 
   //pruebas para validarValorMonetario()
   test('validarValorMonetario1', () {
@@ -226,7 +223,8 @@ void main() {
 
   test('validarNumCuenta5', () {
     String result;
-    result = Validadores.validarNumCuenta('0231231232', TipoBanco.BancoGuayaquil);
+    result =
+        Validadores.validarNumCuenta('0231231232', TipoBanco.BancoGuayaquil);
     expect(result, null);
   });
 
@@ -238,37 +236,43 @@ void main() {
 
   test('validarNumCuenta7', () {
     String result;
-    result = Validadores.validarNumCuenta('029482023921', TipoBanco.BancoGuayaquil);
+    result =
+        Validadores.validarNumCuenta('029482023921', TipoBanco.BancoGuayaquil);
     expect(result, 'Por favor ingresar un número válido');
   });
 
   test('validarNumCuenta8', () {
     String result;
-    result = Validadores.validarNumCuenta('02312312324', TipoBanco.BancoPacifico);
+    result =
+        Validadores.validarNumCuenta('02312312324', TipoBanco.BancoPacifico);
     expect(result, 'Por favor ingresar un número válido');
   });
 
   test('validarNumCuenta9', () {
     String result;
-    result = Validadores.validarNumCuenta('0231231232', TipoBanco.BancoProdubanco);
+    result =
+        Validadores.validarNumCuenta('0231231232', TipoBanco.BancoProdubanco);
     expect(result, 'Por favor ingresar un número válido');
   });
 
   test('validarNumCuenta10', () {
     String result;
-    result = Validadores.validarNumCuenta('12.31a#42', TipoBanco.BancoProdubanco);
+    result =
+        Validadores.validarNumCuenta('12.31a#42', TipoBanco.BancoProdubanco);
     expect(result, 'Por favor ingresar un número válido');
   });
 
   test('validarNumCuenta11', () {
     String result;
-    result = Validadores.validarNumCuenta('029482023921', TipoBanco.BancoProdubanco);
+    result =
+        Validadores.validarNumCuenta('029482023921', TipoBanco.BancoProdubanco);
     expect(result, 'Por favor ingresar un número válido');
   });
 
   test('validarNumCuenta12', () {
     String result;
-    result = Validadores.validarNumCuenta('02312312324', TipoBanco.BancoProdubanco);
+    result =
+        Validadores.validarNumCuenta('02312312324', TipoBanco.BancoProdubanco);
     expect(result, null);
   });
 }

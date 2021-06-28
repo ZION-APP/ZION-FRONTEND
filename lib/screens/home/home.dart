@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/screens/alicuotas/alicuota.dart';
-//import 'package:zionApp/screens/buzon/buzon.dart';
-import 'package:zionApp/screens/goal_creation/goal_creation.dart';
-import 'package:zionApp/screens/inversiones/inversiones.dart';
-import 'package:zionApp/screens/menu/menu.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/screens/alicuotas/alicuota.dart';
+//import 'package:zionapp/screens/buzon/buzon.dart';
+import 'package:zionapp/screens/goal_creation/goal_creation.dart';
+import 'package:zionapp/screens/inversiones/inversiones.dart';
+import 'package:zionapp/screens/menu/menu.dart';
 
 class Home extends StatefulWidget {
   final String titulo;
@@ -15,7 +15,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<String> _titulos = ["Metas", "Aportes", "Inversiones", "Configuración"];
+  final List<String> _titulos = [
+    "Metas",
+    "Aportes",
+    "Inversiones",
+    "Configuración"
+  ];
 
   final List<Widget> _screens = [
     //const BuzonHome(), ¿Hay que remover buzon?
@@ -48,11 +53,14 @@ class _HomeState extends State<Home> {
         currentIndex: page,
         onTap: _navigationHandler,
         items: [
-          BottomNavigationBarItem(icon: const Icon(Icons.home), label: _titulos[0]),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.home), label: _titulos[0]),
           BottomNavigationBarItem(
               icon: const Icon(Icons.monetization_on), label: _titulos[1]),
-          BottomNavigationBarItem(icon: const Icon(Icons.person), label: _titulos[2]),
-          BottomNavigationBarItem(icon: const Icon(Icons.menu), label: _titulos[3]),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.person), label: _titulos[2]),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.menu), label: _titulos[3]),
         ]);
   }
 

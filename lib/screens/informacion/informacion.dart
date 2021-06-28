@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/components/button_default.dart';
-import 'package:zionApp/routes/router.gr.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/components/button_default.dart';
+import 'package:zionapp/routes/router.gr.dart';
+import 'package:zionapp/size_config.dart';
 import 'package:auto_route/auto_route.dart';
 
 class Informacion extends StatelessWidget {

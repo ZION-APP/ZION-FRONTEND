@@ -1,11 +1,11 @@
-import 'package:zionApp/constants.dart';
-import 'package:zionApp/models/tipo_banco.dart';
-import 'package:zionApp/models/tipo_cuenta.dart';
-import 'package:zionApp/screens/cuenta_bancaria/components.dart/formulario.dart';
+import 'package:zionapp/constants.dart';
+import 'package:zionapp/models/tipo_banco.dart';
+import 'package:zionapp/models/tipo_cuenta.dart';
+import 'package:zionapp/screens/cuenta_bancaria/components.dart/formulario.dart';
 import 'package:flutter/material.dart';
 
 class CuentaBancaria extends StatefulWidget {
-  const CuentaBancaria({ Key key }) : super(key: key);
+  const CuentaBancaria({Key key}) : super(key: key);
 
   @override
   _CuentaBancariaState createState() => _CuentaBancariaState();
@@ -36,16 +36,15 @@ class _CuentaBancariaState extends State<CuentaBancaria> {
       body: CustomScrollView(
         slivers: [
           SliverFillRemaining(
-            hasScrollBody: false,
-            child: FormularioCuentaBancaria(
-              titularController: titularController,
-              cedulaController: cedulaController,
-              tipoBanco: tipoBanco,
-              numeroCuentaController: numeroCuentaController,
-              tipoCuenta: tipoCuenta,
-              formKey: _formKey,
-            )
-          ),
+              hasScrollBody: false,
+              child: FormularioCuentaBancaria(
+                titularController: titularController,
+                cedulaController: cedulaController,
+                tipoBanco: tipoBanco,
+                numeroCuentaController: numeroCuentaController,
+                tipoCuenta: tipoCuenta,
+                formKey: _formKey,
+              )),
         ],
       ),
     );

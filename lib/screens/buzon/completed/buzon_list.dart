@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zionApp/screens/buzon/completed/buzon_card.dart';
-import 'package:zionApp/size_config.dart';
+import 'package:zionapp/screens/buzon/completed/buzon_card.dart';
+import 'package:zionapp/size_config.dart';
 
 class BuzonList extends StatelessWidget {
   final dynamic noticias;
