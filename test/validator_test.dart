@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:zionApp/models/tipo_banco.dart';
 import 'package:zionApp/validator/validator.dart';
 
 void main() {
@@ -156,45 +157,118 @@ void main() {
   });
 
   //pruebas para validarCedula()
-  test('Dado un valor vacío, validarCedula no retorna null', () {
+  test(' validarCedula1', () {
     String result;
     result = Validadores.validarCedula('');
     expect(result, 'Por favor ingrese cédula/RUC válida/o');
   });
 
-  test('Dado un valor con caracteres que no sean dígitos, validarCedula no retorna null', () {
+  test(' validarCedula2', () {
     String result;
     result = Validadores.validarCedula('3398jaiK*&)');
     expect(result, 'Por favor ingrese cédula/RUC válida/o');
   });
 
-  test('Dado un valor con menos de 10 dígitos, validarCedula no retorna null', () {
+  test(' validarCedula3', () {
     String result;
     result = Validadores.validarCedula('9203192');
     expect(result, 'Por favor ingrese cédula/RUC válida/o');
   });
 
-  test('Dado un valor con entre 10 y 13 dígitos, validarCedula no retorna null', () {
+  test(' validarCedula4', () {
     String result;
     result = Validadores.validarCedula('37465839023');
     expect(result, 'Por favor ingrese cédula/RUC válida/o');
   });
 
-  test('Dado un valor con más de 13 dígitos, validarCedula no retorna null', () {
+  test(' validarCedula5', () {
     String result;
     result = Validadores.validarCedula('8748927893647826784342');
     expect(result, 'Por favor ingrese cédula/RUC válida/o');
   });
 
-  test('Dado un valor con 10 dígitos, validarCedula retorna null', () {
+  test(' validarCedula6', () {
     String result;
     result = Validadores.validarCedula('0934854224');
     expect(result, null);
   });
 
-  test('Dado un valor con 13 dígitos, validarCedula retorna null', () {
+  test(' validarCedula7', () {
     String result;
     result = Validadores.validarCedula('0934854224034');
+    expect(result, null);
+  });
+
+  //pruebas para validarNumCuenta
+  test('validarNumCuenta1', () {
+    String result;
+    result = Validadores.validarNumCuenta('0231231232', null);
+    expect(result, 'Por favor escoger un banco');
+  });
+
+  test('validarNumCuenta2', () {
+    String result;
+    result = Validadores.validarNumCuenta('12.31a#42', null);
+    expect(result, 'Por favor escoger un banco');
+  });
+
+  test('validarNumCuenta3', () {
+    String result;
+    result = Validadores.validarNumCuenta('029482023921', null);
+    expect(result, 'Por favor escoger un banco');
+  });
+
+  test('validarNumCuenta4', () {
+    String result;
+    result = Validadores.validarNumCuenta('02312312324', null);
+    expect(result, 'Por favor escoger un banco');
+  });
+
+  test('validarNumCuenta5', () {
+    String result;
+    result = Validadores.validarNumCuenta('0231231232', TipoBanco.BancoGuayaquil);
+    expect(result, null);
+  });
+
+  test('validarNumCuenta6', () {
+    String result;
+    result = Validadores.validarNumCuenta('12.31a#42', TipoBanco.BancoPacifico);
+    expect(result, 'Por favor ingresar un número válido');
+  });
+
+  test('validarNumCuenta7', () {
+    String result;
+    result = Validadores.validarNumCuenta('029482023921', TipoBanco.BancoGuayaquil);
+    expect(result, 'Por favor ingresar un número válido');
+  });
+
+  test('validarNumCuenta8', () {
+    String result;
+    result = Validadores.validarNumCuenta('02312312324', TipoBanco.BancoPacifico);
+    expect(result, 'Por favor ingresar un número válido');
+  });
+
+  test('validarNumCuenta9', () {
+    String result;
+    result = Validadores.validarNumCuenta('0231231232', TipoBanco.BancoProdubanco);
+    expect(result, 'Por favor ingresar un número válido');
+  });
+
+  test('validarNumCuenta10', () {
+    String result;
+    result = Validadores.validarNumCuenta('12.31a#42', TipoBanco.BancoProdubanco);
+    expect(result, 'Por favor ingresar un número válido');
+  });
+
+  test('validarNumCuenta11', () {
+    String result;
+    result = Validadores.validarNumCuenta('029482023921', TipoBanco.BancoProdubanco);
+    expect(result, 'Por favor ingresar un número válido');
+  });
+
+  test('validarNumCuenta12', () {
+    String result;
+    result = Validadores.validarNumCuenta('02312312324', TipoBanco.BancoProdubanco);
     expect(result, null);
   });
 }

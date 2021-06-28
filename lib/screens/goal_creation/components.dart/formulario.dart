@@ -27,7 +27,7 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
 
   String getDateText(){
     if(_dateTime == null){
-      return 'Fecha en que quieres lograr tu meta';
+      return 'Fecha final de la meta';
     }else{
       return '${_dateTime.month}/${_dateTime.day}/${_dateTime.year}';
     }

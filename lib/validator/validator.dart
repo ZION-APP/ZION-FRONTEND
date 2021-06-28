@@ -1,4 +1,4 @@
-import 'package:zionApp/routes/router.gr.dart';
+import 'package:zionApp/models/tipo_banco.dart';
 
 class Validadores {
   static String validarCorreo(String correo) {
@@ -44,5 +44,18 @@ class Validadores {
     return (((cedula.length == 10) || (cedula.length == 13)) && (RegExp(r'^[0-9]+$').hasMatch(cedula)))
         ? null
         : "Por favor ingrese cédula/RUC válida/o";
+  }
+
+  static String validarNumCuenta(String value, TipoBanco banco){
+    if(banco==null){
+      return 'Por favor escoger un banco';
+    }else if(RegExp(r'^[0-9]+$').hasMatch(value)){
+      if((banco == TipoBanco.BancoGuayaquil || banco == TipoBanco.BancoPacifico) && value.length == 10){
+        return null;
+      }else if(banco == TipoBanco.BancoProdubanco && value.length == 11){
+        return null;
+      }
+    }
+    return 'Por favor ingresar un número válido';
   }
 }
