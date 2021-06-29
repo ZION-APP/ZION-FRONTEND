@@ -28,7 +28,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
                 base64Encode(
                     utf8.encode('${event.usuario}:${event.contrasena}'));
 
-        Map<String, String> headers = {'authorization': basicAuth};
+        final Map<String, String> headers = {'authorization': basicAuth};
         final Response response = await Dio().post(
             "http://10.0.0.2:3001/api/auth/sign-in",
             options: Options(headers: headers));
