@@ -1,4 +1,6 @@
 import 'dart:developer' as developer;
+import 'package:auto_route/auto_route.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/button_default.dart';
@@ -59,6 +61,23 @@ class _FormularioRegisterState extends State<FormularioRegister> {
       duration: const Duration(milliseconds: 1500),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  Future<void> createUser(String usuario, String correo, String contrasena, BuildContext context) async{
+    final url = Uri.parse('http://10.0.2.2:3000/api/auth/sign-up');
+
+    final resp = await http.post(url, body:{
+        'name': usuario,
+        'email': correo,
+        'password': contrasena,
+        'isAdmin': 'false'
+    });
+
+    if(resp.statusCode==201){
+      AutoRouter.of(context).pop();
+    }else {
+      showErrorSnack(context, 'Error al crear usuario');
+    }
   }
 
   @override
@@ -158,6 +177,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
             func: () => {
               if (validateForm())
                 {
+                  createUser(widget.usuarioController.text, widget.correoController.text, widget.contrasenaController.text, context),
                   developer.log(
                       '${widget.usuarioController.text} ${widget.cedulaController.text} $_tipoSeleccionado ${widget.correoController.text} ${widget.contrasenaController.text} ${widget.contrasenaConfirmController.text}')
                 }
