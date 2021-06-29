@@ -153,7 +153,8 @@ class _LoginState extends State<Login> {
     }
   }
 
-  void recuerdameCallback({bool selected}) {
+  // ignore: avoid_positional_boolean_parameters
+  void recuerdameCallback(bool selected) {
     setState(() {
       recuerdame = selected;
     });
