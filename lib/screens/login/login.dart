@@ -117,7 +117,10 @@ class _LoginState extends State<Login> {
                   padding: EdgeInsets.symmetric(
                       vertical: getProportionateScreenHeight(15)),
                   child: DefaultButton(
-                    func: () => logIn(context),
+                    func: () => {
+                      //logIn(context)
+                      AutoRouter.of(context).push(HomeRoute())
+                    },
                     label: "Inicia Sesion",
                     colorFondo: loading ? kDisableColor : kPrimaryColor,
                   ),
