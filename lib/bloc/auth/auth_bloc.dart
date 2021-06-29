@@ -47,7 +47,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
         }
         yield LogInCompleted("H");
       } on DioError catch (e) {
-        yield LoginFailed(e.response.data["respuesta"] as String);
+        yield LoginFailed(e.response.data["error"] as String);
       }
     }
     if (event is CerrarSesion) {
