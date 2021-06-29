@@ -15,4 +15,4 @@ const storage = FlutterSecureStorage();
 const kAnimationDuration = Duration(milliseconds: 200);
 const kAnimationMiliseconds = 500;
 const kapiUrl =
-    "https://api.practical.com.ec/residente"; //No poner ip 127.0.0.1 ni localhost
+    "http://api.practical.com.ec/residente"; //No poner ip 127.0.0.1 ni localhost
