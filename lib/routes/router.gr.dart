@@ -29,8 +29,8 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i2.Login());
     },
     HomeRoute.name: (entry) {
-      var args =
-          entry.routeData.argsAs<HomeRouteArgs>(orElse: () => HomeRouteArgs());
+      final args =
+          entry.routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i3.Home(key: args.key, titulo: args.titulo));
     },

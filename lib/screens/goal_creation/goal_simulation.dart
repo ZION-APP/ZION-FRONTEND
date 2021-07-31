@@ -73,7 +73,7 @@ class _GoalSimulationState extends State<GoalSimulation> {
                           Container(
                             decoration: BoxDecoration(
                               border: Border(
-                                bottom: BorderSide(color: Colors.grey[300], width: 1)
+                                bottom: BorderSide(color: Colors.grey[300])
                               )
                             ),
                             child: SizedBox(
