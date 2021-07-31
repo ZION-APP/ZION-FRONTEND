@@ -5,12 +5,13 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i13;
+import 'package:flutter/material.dart' as _i14;
 
 import '../screens/alicuotas/alicuota.dart' as _i4;
 import '../screens/contactanos/contactanos.dart' as _i9;
 import '../screens/cuenta_bancaria/cuenta_bancaria.dart' as _i11;
 import '../screens/goal_creation/goal_creation.dart' as _i12;
+import '../screens/goal_creation/goal_simulation.dart' as _i13;
 import '../screens/home/home.dart' as _i3;
 import '../screens/informacion/informacion.dart' as _i7;
 import '../screens/login/login.dart' as _i2;
@@ -28,9 +29,7 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i2.Login());
     },
     HomeRoute.name: (entry) {
-      // ignore: prefer_final_locals
       var args =
-          // ignore: prefer_const_constructors
           entry.routeData.argsAs<HomeRouteArgs>(orElse: () => HomeRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i3.Home(key: args.key, titulo: args.titulo));
@@ -62,6 +61,10 @@ class AppRouter extends _i1.RootStackRouter {
     },
     GoalCreationRoute.name: (entry) {
       return _i1.MaterialPageX(entry: entry, child: const _i12.GoalCreation());
+    },
+    GoalSimulationRoute.name: (entry) {
+      return _i1.MaterialPageX(
+          entry: entry, child: const _i13.GoalSimulation());
     }
   };
 
@@ -77,7 +80,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(ContactanosRoute.name, path: '/contactanos'),
         _i1.RouteConfig(RegisterRoute.name, path: '/register'),
         _i1.RouteConfig(CuentaBancariaRoute.name, path: '/cuenta_bancaria'),
-        _i1.RouteConfig(GoalCreationRoute.name, path: '/goalcreation')
+        _i1.RouteConfig(GoalCreationRoute.name, path: '/goalcreation'),
+        _i1.RouteConfig(GoalSimulationRoute.name, path: '/goalsimulation')
       ];
 }
 
@@ -88,7 +92,7 @@ class LoginRoute extends _i1.PageRouteInfo {
 }
 
 class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i13.Key key, String titulo})
+  HomeRoute({_i14.Key key, String titulo})
       : super(name,
             path: '/home', args: HomeRouteArgs(key: key, titulo: titulo));
 
@@ -98,7 +102,7 @@ class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key, this.titulo});
 
-  final _i13.Key key;
+  final _i14.Key key;
 
   final String titulo;
 }
@@ -155,4 +159,10 @@ class GoalCreationRoute extends _i1.PageRouteInfo {
   const GoalCreationRoute() : super(name, path: '/goalcreation');
 
   static const String name = 'GoalCreationRoute';
+}
+
+class GoalSimulationRoute extends _i1.PageRouteInfo {
+  const GoalSimulationRoute() : super(name, path: '/goalsimulation');
+
+  static const String name = 'GoalSimulationRoute';
 }
