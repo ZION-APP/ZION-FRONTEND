@@ -95,7 +95,7 @@ class _GoalSimulationState extends State<GoalSimulation> {
                             ),
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +134,6 @@ class _GoalSimulationState extends State<GoalSimulation> {
                                   ),
                                 ]
                               ),
-                              SizedBox(width: getProportionateScreenWidth(80)),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
