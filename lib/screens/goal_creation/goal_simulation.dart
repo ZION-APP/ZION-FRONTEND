@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/constants_config.dart';
+import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/size_config.dart';
 
 class GoalSimulation extends StatefulWidget {
@@ -43,21 +45,30 @@ class _GoalSimulationState extends State<GoalSimulation> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Meta:',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                          fontSize: 25,
+                      SizedBox(width: getProportionateScreenWidth(40)),
+                      const Expanded(
+                        child: Text(
+                          'Meta:',
+                          style: TextStyle(
+                            color: kSecondaryColor,
+                            fontSize: 25,
+                          ),
                         ),
                       ),
-                      SizedBox(width: getProportionateScreenWidth(10)),
-                      Text(
-                        nombreMeta,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 20,
+                      Expanded(
+                        flex: 2,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            nombreMeta,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 36,
+                            ),
+                          ),
                         ),
                       ),
+                      SizedBox(width: getProportionateScreenWidth(40)),
                     ],
                   ),
                   SizedBox(height: getProportionateScreenHeight(40)),
@@ -97,79 +108,85 @@ class _GoalSimulationState extends State<GoalSimulation> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(height: getProportionateScreenHeight(25)),
-                                  const Text(
-                                    'Fondo Recomendado',
-                                    style: TextStyle(
-                                      color: kSecondaryColor,
-                                      fontSize: 17,
+                              SizedBox(width: getProportionateScreenWidth(20)),
+                              Expanded(
+                                flex: 2,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: getProportionateScreenHeight(25)),
+                                    const Text(
+                                      'Fondo Recomendado',
+                                      style: TextStyle(
+                                        color: kSecondaryColor,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: getProportionateScreenHeight(25)),
-                                  const Text(
-                                    'Monto Inicial',
-                                    style: TextStyle(
-                                      color: kSecondaryColor,
-                                      fontSize: 17,
+                                    SizedBox(height: getProportionateScreenHeight(25)),
+                                    const Text(
+                                      'Monto Inicial',
+                                      style: TextStyle(
+                                        color: kSecondaryColor,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: getProportionateScreenHeight(25)),
-                                  const Text(
-                                    'Monto Objetivo',
-                                    style: TextStyle(
-                                      color: kSecondaryColor,
-                                      fontSize: 17,
+                                    SizedBox(height: getProportionateScreenHeight(25)),
+                                    const Text(
+                                      'Monto Objetivo',
+                                      style: TextStyle(
+                                        color: kSecondaryColor,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: getProportionateScreenHeight(25)),
-                                  const Text(
-                                    'Mensualidades',
-                                    style: TextStyle(
-                                      color: kSecondaryColor,
-                                      fontSize: 17,
+                                    SizedBox(height: getProportionateScreenHeight(25)),
+                                    const Text(
+                                      'Mensualidades',
+                                      style: TextStyle(
+                                        color: kSecondaryColor,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                ]
+                                  ]
+                                ),
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(height: getProportionateScreenHeight(25)),
-                                  Text(
-                                    fondo,
-                                    style: const TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 17,
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: getProportionateScreenHeight(25)),
+                                    Text(
+                                      fondo,
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: getProportionateScreenHeight(25)),
-                                  Text(
-                                    montoIni,
-                                    style: const TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 17,
+                                    SizedBox(height: getProportionateScreenHeight(25)),
+                                    Text(
+                                      montoIni,
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: getProportionateScreenHeight(25)),
-                                  Text(
-                                    montoObj,
-                                    style: const TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 17,
+                                    SizedBox(height: getProportionateScreenHeight(25)),
+                                    Text(
+                                      montoObj,
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: getProportionateScreenHeight(25)),
-                                  Text(
-                                    mensualidades,
-                                    style: const TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 17,
+                                    SizedBox(height: getProportionateScreenHeight(25)),
+                                    Text(
+                                      mensualidades,
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 16,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -196,15 +213,15 @@ class _GoalSimulationState extends State<GoalSimulation> {
                   ),
                   SizedBox(height: getProportionateScreenHeight(30)),
                   Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: getProportionateScreenHeight(30)),
-              child: DefaultButton(
-                func: () => {},
-                label: "Crear Inversión",
-                colorFondo: kPrimaryColor,
-                colorTexto: kSecondaryColor,
-              ),
-            ),
+                    padding: EdgeInsets.symmetric(
+                        vertical: getProportionateScreenHeight(30)),
+                    child: DefaultButton(
+                      func: () => {AutoRouter.of(context).push(const GoalListRoute())},
+                      label: "Crear Inversión",
+                      colorFondo: kPrimaryColor,
+                      colorTexto: kSecondaryColor,
+                    ),
+                  ),
                 ],
               )
             )

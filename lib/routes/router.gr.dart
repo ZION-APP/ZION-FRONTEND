@@ -5,12 +5,13 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i14;
+import 'package:flutter/material.dart' as _i15;
 
 import '../screens/alicuotas/alicuota.dart' as _i4;
 import '../screens/contactanos/contactanos.dart' as _i9;
 import '../screens/cuenta_bancaria/cuenta_bancaria.dart' as _i11;
 import '../screens/goal_creation/goal_creation.dart' as _i12;
+import '../screens/goal_creation/goal_list.dart' as _i14;
 import '../screens/goal_creation/goal_simulation.dart' as _i13;
 import '../screens/home/home.dart' as _i3;
 import '../screens/informacion/informacion.dart' as _i7;
@@ -65,6 +66,9 @@ class AppRouter extends _i1.RootStackRouter {
     GoalSimulationRoute.name: (entry) {
       return _i1.MaterialPageX(
           entry: entry, child: const _i13.GoalSimulation());
+    },
+    GoalListRoute.name: (entry) {
+      return _i1.MaterialPageX(entry: entry, child: const _i14.GoalList());
     }
   };
 
@@ -81,7 +85,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(RegisterRoute.name, path: '/register'),
         _i1.RouteConfig(CuentaBancariaRoute.name, path: '/cuenta_bancaria'),
         _i1.RouteConfig(GoalCreationRoute.name, path: '/goalcreation'),
-        _i1.RouteConfig(GoalSimulationRoute.name, path: '/goalsimulation')
+        _i1.RouteConfig(GoalSimulationRoute.name, path: '/goalsimulation'),
+        _i1.RouteConfig(GoalListRoute.name, path: '/goallist')
       ];
 }
 
@@ -92,7 +97,7 @@ class LoginRoute extends _i1.PageRouteInfo {
 }
 
 class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i14.Key key, String titulo})
+  HomeRoute({_i15.Key key, String titulo})
       : super(name,
             path: '/home', args: HomeRouteArgs(key: key, titulo: titulo));
 
@@ -102,7 +107,7 @@ class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key, this.titulo});
 
-  final _i14.Key key;
+  final _i15.Key key;
 
   final String titulo;
 }
@@ -165,4 +170,10 @@ class GoalSimulationRoute extends _i1.PageRouteInfo {
   const GoalSimulationRoute() : super(name, path: '/goalsimulation');
 
   static const String name = 'GoalSimulationRoute';
+}
+
+class GoalListRoute extends _i1.PageRouteInfo {
+  const GoalListRoute() : super(name, path: '/goallist');
+
+  static const String name = 'GoalListRoute';
 }

@@ -3,6 +3,7 @@ import 'package:zionapp/screens/alicuotas/alicuota.dart';
 import 'package:zionapp/screens/contactanos/contactanos.dart';
 import 'package:zionapp/screens/cuenta_bancaria/cuenta_bancaria.dart';
 import 'package:zionapp/screens/goal_creation/goal_creation.dart';
+import 'package:zionapp/screens/goal_creation/goal_list.dart';
 import 'package:zionapp/screens/goal_creation/goal_simulation.dart';
 import 'package:zionapp/screens/home/home.dart';
 import 'package:zionapp/screens/informacion/informacion.dart';
@@ -31,5 +32,6 @@ import 'package:zionapp/screens/register/register.dart';
   MaterialRoute(page: CuentaBancaria, path: "/cuenta_bancaria"),
   MaterialRoute(page: GoalCreation, path: "/goalcreation"),
   MaterialRoute(page: GoalSimulation, path: "/goalsimulation"),
+  MaterialRoute(page: GoalList, path: "/goallist"),
 ])
 class $AppRouter {}
