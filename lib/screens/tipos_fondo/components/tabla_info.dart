@@ -37,18 +37,26 @@ class TablaInfo extends StatelessWidget {
               ),
             ),
           ),
-          const Divider(
-            thickness: 2,
-            height: 4,
-          ),
           Flexible(
             flex: 4,
             fit: FlexFit.tight,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-              child: Text(fondos[tipo]["info_general"] ??
-                  "No hay informacion de este fondo"),
+              padding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenHeight(14),
+                  horizontal: getProportionateScreenWidth(10)),
+              child: Text(
+                fondos[tipo]["info_general"] ??
+                    "No hay informacion de este fondo",
+                textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: getProportionateScreenHeight(13)),
+              ),
             ),
+          ),
+          Divider(
+            thickness: 2,
+            height: 4,
+            indent: getProportionateScreenWidth(20),
+            endIndent: getProportionateScreenWidth(20),
           ),
           Flexible(
               flex: 6,

@@ -21,19 +21,23 @@ const fondos = {
   "alpha": {
     "titulo": "Alpha",
     "imagen": "assets/img/alpha.png",
+    "banner": "assets/img/inversion_alpha_banner.PNG",
     "info_general":
         "El Fondo Alpha es una excelente alternativa de ahorro que resulta atractiva para inversionistas conservadores, porque ofrece más rentabilidad que una cuenta de ahorros y mayor disponibilidad del dinero que un certificado o depósito a plazo.",
     "inversion_inicial": "\$ 100,00",
+    "ren_promedio": "4,91 %",
     "monto_minimo": "\$ 20,00",
-    "min_permanecia": "32 dias habiles",
+    "min_permanencia": "32 dias habiles",
     "plz_retiros": "48 hrs",
   },
   "omega": {
     "titulo": "Omega",
     "imagen": "assets/img/omega.png",
+    "banner": "assets/img/inversion_omega_banner.PNG",
     "info_general":
         "El Fondo Omega es la mejor opción para quienes desean hacer crecer su Patrimonio en el tiempo. Puedes invertir tus ahorros o excedentes de liquidez y así planificar objetivos a mediano y largo plazo tales como educación, jubilación o vivienda propia.",
     "inversion_inicial": "\$ 100",
+    "ren_promedio": "6,08 %",
     "monto_minimo": "\$ 20,00",
     "min_permanencia": "32 dias habiles",
     "plz_retiros": "48 hrs",
