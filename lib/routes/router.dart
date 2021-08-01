@@ -10,6 +10,7 @@ import 'package:zionapp/screens/menu/menu.dart';
 import 'package:zionapp/screens/misionyvision/misionyvision.dart';
 import 'package:zionapp/screens/perfil/perfil.dart';
 import 'package:zionapp/screens/register/register.dart';
+import 'package:zionapp/screens/tipos_fondo/info_fondo.dart';
 
 @MaterialAutoRouter(routes: <AutoRoute>[
   MaterialRoute(page: Login, path: "/", initial: true),
@@ -29,5 +30,6 @@ import 'package:zionapp/screens/register/register.dart';
   MaterialRoute(page: Register, path: "/register"),
   MaterialRoute(page: CuentaBancaria, path: "/cuenta_bancaria"),
   MaterialRoute(page: GoalCreation, path: "/goalcreation"),
+  MaterialRoute(page: InfoFondo, path: "/info-fondo/:tipo"),
 ])
 class $AppRouter {}

@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:zionapp/routes/router.gr.dart';
 
 class InversionesHome extends StatefulWidget {
   @override
@@ -8,6 +10,22 @@ class InversionesHome extends StatefulWidget {
 class _InversionesState extends State<InversionesHome> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Inversiones");
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextButton(
+              onPressed: () {
+                AutoRouter.of(context).push(InfoFondoRoute(tipo: "alpha"));
+              },
+              child: const Text("Alfa")),
+          TextButton(
+              onPressed: () {
+                AutoRouter.of(context).push(InfoFondoRoute(tipo: "omega"));
+              },
+              child: const Text("Omega"))
+        ],
+      ),
+    );
   }
 }
