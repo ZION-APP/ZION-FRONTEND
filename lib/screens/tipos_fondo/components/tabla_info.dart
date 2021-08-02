@@ -9,7 +9,7 @@ class TablaInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.screenHeight * 0.5,
+      height: SizeConfig.screenHeight * 0.6,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
@@ -17,14 +17,14 @@ class TablaInfo extends StatelessWidget {
       child: Column(
         children: [
           Flexible(
-            flex: 5,
+            flex: 3,
             child: Container(
               color: kSecondaryColor,
               child: Column(
                 children: [
                   Image.asset(
-                    fondos[tipo]["imagen"],
-                    width: getProportionateScreenWidth(300),
+                    fondos[tipo]["imagen"] as String,
+                    width: getProportionateScreenWidth(200),
                   ),
                   Center(
                       child: Text(
@@ -39,16 +39,17 @@ class TablaInfo extends StatelessWidget {
           ),
           Flexible(
             flex: 4,
-            fit: FlexFit.tight,
             child: Padding(
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(14),
                   horizontal: getProportionateScreenWidth(10)),
               child: Text(
-                fondos[tipo]["info_general"] ??
+                fondos[tipo]["info_general"] as String ??
                     "No hay informacion de este fondo",
                 textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: getProportionateScreenHeight(13)),
+                style: TextStyle(
+                    fontSize: getProportionateScreenHeight(13),
+                    color: kSecondaryColor),
               ),
             ),
           ),
@@ -59,23 +60,43 @@ class TablaInfo extends StatelessWidget {
             endIndent: getProportionateScreenWidth(20),
           ),
           Flexible(
-              flex: 6,
-              fit: FlexFit.tight,
+              flex: 4,
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                padding: EdgeInsets.symmetric(
+                    vertical: getProportionateScreenHeight(4),
+                    horizontal: getProportionateScreenWidth(8)),
                 child: Column(
                   children: [
                     _rowTable("Inversion inicial",
-                        fondos[tipo]["inversion_inicial"] ?? "??"),
+                        fondos[tipo]["inversion_inicial"] as String ?? "??"),
                     _rowTable("Monto minimo de incremento",
-                        fondos[tipo]["monto_minimo"] ?? "??"),
+                        fondos[tipo]["monto_minimo"] as String ?? "??"),
                     _rowTable("Plazo mimino de permanencia",
-                        fondos[tipo]["min_permanencia"] ?? "??"),
+                        fondos[tipo]["min_permanencia"] as String ?? "??"),
                     _rowTable("Plazo de retiros totales o parciales",
-                        fondos[tipo]["plz_retiros"] ?? "??"),
+                        fondos[tipo]["plz_retiros"] as String ?? "??"),
                   ],
                 ),
+              )),
+          Divider(
+            thickness: 3,
+            height: 4,
+            indent: getProportionateScreenWidth(20),
+            endIndent: getProportionateScreenWidth(20),
+          ),
+          Flexible(
+              flex: 4,
+              child: Column(
+                children: [
+                  Text(
+                    "Calificacion de riesgos",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: kSecondaryColor,
+                        fontSize: getProportionateScreenHeight(14)),
+                  ),
+                  Image.asset("assets/img/certificacion_zion.PNG")
+                ],
               ))
         ],
       ),
@@ -90,12 +111,19 @@ class TablaInfo extends StatelessWidget {
           Flexible(
             flex: 8,
             fit: FlexFit.tight,
-            child: Text(titulo),
+            child: Text(
+              titulo,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: kSecondaryColor),
+            ),
           ),
           Flexible(
             flex: 4,
             fit: FlexFit.tight,
-            child: Text(descripcion),
+            child: Text(
+              descripcion,
+              style: const TextStyle(color: kSecondaryColor),
+            ),
           )
         ],
       ),
