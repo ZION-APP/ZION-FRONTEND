@@ -5,10 +5,11 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i14;
+import 'package:flutter/material.dart' as _i16;
 
 import '../screens/alicuotas/alicuota.dart' as _i4;
 import '../screens/contactanos/contactanos.dart' as _i9;
+import '../screens/crear_fondo/crear_fondo.dart' as _i15;
 import '../screens/cuenta_bancaria/cuenta_bancaria.dart' as _i11;
 import '../screens/goal_creation/goal_creation.dart' as _i12;
 import '../screens/home/home.dart' as _i3;
@@ -18,6 +19,7 @@ import '../screens/menu/menu.dart' as _i6;
 import '../screens/misionyvision/misionyvision.dart' as _i8;
 import '../screens/perfil/perfil.dart' as _i5;
 import '../screens/register/register.dart' as _i10;
+import '../screens/reglamentos/reglamento.dart' as _i14;
 import '../screens/tipos_fondo/info_fondo.dart' as _i13;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -68,6 +70,16 @@ class AppRouter extends _i1.RootStackRouter {
           orElse: () => InfoFondoRouteArgs(tipo: pathParams.getString('tipo')));
       return _i1.MaterialPageX(
           entry: entry, child: _i13.InfoFondo(key: args.key, tipo: args.tipo));
+    },
+    ReglamentoRoute.name: (entry) {
+      return _i1.MaterialPageX(entry: entry, child: const _i14.Reglamento());
+    },
+    CreacionFondoRoute.name: (entry) {
+      var args = entry.routeData.argsAs<CreacionFondoRouteArgs>(
+          orElse: () => CreacionFondoRouteArgs());
+      return _i1.MaterialPageX(
+          entry: entry,
+          child: _i15.CreacionFondo(tipo: args.tipo, key: args.key));
     }
   };
 
@@ -84,7 +96,9 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(RegisterRoute.name, path: '/register'),
         _i1.RouteConfig(CuentaBancariaRoute.name, path: '/cuenta_bancaria'),
         _i1.RouteConfig(GoalCreationRoute.name, path: '/goalcreation'),
-        _i1.RouteConfig(InfoFondoRoute.name, path: '/info-fondo/:tipo')
+        _i1.RouteConfig(InfoFondoRoute.name, path: '/info-fondo/:tipo'),
+        _i1.RouteConfig(ReglamentoRoute.name, path: '/reglamentos'),
+        _i1.RouteConfig(CreacionFondoRoute.name, path: '/crear-fondo')
       ];
 }
 
@@ -95,7 +109,7 @@ class LoginRoute extends _i1.PageRouteInfo {
 }
 
 class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i14.Key key, String titulo})
+  HomeRoute({_i16.Key key, String titulo})
       : super(name,
             path: '/home', args: HomeRouteArgs(key: key, titulo: titulo));
 
@@ -105,7 +119,7 @@ class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key, this.titulo});
 
-  final _i14.Key key;
+  final _i16.Key key;
 
   final String titulo;
 }
@@ -165,7 +179,7 @@ class GoalCreationRoute extends _i1.PageRouteInfo {
 }
 
 class InfoFondoRoute extends _i1.PageRouteInfo<InfoFondoRouteArgs> {
-  InfoFondoRoute({_i14.Key key, String tipo})
+  InfoFondoRoute({_i16.Key key, String tipo})
       : super(name,
             path: '/info-fondo/:tipo',
             args: InfoFondoRouteArgs(key: key, tipo: tipo),
@@ -177,7 +191,30 @@ class InfoFondoRoute extends _i1.PageRouteInfo<InfoFondoRouteArgs> {
 class InfoFondoRouteArgs {
   const InfoFondoRouteArgs({this.key, this.tipo});
 
-  final _i14.Key key;
+  final _i16.Key key;
 
   final String tipo;
+}
+
+class ReglamentoRoute extends _i1.PageRouteInfo {
+  const ReglamentoRoute() : super(name, path: '/reglamentos');
+
+  static const String name = 'ReglamentoRoute';
+}
+
+class CreacionFondoRoute extends _i1.PageRouteInfo<CreacionFondoRouteArgs> {
+  CreacionFondoRoute({String tipo, _i16.Key key})
+      : super(name,
+            path: '/crear-fondo',
+            args: CreacionFondoRouteArgs(tipo: tipo, key: key));
+
+  static const String name = 'CreacionFondoRoute';
+}
+
+class CreacionFondoRouteArgs {
+  const CreacionFondoRouteArgs({this.tipo, this.key});
+
+  final String tipo;
+
+  final _i16.Key key;
 }
