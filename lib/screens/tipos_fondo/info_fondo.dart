@@ -1,12 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/screens/tipos_fondo/components/perfil_inversionista.dart';
 import 'package:zionapp/screens/tipos_fondo/components/tabla_info.dart';
 import 'package:zionapp/size_config.dart';
-
-import 'components/bottom_bar_inversion.dart';
 
 // ignore: must_be_immutable
 class InfoFondo extends StatelessWidget {
@@ -40,7 +37,6 @@ class InfoFondo extends StatelessWidget {
               ],
             ),
           ),
-          BottomBarInversion()
         ]));
   }
 }

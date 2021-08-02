@@ -8,7 +8,7 @@ class PerfilInversionista extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var perfilInv = fondos[tipo]["perfil_inv"] as List;
+    final perfilInv = fondos[tipo]["perfil_inv"] as List;
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -18,7 +18,7 @@ class PerfilInversionista extends StatelessWidget {
           children: [
             Container(
               height: SizeConfig.screenHeight * 0.08,
-              decoration: BoxDecoration(color: kSecondaryColor),
+              decoration: const BoxDecoration(color: kSecondaryColor),
               child: Center(
                 child: Text(
                   "Perfil de Inversionista",
