@@ -2,19 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:zionApp/sizeConfig.dart';
 
 class ExpandingItems extends StatefulWidget {
-  @override
-  _ExpandingItemsState createState() => _ExpandingItemsState();
+  final String contenido;
+  final String titulo;
+
+  ExpandingItems({
+    this.titulo,
+    this.contenido,
+  });
+
+  _ExpandingItemsState createState() =>
+      _ExpandingItemsState(this.titulo, this.contenido);
 }
 
 class _ExpandingItemsState extends State<ExpandingItems> {
   bool _isExpanded = false;
+  final String contenido;
+  final String titulo;
+  _ExpandingItemsState(
+    this.titulo,
+    this.contenido,
+  );
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
         margin:
-            EdgeInsets.symmetric(vertical: getProportionateScreenHeight(20)),
+            EdgeInsets.symmetric(vertical: getProportionateScreenHeight(10)),
         child: ExpansionPanelList(
           expansionCallback: (index, isExpanded) => setState(() {
             _isExpanded = !isExpanded;
@@ -23,12 +37,12 @@ class _ExpandingItemsState extends State<ExpandingItems> {
             ExpansionPanel(
               body: ListTile(
                   subtitle: Text(
-                "Un fondo de inversión es un instrumento de ahorro que reúne a un gran número de personas que quieren invertir su dinero.El fondo pone en común el dinero de este grupo de personas y una entidad gestora (la Administradora de Fondos) se ocupa de invertirlo en una serie de activos como pueden ser acciones, títulos de renta fija, y demás títulos valores (incluso en otros fondos de Inversión).",
+                contenido,
                 textAlign: TextAlign.justify,
               )),
               headerBuilder: (_, isExpanded) {
                 return Center(
-                  child: Text("  ¿Qué es un fondo de inversión administrado?"),
+                  child: Text(titulo),
                 );
               },
               isExpanded: _isExpanded,
