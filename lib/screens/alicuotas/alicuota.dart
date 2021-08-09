@@ -10,6 +10,6 @@ class AlicuotaHome extends StatefulWidget {
 class _AlicuotaHomeState extends State<AlicuotaHome> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Alicuotas");
+    return const Text("Alicuotsas");
   }
 }

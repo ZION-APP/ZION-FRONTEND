@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';
-
 import 'package:zionapp/components/dropdown_item.dart';
 
 var obj = ["MENSAJE1", "MENSAJE2", "MENSAJE3"];

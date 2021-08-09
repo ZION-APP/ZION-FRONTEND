@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:zionapp/screens/alicuotas/alicuota.dart';
+import 'package:zionapp/screens/aportes/aportes.dart';
 import 'package:zionapp/screens/contactanos/contactanos.dart';
 import 'package:zionapp/screens/crear_fondo/crear_fondo.dart';
 import 'package:zionapp/screens/cuenta_bancaria/cuenta_bancaria.dart';
@@ -24,6 +25,10 @@ import 'package:zionapp/screens/tipos_fondo/info_fondo.dart';
   MaterialRoute(
     page: AlicuotaHome,
     path: '/alicuotas',
+  ),
+  MaterialRoute(
+    page: Aporte,
+    path: '/aporte',
   ),
   MaterialRoute(page: PerfilHome, path: "/perfil"),
   MaterialRoute(page: MenuHome, path: "/menu"),
