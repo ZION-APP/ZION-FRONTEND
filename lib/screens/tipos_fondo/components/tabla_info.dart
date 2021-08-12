@@ -16,9 +16,8 @@ class TablaInfo extends StatelessWidget {
               width: getProportionateScreenWidth(4), color: kSecondaryColor)),
       child: Column(
         children: [
-          Flexible(
-            flex: 3,
-            child: Container(
+             Container(
+               height: SizeConfig.screenHeight*0.13,
               color: kSecondaryColor,
               child: Column(
                 children: [
@@ -35,11 +34,8 @@ class TablaInfo extends StatelessWidget {
                   )),
                 ],
               ),
-            ),
           ),
-          Flexible(
-            flex: 4,
-            child: Padding(
+             Padding(
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(14),
                   horizontal: getProportionateScreenWidth(10)),
@@ -51,7 +47,6 @@ class TablaInfo extends StatelessWidget {
                     fontSize: getProportionateScreenHeight(13),
                     color: kSecondaryColor),
               ),
-            ),
           ),
           Divider(
             thickness: 2,
@@ -59,9 +54,7 @@ class TablaInfo extends StatelessWidget {
             indent: getProportionateScreenWidth(20),
             endIndent: getProportionateScreenWidth(20),
           ),
-          Flexible(
-              flex: 4,
-              child: Padding(
+         Padding(
                 padding: EdgeInsets.symmetric(
                     vertical: getProportionateScreenHeight(4),
                     horizontal: getProportionateScreenWidth(8)),
@@ -77,16 +70,15 @@ class TablaInfo extends StatelessWidget {
                         fondos[tipo]["plz_retiros"] as String ?? "??"),
                   ],
                 ),
-              )),
+              ),
           Divider(
             thickness: 3,
             height: 4,
             indent: getProportionateScreenWidth(20),
             endIndent: getProportionateScreenWidth(20),
           ),
-          Flexible(
-              flex: 4,
-              child: Column(
+          
+               Column(
                 children: [
                   Text(
                     "Calificacion de riesgos",
@@ -97,7 +89,7 @@ class TablaInfo extends StatelessWidget {
                   ),
                   Image.asset("assets/img/certificacion_zion.PNG")
                 ],
-              ))
+              )
         ],
       ),
     );

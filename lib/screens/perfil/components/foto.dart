@@ -16,7 +16,7 @@ class _FotoSectionState extends State<FotoSection> {
   _FotoSectionState();
   @override
   void initState() {
-    imagen = widget.usuario["usuario"]["imagen"] as String;
+    imagen = widget.usuario["url_profile"] as String;
     super.initState();
   }
 
@@ -45,7 +45,7 @@ class _FotoSectionState extends State<FotoSection> {
           SizedBox(
             width: double.infinity,
             child: Text(
-              (widget.usuario["usuario"]["nombres"] ?? "Sin nombre") as String,
+              "${widget.usuario["firstname"]}  ${widget.usuario["lastname"]}"  ?? "Sin nombre"  ,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: getProportionateScreenHeight(20),

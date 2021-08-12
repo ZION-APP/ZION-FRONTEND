@@ -118,8 +118,7 @@ class _LoginState extends State<Login> {
                       vertical: getProportionateScreenHeight(15)),
                   child: DefaultButton(
                     func: () => {
-                      //logIn(context)
-                      AutoRouter.of(context).push(HomeRoute())
+                      logIn(context)
                     },
                     label: "Inicia Sesion",
                     colorFondo: loading ? kDisableColor : kPrimaryColor,

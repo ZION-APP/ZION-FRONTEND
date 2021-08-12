@@ -29,13 +29,14 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
                     utf8.encode('${event.usuario}:${event.contrasena}'));
 
         final Map<String, String> headers = {'Authorization': basicAuth};
+        final Map<String, String> body= {'apiKeyToken': apiKeyToken};
         final Response response = await Dio().post(
-            "http://10.0.0.2:3001/api/auth/sign-in",
-            options: Options(headers: headers));
+            "$kapiUrl/auth/sign-in",
+            options: Options(headers: headers),data: body );
         await storage.write(
             key: "user", value: json.encode(response.data["user"]));
         await storage.write(
-            key: "token", value: response.data["token"] as String);
+            key: "token", value: response.data["access_token"] as String);
         if (event.recuerdame) {
           await storage.write(key: "usuario", value: event.usuario);
           await storage.write(key: "contrasena", value: event.contrasena);
@@ -47,7 +48,14 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
         }
         yield LogInCompleted("H");
       } on DioError catch (e) {
-        yield LoginFailed(e.response.data["error"] as String);
+
+        if(e.type == DioErrorType.other){
+          yield LoginFailed("Error del servidor");
+
+        }else{
+          print(e.response.data);
+        yield LoginFailed("Error de usuario y/o contrasena");
+        }
       }
     }
     if (event is CerrarSesion) {

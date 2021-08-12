@@ -1,7 +1,10 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/components/input_default.dart';
 import 'package:zionapp/constants_config.dart';
+import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/size_config.dart';
 
 // ignore: must_be_immutable
@@ -25,12 +28,14 @@ class _CreacionFondoState extends State<CreacionFondo> {
       appBar: AppBar(
         title: const Text("Creacion de fondo"),
         centerTitle: true,
+        backgroundColor: kPrimaryColor,
       ),
       resizeToAvoidBottomInset: false,
       body: ListView(
         children: [
           Container(
               color: kSecondaryColor,
+              height: SizeConfig.screenHeight*0.10,
               child: Image.asset(fondos[widget.tipo]["imagen"] as String)),
           Form(
               key: _formKey,
@@ -47,8 +52,10 @@ class _CreacionFondoState extends State<CreacionFondo> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                        vertical: getProportionateScreenHeight(60)),
-                    child: const DefaultButton(label: "Invertir"),
+                        vertical: getProportionateScreenHeight(20)),
+                    child: DefaultButton(label: "Invertir",func: (){
+                      AutoRouter.of(context).push( const FormularioRoute());
+                    },),
                   )
                 ],
               )),
@@ -61,7 +68,7 @@ class _CreacionFondoState extends State<CreacionFondo> {
       {TextInputType inputType}) {
     return Padding(
       padding: EdgeInsets.symmetric(
-          vertical: getProportionateScreenHeight(20),
+          vertical: getProportionateScreenHeight(15),
           horizontal: getProportionateScreenWidth(15)),
       child: DefaultInput(
         controller: _controller,

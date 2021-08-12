@@ -1,5 +1,6 @@
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:zionapp/constants_config.dart';
 
 class Reglamento extends StatefulWidget {
   const Reglamento({Key key}) : super(key: key);
@@ -29,6 +30,7 @@ class _ReglamentoState extends State<Reglamento> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Reglamento'),
+        backgroundColor: kPrimaryColor,
       ),
       body: Center(
           child: _isLoading
