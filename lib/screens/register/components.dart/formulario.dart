@@ -6,7 +6,6 @@ import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/components/input_default.dart';
 import 'package:zionapp/models/tipo_persona.dart';
-import 'package:zionapp/size_config.dart';
 import 'package:zionapp/validator/validator.dart';
 
 // ignore: must_be_immutable
@@ -112,14 +111,17 @@ class _FormularioRegisterState extends State<FormularioRegister> {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(50)),
           child: DropdownButtonFormField(
+            key: const Key('TipoPersona'),
               hint: const Text('Tipo de persona'),
               value: _tipoSeleccionado,
               items: const [
                 DropdownMenuItem(
+                  key: Key('PersonaNatural'),
                   value: TipoPersona.PersonaNatural,
                   child: Text("Persona Natural"),
                 ),
                 DropdownMenuItem(
+                  key: Key('PersonaJuridica'),
                   value: TipoPersona.PersonaJuridica,
                   child: Text("Persona Jurídica"),
                 ),
@@ -191,5 +193,13 @@ class _FormularioRegisterState extends State<FormularioRegister> {
         ),
       ]),
     );
+  }
+
+  double getProportionateScreenWidth(double input) {
+    return MediaQuery.of(context).size.width * (input/375);
+  }
+
+  double getProportionateScreenHeight(double input) {
+    return MediaQuery.of(context).size.height * (input/812);
   }
 }
