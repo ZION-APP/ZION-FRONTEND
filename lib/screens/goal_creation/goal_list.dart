@@ -1,8 +1,9 @@
-import 'dart:convert';
 import 'dart:ffi';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/components/button_default.dart';
+import 'package:zionapp/components/cargando.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/screens/goal_creation/components.dart/goal_model.dart';
 import 'package:zionapp/size_config.dart';
@@ -17,15 +18,33 @@ class GoalList extends StatefulWidget {
 }
 
 class _GoalListState extends State<GoalList> {
+  bool loading = true;
   List<Goal> goals = [];
 
   Future<void> getGoalList() async {
     try {
-      final String token = "Bearer ${await storage.read(key: 'token')}";
+      final String token = await storage.read(key: 'token');
       debugPrint(token);
-      Response response = await Dio().get('$kapiUrl/goals/me', 
+      final Response response = await dioClient.get('$kapiUrl/goals/me', 
                                       options: Options(headers: {'Authorization': token}));
-      debugPrint(response.data[0]['name'].toString());
+      for (final res in response.data){
+        final Goal goal = Goal(
+          id: res['id'] as int,
+          name: res['name'].toString(),
+          initAmount: res['init_amount'] as int,
+          targetAmount: res['target_amount'] as int,
+          monthlyAmount: res['montly_amount'] as int,
+          currentAmount: res['current_amount'] as int,
+          targetDate: res['target_date'] as String,
+          status: res['status'] as String
+        );
+        setState(() {
+          goals.add(goal);
+        });
+      }
+      setState(() {
+        loading = false;
+      });
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -39,58 +58,43 @@ class _GoalListState extends State<GoalList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: kPrimaryLightColor,
-        ),
-        title: const Text(
-          'Metas',
-          style: TextStyle(color: kPrimaryLightColor),
-        ),
-        centerTitle: true,
-        backgroundColor: kSecondaryColor,
-      ),
-      body: SizedBox(
-        child: CustomScrollView(
+    return SizedBox(
+      child: !loading
+        ?CustomScrollView(
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
               child: Column(
-                children: [
-                  SizedBox(height: getProportionateScreenHeight(30)),
-                  GoalBox(
-                    nombreMeta: 'Una Meta',
-                    montoActual: 1230.00,
-                    metaTotal: 343334.00,
-                  ),
-                  SizedBox(height: getProportionateScreenHeight(30)),
-                  GoalBox(
-                    nombreMeta: 'Una Meta',
-                    montoActual: 1230.00,
-                    metaTotal: 343334.00,
-                  ),
-                  SizedBox(height: getProportionateScreenHeight(30)),
-                  GoalBox(
-                    nombreMeta: 'Una Meta',
-                    montoActual: 1230.00,
-                    metaTotal: 343334.00,
-                  ),
-                  SizedBox(height: getProportionateScreenHeight(50)),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: getProportionateScreenHeight(30)),
-                    child: DefaultButton(
-                      func: () => {},
-                      label: "Registrar nueva meta",
-                    ),
-                  ),
-                ],
+                children: generateGoalList(),
               )
             )
           ]
         )
-      )
+      : Cargando()
     );
+  }
+
+  List<Widget> generateGoalList() {
+    final List<Widget> result = [];
+    for (final goal in goals){
+      result.add(SizedBox(height: getProportionateScreenHeight(30)));
+      result.add(GoalBox(
+        nombreMeta: goal.name,
+        montoActual: goal.currentAmount.toDouble(),
+        metaTotal: goal.targetAmount.toDouble(),
+      ));
+    }
+    result.add(SizedBox(height: getProportionateScreenHeight(50)));
+    result.add(
+      Padding(
+        padding: EdgeInsets.symmetric(
+            vertical: getProportionateScreenHeight(30)),
+        child: DefaultButton(
+          func: () => {},
+          label: "Registrar nueva meta",
+        ),
+      ),
+    );
+    return result;
   }
 }

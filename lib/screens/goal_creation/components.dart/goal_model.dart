@@ -1,15 +1,16 @@
-import 'dart:ffi';
 
 class Goal{
+  int id;
   String name;
-  Float initAmount;
-  Float targetAmount;
-  Float monthlyAmount;
-  Float currentAmount;
+  int initAmount;
+  int targetAmount;
+  int monthlyAmount;
+  int currentAmount;
   String targetDate;
   String status;
 
   Goal({
+    this.id,
     this.name,
     this.initAmount,
     this.targetAmount,
@@ -18,4 +19,9 @@ class Goal{
     this.targetDate,
     this.status
   });
+
+  @override
+  String toString(){
+    return "id = $id, name = $name, Initial Amount = $initAmount, Target Amount = $targetAmount, Monthly Amount = $monthlyAmount, Current Amount = $currentAmount, Target Date = $targetDate, Status = $status";
+  }
 }

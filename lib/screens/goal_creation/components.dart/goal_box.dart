@@ -19,6 +19,7 @@ class GoalBox extends StatefulWidget {
 }
 
 class _GoalBoxState extends State<GoalBox> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,8 +44,8 @@ class _GoalBoxState extends State<GoalBox> {
                     SizedBox(height: getProportionateScreenHeight(25)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        Expanded(
+                      children: [
+                        const Expanded(
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
@@ -62,8 +63,8 @@ class _GoalBoxState extends State<GoalBox> {
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              'Nombre de la Meta',
-                              style: TextStyle(
+                              widget.nombreMeta,
+                              style: const TextStyle(
                                 color: Colors.grey,
                                 fontSize: 25,
                               ),
@@ -107,11 +108,11 @@ class _GoalBoxState extends State<GoalBox> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: getProportionateScreenHeight(25)),
-                      const FittedBox(
+                       FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          '14000.00 de 230213.00',
-                          style: TextStyle(
+                          '${widget.montoActual} de ${widget.metaTotal}',
+                          style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 19,
                           ),
