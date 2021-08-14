@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:zionapp/services/dio_client.dart';
 
 const kPrimaryColor = Color(0xFFD0AF68);
 const kSecondaryColor = Color(0xFF162034);
@@ -19,6 +21,7 @@ Map<int, Color> colorPrimary = {
   900:Color(0xFFD0AF68),
   
 };
+final Dio dioClient= DioClient().dio;
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,

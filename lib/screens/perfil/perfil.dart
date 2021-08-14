@@ -63,7 +63,7 @@ class _PerfilHomeState extends State<PerfilHome> {
   Future<void> _obtenerUsuario() async {
     try {
       
-      final Response response = await DioClient().dio
+      final Response response = await dioClient
           .get('$kapiUrl/users/me');
       setState(() {
         usuario = response.data;
