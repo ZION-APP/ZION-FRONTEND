@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:zionapp/components/show_error.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/cargando.dart';
 import 'package:zionapp/screens/perfil/components/info.dart';
@@ -58,10 +60,18 @@ class _PerfilHomeState extends State<PerfilHome> {
   }
 
   Future<void> _obtenerUsuario() async {
-    final String userString = await storage.read(key: "user");
-    setState(() {
-      usuario = json.decode(userString);
-      loading = false;
-    });
+    try {
+      final String token = await storage.read(key: "token");
+      final headers = {'Authorization': " Bearer $token"};
+      final Response response = await Dio()
+          .get('$kapiUrl/users/me', options: Options(headers: headers));
+      setState(() {
+        usuario = response.data;
+        loading = false;
+      });
+    } on DioError catch (e) {
+      print(e);
+      showError("Error del servidor", context);
+    }
   }
 }

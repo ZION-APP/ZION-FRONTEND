@@ -18,13 +18,13 @@ class InfoPerfil extends StatelessWidget {
         child: Column(
           children: [
             _mostrarDetalle("Usuario",
-                (usuario["usuario"]["usuario"] ?? "Sin especificar") as String),
+                (usuario["username"] ?? "Sin especificar") as String),
             _mostrarDetalle("Correo electronico",
-                (usuario["usuario"]["correo"] ?? "Sin especificar") as String),
+                (usuario["email"] ?? "Sin especificar") as String),
             _mostrarDetalle("Cedula identidad",
-                (usuario["cedula"] ?? "Sin especificar") as String),
+                (usuario["identity_number"] ?? "Sin especificar") as String),
             _mostrarDetalle("Numero de celular",
-                (usuario["usuario"]["celular"] ?? "Sin especificar") as String)
+                (usuario["phone"] ?? "Sin especificar") as String)
           ],
         ),
       ),
