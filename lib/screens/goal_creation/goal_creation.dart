@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zionapp/screens/goal_creation/components.dart/formulario.dart';
 
+import '../../constants_config.dart';
+
 class GoalCreation extends StatefulWidget {
   const GoalCreation({Key key}) : super(key: key);
 
@@ -16,19 +18,32 @@ class _GoalCreationState extends State<GoalCreation> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: CustomScrollView(
-        slivers: [
-          SliverFillRemaining(
-              hasScrollBody: false,
-              child: FormularioGoalCreation(
-                nombreController: nombreController,
-                totalController: totalController,
-                inversionInicialController: inversionInicialController,
-                formKey: _formKey,
-              )),
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: kPrimaryLightColor,
+        ),
+        title: const Text(
+          'Creación de meta',
+          style: TextStyle(color: kPrimaryLightColor),
+        ),
+        centerTitle: true,
+        backgroundColor: kSecondaryColor,
       ),
+      body: SizedBox(
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+                hasScrollBody: false,
+                child: FormularioGoalCreation(
+                  nombreController: nombreController,
+                  totalController: totalController,
+                  inversionInicialController: inversionInicialController,
+                  formKey: _formKey,
+                )),
+          ],
+        ),
+      )
     );
   }
 }

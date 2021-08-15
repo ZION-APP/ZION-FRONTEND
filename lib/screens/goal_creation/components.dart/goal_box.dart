@@ -1,18 +1,22 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/constants_config.dart';
+import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/size_config.dart';
 
 // ignore: must_be_immutable
 class GoalBox extends StatefulWidget {
+  int idMeta;
   String nombreMeta;
   double montoActual;
   double metaTotal;
 
   GoalBox(
-      {this.nombreMeta,
-      this.montoActual,
-      this.metaTotal});
+      {@required this.idMeta,
+      @required this.nombreMeta,
+      @required this.montoActual,
+      @required this.metaTotal});
 
   @override
   _GoalBoxState createState() => _GoalBoxState();
@@ -133,15 +137,16 @@ class _GoalBoxState extends State<GoalBox> {
                   width: getProportionateScreenWidth(150),
                   child: CustomPaint(
                     foregroundPainter: GoalProgressPainter(
-                      total: 100.0,
-                      actual: 34.0
+                      total: widget.metaTotal,
+                      actual: widget.montoActual
                     ),
                   ),
                 ),
                 SizedBox(width: getProportionateScreenWidth(50)),
-                const Text(
-                  '34%',
-                  style: TextStyle(
+                Text(
+                  // ignore: prefer_interpolation_to_compose_strings
+                  ((widget.montoActual/widget.metaTotal)*100).toString() + '%',
+                  style: const TextStyle(
                     color: kSecondaryColor,
                     fontSize: 19,
                   ),
@@ -152,7 +157,7 @@ class _GoalBoxState extends State<GoalBox> {
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(30)),
               child: DefaultButton(
-                func: () => {},
+                func: () => {AutoRouter.of(context).push(GoalSimulationRoute(goalId: widget.idMeta))},
                 label: "Más Información",
                 colorFondo: kPrimaryColor,
                 colorTexto: kSecondaryColor,

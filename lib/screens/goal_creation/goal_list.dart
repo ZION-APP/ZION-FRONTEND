@@ -1,10 +1,10 @@
-import 'dart:ffi';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/components/cargando.dart';
 import 'package:zionapp/constants_config.dart';
+import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/screens/goal_creation/components.dart/goal_model.dart';
 import 'package:zionapp/size_config.dart';
 import 'components.dart/goal_box.dart';
@@ -24,7 +24,6 @@ class _GoalListState extends State<GoalList> {
   Future<void> getGoalList() async {
     try {
       final String token = await storage.read(key: 'token');
-      debugPrint(token);
       final Response response = await dioClient.get('$kapiUrl/goals/me', 
                                       options: Options(headers: {'Authorization': token}));
       for (final res in response.data){
@@ -79,6 +78,7 @@ class _GoalListState extends State<GoalList> {
     for (final goal in goals){
       result.add(SizedBox(height: getProportionateScreenHeight(30)));
       result.add(GoalBox(
+        idMeta: goal.id,
         nombreMeta: goal.name,
         montoActual: goal.currentAmount.toDouble(),
         metaTotal: goal.targetAmount.toDouble(),
@@ -90,7 +90,7 @@ class _GoalListState extends State<GoalList> {
         padding: EdgeInsets.symmetric(
             vertical: getProportionateScreenHeight(30)),
         child: DefaultButton(
-          func: () => {},
+          func: () => {AutoRouter.of(context).push(const GoalCreationRoute())},
           label: "Registrar nueva meta",
         ),
       ),

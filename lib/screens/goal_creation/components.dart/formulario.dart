@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/button_default.dart';
@@ -26,6 +27,7 @@ class FormularioGoalCreation extends StatefulWidget {
 
 class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
   DateTime _dateTime;
+  int goalId;
 
   String getDateText() {
     if (_dateTime == null) {
@@ -33,6 +35,44 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
     } else {
       return '${_dateTime.month}/${_dateTime.day}/${_dateTime.year}';
     }
+  }
+
+  Future<void> createNewGoal() async {
+    goalId = null;
+    try {
+      final String token = await storage.read(key: 'token');
+      final Response response = await dioClient.post('$kapiUrl/goals/me', 
+                                      options: Options(headers: {'Authorization': token}),
+                                      data: {
+                                        'name':widget.nombreController.text,
+                                        'init_amount':(double.parse(widget.inversionInicialController.text)).toInt(),
+                                        'target_amount':(double.parse(widget.totalController.text)).toInt(),
+                                        'target_date':'${_dateTime.year}-${_dateTime.month}-${_dateTime.day}'
+                                      });
+      setState(() {
+        goalId = response.data['goal']['id'] as int;
+      });
+      widget.nombreController.clear();
+      widget.totalController.clear();
+      widget.inversionInicialController.clear();
+      setState(() {
+        _dateTime = null;
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void showErrorSnack(BuildContext context, String message) {
+    final snackBar = SnackBar(
+      content: Text(
+        message,
+        textAlign: TextAlign.center,
+      ),
+      backgroundColor: kDangerColor,
+      duration: const Duration(milliseconds: 1500),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -109,13 +149,19 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(30)),
               child: DefaultButton(
-                func: () => {
+                func: () async => {
                   if (Validadores.validarNombreLargo(widget.nombreController.text) == null &&
                       Validadores.validarValorMonetario(widget.totalController.text) ==null &&
                       _dateTime != null &&
                       Validadores.validarValorMonetario(widget.inversionInicialController.text) == null){
                     debugPrint('${widget.nombreController.text} ${widget.totalController.text} ${_dateTime.month}/${_dateTime.day}/${_dateTime.year} ${widget.inversionInicialController.text}'),
-                    AutoRouter.of(context).push(const GoalSimulationRoute())
+                    await createNewGoal(),
+                    debugPrint((goalId != null).toString()),
+                    if (goalId != null){
+                      AutoRouter.of(context).push(GoalSimulationRoute(goalId: goalId)),
+                    }else{
+                      showErrorSnack(context, 'Los datos ingresados no son válidos')
+                    }
                   }
                 },
                 label: "Registrar",

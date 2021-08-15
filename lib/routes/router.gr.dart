@@ -68,8 +68,11 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i12.GoalCreation());
     },
     GoalSimulationRoute.name: (entry) {
+      var args = entry.routeData.argsAs<GoalSimulationRouteArgs>(
+          orElse: () => GoalSimulationRouteArgs());
       return _i1.MaterialPageX(
-          entry: entry, child: const _i13.GoalSimulation());
+          entry: entry,
+          child: _i13.GoalSimulation(key: args.key, goalId: args.goalId));
     },
     GoalListRoute.name: (entry) {
       return _i1.MaterialPageX(entry: entry, child: const _i14.GoalList());
@@ -194,10 +197,21 @@ class GoalCreationRoute extends _i1.PageRouteInfo {
   static const String name = 'GoalCreationRoute';
 }
 
-class GoalSimulationRoute extends _i1.PageRouteInfo {
-  const GoalSimulationRoute() : super(name, path: '/goalsimulation');
+class GoalSimulationRoute extends _i1.PageRouteInfo<GoalSimulationRouteArgs> {
+  GoalSimulationRoute({_i19.Key key, int goalId})
+      : super(name,
+            path: '/goalsimulation',
+            args: GoalSimulationRouteArgs(key: key, goalId: goalId));
 
   static const String name = 'GoalSimulationRoute';
+}
+
+class GoalSimulationRouteArgs {
+  const GoalSimulationRouteArgs({this.key, this.goalId});
+
+  final _i19.Key key;
+
+  final int goalId;
 }
 
 class GoalListRoute extends _i1.PageRouteInfo {
