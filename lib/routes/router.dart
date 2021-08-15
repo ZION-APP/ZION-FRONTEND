@@ -3,6 +3,7 @@ import 'package:zionapp/screens/alicuotas/alicuota.dart';
 import 'package:zionapp/screens/contactanos/contactanos.dart';
 import 'package:zionapp/screens/crear_fondo/crear_fondo.dart';
 import 'package:zionapp/screens/cuenta_bancaria/cuenta_bancaria.dart';
+import 'package:zionapp/screens/cuenta_bancaria/cuenta_bancaria_list.dart';
 import 'package:zionapp/screens/formulario/formulario.dart';
 import 'package:zionapp/screens/goal_creation/goal_creation.dart';
 import 'package:zionapp/screens/goal_creation/goal_list.dart';
@@ -41,5 +42,6 @@ import 'package:zionapp/screens/tipos_fondo/info_fondo.dart';
   MaterialRoute(page: Reglamento, path: "/reglamentos"),
   MaterialRoute(page: CreacionFondo, path: "/crear-fondo"),
   MaterialRoute(page: Formulario, path: "/formulario"),
+  MaterialRoute(page: BankAccountList, path: "/cuenta_bancaria_list"),
 ])
 class $AppRouter {}
