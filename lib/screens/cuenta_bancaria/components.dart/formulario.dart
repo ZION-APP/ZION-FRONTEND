@@ -1,5 +1,4 @@
 import 'dart:developer' as developer;
-import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';

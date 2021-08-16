@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/constants_config.dart';
-import 'package:zionapp/models/tipo_banco.dart';
-import 'package:zionapp/models/tipo_cuenta.dart';
 import 'package:zionapp/size_config.dart';
 
 // ignore: must_be_immutable

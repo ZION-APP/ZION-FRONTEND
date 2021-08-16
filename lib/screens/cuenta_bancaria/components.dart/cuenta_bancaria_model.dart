@@ -1,5 +1,3 @@
-import 'package:zionapp/models/tipo_banco.dart';
-import 'package:zionapp/models/tipo_cuenta.dart';
 
 class BankAccount{
   int id;
