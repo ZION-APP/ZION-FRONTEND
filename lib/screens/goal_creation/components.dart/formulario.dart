@@ -5,7 +5,6 @@ import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/components/input_default.dart';
 import 'package:zionapp/routes/router.gr.dart';
-import 'package:zionapp/size_config.dart';
 import 'package:zionapp/validator/validator.dart';
 
 // ignore: must_be_immutable
@@ -183,5 +182,13 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
     );
     if (newDate == null) return;
     setState(() => _dateTime = newDate);
+  }
+
+  double getProportionateScreenWidth(double input) {
+    return MediaQuery.of(context).size.width * (input/375);
+  }
+
+  double getProportionateScreenHeight(double input) {
+    return MediaQuery.of(context).size.height * (input/812);
   }
 }
