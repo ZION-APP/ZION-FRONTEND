@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';
-import 'package:zionapp/size_config.dart';
 
 class DefaultButton extends StatelessWidget {
   final Function func;
@@ -23,18 +22,18 @@ class DefaultButton extends StatelessWidget {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius:
-                      BorderRadius.circular(getProportionateScreenHeight(8))),
+                      BorderRadius.circular(MediaQuery.of(context).size.height * (8/812))),
             ),
             backgroundColor: MaterialStateProperty.all<Color>(colorFondo),
             minimumSize: MaterialStateProperty.all<Size>(Size(
-                getProportionateScreenHeight(250),
-                getProportionateScreenHeight(50)))),
+                MediaQuery.of(context).size.height * (250/812),
+                MediaQuery.of(context).size.height * (50/812)))),
         onPressed: func as void Function(),
         child: Text(
           label,
           style: TextStyle(
               color: colorTexto,
-              fontSize: tamanoTexto ?? getProportionateScreenHeight(20)),
+              fontSize: tamanoTexto ?? MediaQuery.of(context).size.height * (20/812)),
         ));
   }
 }

@@ -6,7 +6,6 @@ import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/components/input_default.dart';
 import 'package:zionapp/models/tipo_banco.dart';
 import 'package:zionapp/models/tipo_cuenta.dart';
-import 'package:zionapp/size_config.dart';
 import 'package:zionapp/validator/validator.dart';
 
 // ignore: must_be_immutable
@@ -136,6 +135,7 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(50)),
               child: DropdownButtonFormField(
+                key: const Key('TipoBanco'),
                   hint: const Text('Tipo de banco'),
                   value: _tipoBancoSeleccionado,
                   items: const [
@@ -178,6 +178,7 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(50)),
               child: DropdownButtonFormField(
+                key: const Key('TipoCuenta'),
                   hint: const Text('Tipo de cuenta'),
                   value: _tipoCuentaSeleccionada,
                   items: const [
@@ -220,5 +221,13 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
             ),
           ],
         ));
+  }
+
+  double getProportionateScreenWidth(double input) {
+    return MediaQuery.of(context).size.width * (input/375);
+  }
+
+  double getProportionateScreenHeight(double input) {
+    return MediaQuery.of(context).size.height * (input/812);
   }
 }
