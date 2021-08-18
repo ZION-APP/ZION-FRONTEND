@@ -78,7 +78,7 @@ class _MenuHomeState extends State<MenuHome> {
             ),
             OptionMenuItem(
               titulo: "Cuenta Bancaria",
-              ruta: const CuentaBancariaRoute(),
+              ruta: const BankAccountListRoute(),
             ),
             OptionMenuItem(
               titulo: "Notificaciones",

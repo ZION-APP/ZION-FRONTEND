@@ -149,7 +149,7 @@ void main() {
 
   test('validarValorMonetario5', () {
     String result;
-    result = Validadores.validarValorMonetario('23731998.82');
+    result = Validadores.validarValorMonetario('237398.82');
     expect(result, null);
   });
 

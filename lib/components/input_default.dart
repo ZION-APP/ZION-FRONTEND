@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zionapp/size_config.dart';
 
 class DefaultInput extends StatelessWidget {
   final TextEditingController controller;
@@ -26,8 +25,8 @@ class DefaultInput extends StatelessWidget {
           labelText: label,
           border: const OutlineInputBorder(),
           contentPadding: EdgeInsets.symmetric(
-              vertical: getProportionateScreenWidth(10),
-              horizontal: getProportionateScreenHeight(5))),
+              vertical: MediaQuery.of(context).size.width * (10/375),
+              horizontal: MediaQuery.of(context).size.height * (5/812))),
     );
   }
 }

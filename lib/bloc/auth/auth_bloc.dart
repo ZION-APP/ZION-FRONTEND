@@ -53,7 +53,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState> {
           yield LoginFailed("Error del servidor");
 
         }else{
-          print(e.response.data);
+          debugPrint(e.response.data as String);
         yield LoginFailed("Error de usuario y/o contrasena");
         }
       }

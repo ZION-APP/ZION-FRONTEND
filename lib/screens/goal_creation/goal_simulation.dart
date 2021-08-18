@@ -1,24 +1,59 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/components/button_default.dart';
+import 'package:zionapp/components/cargando.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/size_config.dart';
 
+import 'components.dart/goal_model.dart';
+
 class GoalSimulation extends StatefulWidget {
-  const GoalSimulation({ Key key }) : super(key: key);
+  final int goalId;
+
+  const GoalSimulation({ Key key, @required this.goalId}) : super(key: key);
 
   @override
   _GoalSimulationState createState() => _GoalSimulationState();
 }
 
 class _GoalSimulationState extends State<GoalSimulation> {
-  String nombreMeta = "Nombre de la meta";
-  String fondo = "Omega";
-  String montoIni = "\$300.00";
-  String montoObj = "\$3000.00";
-  String mensualidades = "20";
-  String aportMensual = "\$500.00";
+  Goal goalSim;
+  bool loading = true;
+
+  Future<void> getGoalByID() async{
+    try {
+      final String token = await storage.read(key: 'token');
+      final Response res = await dioClient.get('$kapiUrl/goals/me/${widget.goalId}', 
+                                      options: Options(headers: {'Authorization': token}));
+      debugPrint(res.data.toString());
+      final Goal goal = Goal(
+        id: res.data['id'] as int,
+        name: res.data['name'].toString(),
+        initAmount: res.data['init_amount'] as int,
+        targetAmount: res.data['target_amount'] as int,
+        monthlyAmount: res.data['montly_amount'] as int,
+        currentAmount: res.data['current_amount'] as int,
+        targetDate: res.data['target_date'] as String,
+        status: res.data['status'] as String
+      );
+      setState(() {
+        goalSim = goal;
+      });
+      setState(() {
+        loading = false;
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    getGoalByID();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +69,8 @@ class _GoalSimulationState extends State<GoalSimulation> {
         centerTitle: true,
         backgroundColor: kSecondaryColor,
       ),
-      body: SizedBox(
+      body: !loading
+      ?SizedBox(
         child: CustomScrollView(
           slivers: [
             SliverFillRemaining(
@@ -60,7 +96,7 @@ class _GoalSimulationState extends State<GoalSimulation> {
                         child: FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Text(
-                            nombreMeta,
+                            goalSim.name,
                             style: const TextStyle(
                               color: Colors.grey,
                               fontSize: 36,
@@ -154,8 +190,16 @@ class _GoalSimulationState extends State<GoalSimulation> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(height: getProportionateScreenHeight(25)),
+                                    const Text(
+                                      'Omega',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    SizedBox(height: getProportionateScreenHeight(25)),
                                     Text(
-                                      fondo,
+                                      goalSim.initAmount.toString(),
                                       style: const TextStyle(
                                         color: Colors.grey,
                                         fontSize: 16,
@@ -163,7 +207,7 @@ class _GoalSimulationState extends State<GoalSimulation> {
                                     ),
                                     SizedBox(height: getProportionateScreenHeight(25)),
                                     Text(
-                                      montoIni,
+                                      goalSim.targetAmount.toString(),
                                       style: const TextStyle(
                                         color: Colors.grey,
                                         fontSize: 16,
@@ -171,15 +215,7 @@ class _GoalSimulationState extends State<GoalSimulation> {
                                     ),
                                     SizedBox(height: getProportionateScreenHeight(25)),
                                     Text(
-                                      montoObj,
-                                      style: const TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    SizedBox(height: getProportionateScreenHeight(25)),
-                                    Text(
-                                      mensualidades,
+                                      goalSim.monthlyAmount.toString(),
                                       style: const TextStyle(
                                         color: Colors.grey,
                                         fontSize: 16,
@@ -204,9 +240,9 @@ class _GoalSimulationState extends State<GoalSimulation> {
                         ),
                       ),
                   SizedBox(height: getProportionateScreenHeight(40)),
-                  Text(
-                    aportMensual,
-                    style: const TextStyle(
+                  const Text(
+                    '500.00',
+                    style: TextStyle(
                       color: Colors.grey,
                       fontSize: 28,
                     ),
@@ -228,6 +264,7 @@ class _GoalSimulationState extends State<GoalSimulation> {
           ],
         ),
       )
+      : Cargando()
     );
   }
 }

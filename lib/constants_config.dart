@@ -8,7 +8,7 @@ const kSecondaryColor = Color(0xFF162034);
 const kPrimaryLightColor = Color(0xFFFFFFFF);
 const kDangerColor = Color(0xFFA81B1B);
 const kDisableColor = Color(0xFFB1B1B1);
-Map<int, Color> colorPrimary = {
+Map<int, Color> colorPrimary = const {
   50:Color(0xFFD0AF68),
   100:Color(0xFFD0AF68),
   200:Color(0xFFD0AF68),
