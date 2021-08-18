@@ -1,8 +1,9 @@
-import 'dart:developer' as developer;
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/components/input_default.dart';
+import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/size_config.dart';
 import 'package:zionapp/validator/validator.dart';
 
@@ -109,18 +110,13 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
                   vertical: getProportionateScreenHeight(30)),
               child: DefaultButton(
                 func: () => {
-                  if (Validadores.validarNombreLargo(
-                              widget.nombreController.text) ==
-                          null &&
-                      Validadores.validarValorMonetario(
-                              widget.totalController.text) ==
-                          null &&
+                  if (Validadores.validarNombreLargo(widget.nombreController.text) == null &&
+                      Validadores.validarValorMonetario(widget.totalController.text) ==null &&
                       _dateTime != null &&
-                      Validadores.validarValorMonetario(
-                              widget.inversionInicialController.text) ==
-                          null)
-                    developer.log(
-                        '${widget.nombreController.text} ${widget.totalController.text} ${_dateTime.month}/${_dateTime.day}/${_dateTime.year} ${widget.inversionInicialController.text}')
+                      Validadores.validarValorMonetario(widget.inversionInicialController.text) == null){
+                    debugPrint('${widget.nombreController.text} ${widget.totalController.text} ${_dateTime.month}/${_dateTime.day}/${_dateTime.year} ${widget.inversionInicialController.text}'),
+                    AutoRouter.of(context).push(const GoalSimulationRoute())
+                  }
                 },
                 label: "Registrar",
                 colorFondo: kPrimaryColor,
