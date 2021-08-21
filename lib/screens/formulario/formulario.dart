@@ -21,22 +21,21 @@ class _FormularioState extends State<Formulario> {
         child: ListView(
           children: [
             Stepper(
-              type: StepperType.vertical,
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               currentStep: _currentStep,
               onStepTapped: (step) => tapped(step),
               onStepContinue: continued,
               onStepCancel: cancel,
               steps: <Step>[
                 Step(
-                  title: new Text('Informacion Personal'),
+                  title: const Text('Informacion Personal'),
                   content: Column(
                     children: <Widget>[
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'Email Address'),
+                        decoration: const InputDecoration(labelText: 'Email Address'),
                       ),
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'Password'),
+                        decoration: const InputDecoration(labelText: 'Password'),
                       ),
                     ],
                   ),
@@ -46,14 +45,14 @@ class _FormularioState extends State<Formulario> {
                       : StepState.disabled,
                 ),
                 Step(
-                  title: new Text('Informacion del Conyuge'),
+                  title: const Text('Informacion del Conyuge'),
                   content: Column(
                     children: <Widget>[
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'Home Address'),
+                        decoration: const InputDecoration(labelText: 'Home Address'),
                       ),
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'Postcode'),
+                        decoration: const InputDecoration(labelText: 'Postcode'),
                       ),
                     ],
                   ),
@@ -63,11 +62,11 @@ class _FormularioState extends State<Formulario> {
                       : StepState.disabled,
                 ),
                 Step(
-                  title: new Text('Situacion Financiera'),
+                  title: const Text('Situacion Financiera'),
                   content: Column(
                     children: <Widget>[
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'Mobile Number'),
+                        decoration: const InputDecoration(labelText: 'Mobile Number'),
                       ),
                     ],
                   ),
@@ -77,11 +76,11 @@ class _FormularioState extends State<Formulario> {
                       : StepState.disabled,
                 ),
                 Step(
-                  title: new Text('Informacion General'),
+                  title: const Text('Informacion General'),
                   content: Column(
                     children: <Widget>[
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'Mobile Number'),
+                        decoration: const InputDecoration(labelText: 'Mobile Number'),
                       ),
                     ],
                   ),
@@ -91,11 +90,11 @@ class _FormularioState extends State<Formulario> {
                       : StepState.disabled,
                 ),
                 Step(
-                  title: new Text('Ultimas consideraciones'),
+                  title: const Text('Ultimas consideraciones'),
                   content: Column(
                     children: <Widget>[
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'Mobile Number'),
+                        decoration: const InputDecoration(labelText: 'Mobile Number'),
                       ),
                     ],
                   ),
@@ -113,6 +112,7 @@ class _FormularioState extends State<Formulario> {
   }
 
   void continued() {
+    // ignore: unnecessary_statements
     _currentStep < 4 ? setState(() => _currentStep += 1) : null;
   }
 
@@ -121,6 +121,7 @@ class _FormularioState extends State<Formulario> {
   }
 
   void cancel() {
+    // ignore: unnecessary_statements
     _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
   }
 }

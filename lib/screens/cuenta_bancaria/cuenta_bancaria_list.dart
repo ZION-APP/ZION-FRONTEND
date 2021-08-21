@@ -184,7 +184,7 @@ class _BankAccountListState extends State<BankAccountList> {
             vertical: getProportionateScreenHeight(30)),
         child: DefaultButton(
           func: () async {
-            final int result = await Navigator.push(context, MaterialPageRoute(builder: (context) => CuentaBancaria(isUpdateForm: false,)));
+            final int result = await Navigator.push(context, MaterialPageRoute(builder: (context) => const CuentaBancaria(isUpdateForm: false,)));
             debugPrint(result.toString());
             try {
               await getAccountByID(result);
@@ -202,6 +202,7 @@ class _BankAccountListState extends State<BankAccountList> {
   Future<void> removeBankAccount(BankAccount bankAccount) async {
     final String token = await storage.read(key: 'token');
     try{
+      // ignore: unused_local_variable
       final  response = await dioClient.put('$kapiUrl/bank_accounts/me/${bankAccount.id}', 
                                       options: Options(headers: {'Authorization': token}),
                                       data: {

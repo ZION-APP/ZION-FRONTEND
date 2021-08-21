@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/components/show_error.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/cargando.dart';
 import 'package:zionapp/screens/perfil/components/info.dart';
-import 'package:zionapp/services/dio_client.dart';
 import 'package:zionapp/size_config.dart';
 
 import 'components/boton_cambiar_contrasena.dart';
@@ -70,7 +67,7 @@ class _PerfilHomeState extends State<PerfilHome> {
         loading = false;
       });
     } on DioError catch (e) {
-      print(e);
+      debugPrint(e.toString());
       showError("Error del servidor", context);
     }
   }

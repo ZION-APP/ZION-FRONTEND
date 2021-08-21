@@ -35,7 +35,9 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i2.Login());
     },
     HomeRoute.name: (entry) {
+      // ignore: prefer_final_locals
       var args =
+          // ignore: prefer_const_constructors
           entry.routeData.argsAs<HomeRouteArgs>(orElse: () => HomeRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i3.Home(key: args.key, titulo: args.titulo));
@@ -62,7 +64,9 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i10.Register());
     },
     CuentaBancariaRoute.name: (entry) {
+      // ignore: prefer_final_locals
       var args = entry.routeData.argsAs<CuentaBancariaRouteArgs>(
+          // ignore: prefer_const_constructors
           orElse: () => CuentaBancariaRouteArgs());
       return _i1.MaterialPageX(
           entry: entry,
@@ -72,7 +76,9 @@ class AppRouter extends _i1.RootStackRouter {
               bankAccountId: args.bankAccountId));
     },
     GoalCreationRoute.name: (entry) {
+      // ignore: prefer_final_locals
       var args = entry.routeData
+          // ignore: prefer_const_constructors
           .argsAs<GoalCreationRouteArgs>(orElse: () => GoalCreationRouteArgs());
       return _i1.MaterialPageX(
           entry: entry,
@@ -82,7 +88,9 @@ class AppRouter extends _i1.RootStackRouter {
               goalId: args.goalId));
     },
     GoalSimulationRoute.name: (entry) {
+      // ignore: prefer_final_locals
       var args = entry.routeData.argsAs<GoalSimulationRouteArgs>(
+          // ignore: prefer_const_constructors
           orElse: () => GoalSimulationRouteArgs());
       return _i1.MaterialPageX(
           entry: entry,
@@ -92,7 +100,9 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i14.GoalList());
     },
     InfoFondoRoute.name: (entry) {
+      // ignore: prefer_final_locals
       var pathParams = entry.routeData.pathParams;
+      // ignore: prefer_final_locals
       var args = entry.routeData.argsAs<InfoFondoRouteArgs>(
           orElse: () => InfoFondoRouteArgs(tipo: pathParams.getString('tipo')));
       return _i1.MaterialPageX(
@@ -102,7 +112,9 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i16.Reglamento());
     },
     CreacionFondoRoute.name: (entry) {
+      // ignore: prefer_final_locals
       var args = entry.routeData.argsAs<CreacionFondoRouteArgs>(
+          // ignore: prefer_const_constructors
           orElse: () => CreacionFondoRouteArgs());
       return _i1.MaterialPageX(
           entry: entry,

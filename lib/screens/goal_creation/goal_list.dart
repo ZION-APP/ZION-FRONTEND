@@ -169,6 +169,7 @@ class _GoalListState extends State<GoalList> {
   Future<void> removeGoal(Goal goal) async {
     final String token = await storage.read(key: 'token');
     try{
+      // ignore: unused_local_variable
       final  response = await dioClient.put('$kapiUrl/goals/me/${goal.id}', 
                                       options: Options(headers: {'Authorization': token}),
                                       data: {

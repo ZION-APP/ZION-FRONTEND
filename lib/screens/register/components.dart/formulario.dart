@@ -1,4 +1,3 @@
-import 'dart:developer' as developer;
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +59,6 @@ class _FormularioRegisterState extends State<FormularioRegister> {
     }
     try {
       userId = null;
-      final String token = await storage.read(key: 'token');
       final Response response = await dioClient.post('$kapiUrl/auth/sign-up',
                                       data: {
                                         'identity_number':widget.cedulaController.text,
