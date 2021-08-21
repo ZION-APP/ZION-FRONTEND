@@ -494,6 +494,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  reactive_forms:
+    dependency: "direct main"
+    description:
+      name: reactive_forms
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "10.6.0"
   rxdart:
     dependency: transitive
     description:
@@ -676,4 +683,4 @@ packages:
     version: "3.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  flutter: ">=2.2.0"
