@@ -10,6 +10,7 @@ import 'package:zionapp/screens/goal_creation/goal_list.dart';
 import 'package:zionapp/screens/goal_creation/goal_simulation.dart';
 import 'package:zionapp/screens/home/home.dart';
 import 'package:zionapp/screens/informacion/informacion.dart';
+import 'package:zionapp/screens/inversiones/inversiones.dart';
 import 'package:zionapp/screens/login/login.dart';
 import 'package:zionapp/screens/menu/menu.dart';
 import 'package:zionapp/screens/misionyvision/misionyvision.dart';
@@ -43,5 +44,6 @@ import 'package:zionapp/screens/tipos_fondo/info_fondo.dart';
   MaterialRoute(page: CreacionFondo, path: "/crear-fondo"),
   MaterialRoute(page: Formulario, path: "/formulario"),
   MaterialRoute(page: BankAccountList, path: "/cuenta_bancaria_list"),
+  MaterialRoute(page: InversionesHome, path: "/inversiones"),
 ])
 class $AppRouter {}

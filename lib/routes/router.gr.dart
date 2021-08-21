@@ -5,7 +5,7 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i1;
-import 'package:flutter/material.dart' as _i20;
+import 'package:flutter/material.dart' as _i21;
 
 import '../screens/alicuotas/alicuota.dart' as _i4;
 import '../screens/contactanos/contactanos.dart' as _i9;
@@ -18,6 +18,7 @@ import '../screens/goal_creation/goal_list.dart' as _i14;
 import '../screens/goal_creation/goal_simulation.dart' as _i13;
 import '../screens/home/home.dart' as _i3;
 import '../screens/informacion/informacion.dart' as _i7;
+import '../screens/inversiones/inversiones.dart' as _i20;
 import '../screens/login/login.dart' as _i2;
 import '../screens/menu/menu.dart' as _i6;
 import '../screens/misionyvision/misionyvision.dart' as _i8;
@@ -101,6 +102,9 @@ class AppRouter extends _i1.RootStackRouter {
     BankAccountListRoute.name: (entry) {
       return _i1.MaterialPageX(
           entry: entry, child: const _i19.BankAccountList());
+    },
+    InversionesHomeRoute.name: (entry) {
+      return _i1.MaterialPageX(entry: entry, child: _i20.InversionesHome());
     }
   };
 
@@ -124,7 +128,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(CreacionFondoRoute.name, path: '/crear-fondo'),
         _i1.RouteConfig(FormularioRoute.name, path: '/formulario'),
         _i1.RouteConfig(BankAccountListRoute.name,
-            path: '/cuenta_bancaria_list')
+            path: '/cuenta_bancaria_list'),
+        _i1.RouteConfig(InversionesHomeRoute.name, path: '/inversiones')
       ];
 }
 
@@ -135,7 +140,7 @@ class LoginRoute extends _i1.PageRouteInfo {
 }
 
 class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i20.Key key, String titulo})
+  HomeRoute({_i21.Key key, String titulo})
       : super(name,
             path: '/home', args: HomeRouteArgs(key: key, titulo: titulo));
 
@@ -145,7 +150,7 @@ class HomeRoute extends _i1.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key, this.titulo});
 
-  final _i20.Key key;
+  final _i21.Key key;
 
   final String titulo;
 }
@@ -205,7 +210,7 @@ class GoalCreationRoute extends _i1.PageRouteInfo {
 }
 
 class GoalSimulationRoute extends _i1.PageRouteInfo<GoalSimulationRouteArgs> {
-  GoalSimulationRoute({_i20.Key key, int goalId})
+  GoalSimulationRoute({_i21.Key key, int goalId})
       : super(name,
             path: '/goalsimulation',
             args: GoalSimulationRouteArgs(key: key, goalId: goalId));
@@ -216,7 +221,7 @@ class GoalSimulationRoute extends _i1.PageRouteInfo<GoalSimulationRouteArgs> {
 class GoalSimulationRouteArgs {
   const GoalSimulationRouteArgs({this.key, this.goalId});
 
-  final _i20.Key key;
+  final _i21.Key key;
 
   final int goalId;
 }
@@ -228,7 +233,7 @@ class GoalListRoute extends _i1.PageRouteInfo {
 }
 
 class InfoFondoRoute extends _i1.PageRouteInfo<InfoFondoRouteArgs> {
-  InfoFondoRoute({_i20.Key key, String tipo})
+  InfoFondoRoute({_i21.Key key, String tipo})
       : super(name,
             path: '/info-fondo/:tipo',
             args: InfoFondoRouteArgs(key: key, tipo: tipo),
@@ -240,7 +245,7 @@ class InfoFondoRoute extends _i1.PageRouteInfo<InfoFondoRouteArgs> {
 class InfoFondoRouteArgs {
   const InfoFondoRouteArgs({this.key, this.tipo});
 
-  final _i20.Key key;
+  final _i21.Key key;
 
   final String tipo;
 }
@@ -252,7 +257,7 @@ class ReglamentoRoute extends _i1.PageRouteInfo {
 }
 
 class CreacionFondoRoute extends _i1.PageRouteInfo<CreacionFondoRouteArgs> {
-  CreacionFondoRoute({String tipo, _i20.Key key})
+  CreacionFondoRoute({String tipo, _i21.Key key})
       : super(name,
             path: '/crear-fondo',
             args: CreacionFondoRouteArgs(tipo: tipo, key: key));
@@ -265,7 +270,7 @@ class CreacionFondoRouteArgs {
 
   final String tipo;
 
-  final _i20.Key key;
+  final _i21.Key key;
 }
 
 class FormularioRoute extends _i1.PageRouteInfo {
@@ -278,4 +283,10 @@ class BankAccountListRoute extends _i1.PageRouteInfo {
   const BankAccountListRoute() : super(name, path: '/cuenta_bancaria_list');
 
   static const String name = 'BankAccountListRoute';
+}
+
+class InversionesHomeRoute extends _i1.PageRouteInfo {
+  const InversionesHomeRoute() : super(name, path: '/inversiones');
+
+  static const String name = 'InversionesHomeRoute';
 }
