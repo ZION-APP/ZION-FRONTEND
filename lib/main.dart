@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: kPrimaryLightColor,
+          appBarTheme: const AppBarTheme(color: kPrimaryColor,centerTitle: true),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         routerDelegate: _appRouter.delegate(),

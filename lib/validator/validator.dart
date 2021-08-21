@@ -37,9 +37,9 @@ class Validadores {
   }
 
   static String validarValorMonetario(String value) {
-    return (RegExp(r'^[0-9]*\.[0-9]{2}$').hasMatch(value))
+    return (RegExp(r'^[0-9]+$').hasMatch(value) && (value.length < 8))
         ? null
-        : "Por favor ingrese un número como 100000.00";
+        : "Por favor ingrese un número como 100000";
   }
 
   static String validarCedula(String cedula) {

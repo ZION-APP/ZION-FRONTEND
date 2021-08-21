@@ -117,7 +117,9 @@ class _LoginState extends State<Login> {
                   padding: EdgeInsets.symmetric(
                       vertical: getProportionateScreenHeight(15)),
                   child: DefaultButton(
-                    func: () => logIn(context),
+                    func: () => {
+                      logIn(context)
+                    },
                     label: "Inicia Sesion",
                     colorFondo: loading ? kDisableColor : kPrimaryColor,
                   ),

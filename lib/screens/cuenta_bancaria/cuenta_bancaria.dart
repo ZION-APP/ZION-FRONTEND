@@ -4,8 +4,11 @@ import 'package:zionapp/models/tipo_cuenta.dart';
 import 'package:zionapp/screens/cuenta_bancaria/components.dart/formulario.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CuentaBancaria extends StatefulWidget {
-  const CuentaBancaria({Key key}) : super(key: key);
+  final bool isUpdateForm;
+  final int bankAccountId;
+  const CuentaBancaria({Key key, @required this.isUpdateForm, this.bankAccountId}) : super(key: key);
 
   @override
   _CuentaBancariaState createState() => _CuentaBancariaState();
@@ -38,6 +41,8 @@ class _CuentaBancariaState extends State<CuentaBancaria> {
           SliverFillRemaining(
               hasScrollBody: false,
               child: FormularioCuentaBancaria(
+                bankAccountId: widget.bankAccountId,
+                isUpdateForm: widget.isUpdateForm,
                 titularController: titularController,
                 cedulaController: cedulaController,
                 tipoBanco: tipoBanco,

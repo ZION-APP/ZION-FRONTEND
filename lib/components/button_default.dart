@@ -6,13 +6,14 @@ class DefaultButton extends StatelessWidget {
   final String label;
   final Color colorFondo;
   final Color colorTexto;
+  final double tamanoTexto;
 
-  const DefaultButton({
-    @required this.label,
-    this.func,
-    this.colorFondo = kSecondaryColor,
-    this.colorTexto = kPrimaryLightColor,
-  });
+  const DefaultButton(
+      {@required this.label,
+      this.func,
+      this.colorFondo = kSecondaryColor,
+      this.colorTexto = kPrimaryLightColor,
+      this.tamanoTexto});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class DefaultButton extends StatelessWidget {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius:
-                      BorderRadius.circular(MediaQuery.of(context).size.height * (20/812))),
+                      BorderRadius.circular(MediaQuery.of(context).size.height * (8/812))),
             ),
             backgroundColor: MaterialStateProperty.all<Color>(colorFondo),
             minimumSize: MaterialStateProperty.all<Size>(Size(
@@ -31,7 +32,8 @@ class DefaultButton extends StatelessWidget {
         child: Text(
           label,
           style: TextStyle(
-              color: colorTexto, fontSize: MediaQuery.of(context).size.height * (20/812)),
+              color: colorTexto,
+              fontSize: tamanoTexto ?? MediaQuery.of(context).size.height * (20/812)),
         ));
   }
 }

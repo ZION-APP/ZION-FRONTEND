@@ -5,17 +5,20 @@ class DefaultInput extends StatelessWidget {
   final Function validacion;
   final bool isContrasena;
   final String label;
+  final TextInputType inputType;
   const DefaultInput(
       {@required this.controller,
       this.validacion,
       @required this.isContrasena,
-      this.label});
+      this.label,
+      this.inputType});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       validator: validacion as String Function(String),
       controller: controller,
+      keyboardType: inputType ?? TextInputType.text,
       obscureText: isContrasena,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(

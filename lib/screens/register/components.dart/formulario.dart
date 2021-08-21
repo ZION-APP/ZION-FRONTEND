@@ -1,6 +1,6 @@
 import 'dart:developer' as developer;
 import 'package:auto_route/auto_route.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/button_default.dart';
@@ -32,6 +32,7 @@ class FormularioRegister extends StatefulWidget {
 }
 
 class _FormularioRegisterState extends State<FormularioRegister> {
+  int userId;
   TipoPersona _tipoSeleccionado;
 
   bool validateForm() {
@@ -50,6 +51,32 @@ class _FormularioRegisterState extends State<FormularioRegister> {
     }
   }
 
+  Future<void> createNewUser() async {
+    int tipoPersonaId;
+    if(widget.tipoPersona == TipoPersona.PersonaNatural){
+      tipoPersonaId = 1;
+    }else{
+      tipoPersonaId = 2;
+    }
+    try {
+      userId = null;
+      final String token = await storage.read(key: 'token');
+      final Response response = await dioClient.post('$kapiUrl/auth/sign-up',
+                                      data: {
+                                        'identity_number':widget.cedulaController.text,
+                                        'username':widget.usuarioController.text,
+                                        'email':widget.correoController.text,
+                                        'password':widget.contrasenaController.text,
+                                        'kind_of_person_id':tipoPersonaId
+                                      });
+      setState(() {
+        userId = response.data['user_id'] as int;
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   void showErrorSnack(BuildContext context, String message) {
     final snackBar = SnackBar(
       content: Text(
@@ -60,23 +87,6 @@ class _FormularioRegisterState extends State<FormularioRegister> {
       duration: const Duration(milliseconds: 1500),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
-  Future<void> createUser(String usuario, String correo, String contrasena, BuildContext context) async{
-    final url = Uri.parse('http://10.0.2.2:3000/api/auth/sign-up');
-
-    final resp = await http.post(url, body:{
-        'name': usuario,
-        'email': correo,
-        'password': contrasena,
-        'isAdmin': 'false'
-    });
-
-    if(resp.statusCode==201){
-      AutoRouter.of(context).pop();
-    }else {
-      showErrorSnack(context, 'Error al crear usuario');
-    }
   }
 
   @override
@@ -176,12 +186,15 @@ class _FormularioRegisterState extends State<FormularioRegister> {
           padding:
               EdgeInsets.symmetric(vertical: getProportionateScreenHeight(30)),
           child: DefaultButton(
-            func: () => {
+            func: () async => {
               if (validateForm())
                 {
-                  createUser(widget.usuarioController.text, widget.correoController.text, widget.contrasenaController.text, context),
-                  developer.log(
-                      '${widget.usuarioController.text} ${widget.cedulaController.text} $_tipoSeleccionado ${widget.correoController.text} ${widget.contrasenaController.text} ${widget.contrasenaConfirmController.text}')
+                  debugPrint(
+                      '${widget.usuarioController.text} ${widget.cedulaController.text} $_tipoSeleccionado ${widget.correoController.text} ${widget.contrasenaController.text} ${widget.contrasenaConfirmController.text}'),
+                  await createNewUser(),
+                  if(userId != null){
+                    AutoRouter.of(context).pop()
+                  }
                 }
               else
                 {showErrorSnack(context, 'Los datos ingresados no son válidos')}
