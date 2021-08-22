@@ -36,6 +36,7 @@ class _GoalListState extends State<GoalList> {
           targetDate: res['target_date'] as String,
           status: res['status'] as String
         );
+        goal.setTipoFondo(res['fund_id'] as int);
         debugPrint(response.data.toString());
         setState(() {
           if(res['status'] == 'active'){

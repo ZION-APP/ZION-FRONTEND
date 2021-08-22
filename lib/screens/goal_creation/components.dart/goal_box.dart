@@ -138,7 +138,7 @@ class _GoalBoxState extends State<GoalBox> {
             SizedBox(width: getProportionateScreenWidth(50)),
             Text(
               // ignore: prefer_interpolation_to_compose_strings
-              ((widget.montoActual/widget.metaTotal)*100).toString() + '%',
+              ((widget.montoActual/widget.metaTotal)*100).toInt().toString() + '%',
               style: const TextStyle(
                 color: kSecondaryColor,
                 fontSize: 19,

@@ -1,10 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/components/cargando.dart';
 import 'package:zionapp/constants_config.dart';
-import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/size_config.dart';
 
 import 'components.dart/goal_model.dart';
@@ -39,6 +37,7 @@ class _GoalSimulationState extends State<GoalSimulation> {
         targetDate: res.data['target_date'] as String,
         status: res.data['status'] as String
       );
+      goal.setTipoFondo(res.data['fund_id'] as int);
       setState(() {
         goalSim = goal;
       });
@@ -175,14 +174,6 @@ class _GoalSimulationState extends State<GoalSimulation> {
                                         fontSize: 16,
                                       ),
                                     ),
-                                    SizedBox(height: getProportionateScreenHeight(25)),
-                                    const Text(
-                                      'Mensualidades',
-                                      style: TextStyle(
-                                        color: kSecondaryColor,
-                                        fontSize: 16,
-                                      ),
-                                    ),
                                   ]
                                 ),
                               ),
@@ -191,9 +182,9 @@ class _GoalSimulationState extends State<GoalSimulation> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(height: getProportionateScreenHeight(25)),
-                                    const Text(
-                                      'Omega',
-                                      style: TextStyle(
+                                    Text(
+                                      goalSim.tipoFondo,
+                                      style: const TextStyle(
                                         color: Colors.grey,
                                         fontSize: 16,
                                       ),
@@ -209,14 +200,6 @@ class _GoalSimulationState extends State<GoalSimulation> {
                                     SizedBox(height: getProportionateScreenHeight(25)),
                                     Text(
                                       goalSim.targetAmount.toString(),
-                                      style: const TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    SizedBox(height: getProportionateScreenHeight(25)),
-                                    Text(
-                                      goalSim.monthlyAmount.toString(),
                                       style: const TextStyle(
                                         color: Colors.grey,
                                         fontSize: 16,
@@ -241,9 +224,9 @@ class _GoalSimulationState extends State<GoalSimulation> {
                         ),
                       ),
                   SizedBox(height: getProportionateScreenHeight(40)),
-                  const Text(
-                    '500.00',
-                    style: TextStyle(
+                  Text(
+                    goalSim.monthlyAmount.toString(),
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 28,
                     ),
@@ -253,7 +236,7 @@ class _GoalSimulationState extends State<GoalSimulation> {
                     padding: EdgeInsets.symmetric(
                         vertical: getProportionateScreenHeight(30)),
                     child: DefaultButton(
-                      func: () => {AutoRouter.of(context).push(const GoalListRoute())},
+                      func: () => {},
                       label: "Crear Inversión",
                       colorFondo: kPrimaryColor,
                       colorTexto: kSecondaryColor,
