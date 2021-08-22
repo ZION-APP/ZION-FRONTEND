@@ -6,20 +6,22 @@ import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/models/form.dart';
 
 class Formulario extends StatefulWidget {
-  const Formulario({Key key}) : super(key: key);
+  final int tipo;
+  const Formulario({this.tipo, Key key}) : super(key: key);
 
   @override
   _FormularioState createState() => _FormularioState();
 }
 
 class _FormularioState extends State<Formulario> {
+  Map<int, String> tipos = {1: "natural", 2: "juridico"};
   final formulario = FormularioForm();
   int _currentStep = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Formulario basico"),
+        title: Text("Formulario basico ${tipos[widget.tipo]}"),
       ),
       body: Theme(
         data: ThemeData(primarySwatch: MaterialColor(0xFFD0AF68, colorPrimary)),
@@ -28,8 +30,7 @@ class _FormularioState extends State<Formulario> {
           child: ListView(
             children: [
               Stepper(
-                type: StepperType.vertical,
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 currentStep: _currentStep,
                 onStepTapped: (step) => tapped(step),
                 onStepContinue: continued,
@@ -66,7 +67,7 @@ class _FormularioState extends State<Formulario> {
                             lastDate: DateTime(3000),
                             firstDate: DateTime(1900),
                             builder: (context, picker, wi) {
-                              var fecha = (picker.value != null)
+                              final fecha = (picker.value != null)
                                   ? "${picker.value.day}-${picker.value.month}-${picker.value.year}"
                                   : "Seleccione una fecha";
                               return Row(
@@ -95,17 +96,7 @@ class _FormularioState extends State<Formulario> {
                   ),
                   Step(
                     title: const Text('Informacion del Conyuge'),
-                    content: Column(
-                      children: <Widget>[
-                        // ReactiveTextField(
-                        //   decoration:
-                        //       InputDecoration(labelText: 'Home Address'),
-                        // ),
-                        // ReactiveTextField(
-                        //   decoration: InputDecoration(labelText: 'Postcode'),
-                        // ),
-                      ],
-                    ),
+                    content: Column(),
                     isActive: _currentStep >= 1,
                     state: _currentStep >= 1
                         ? StepState.complete
@@ -113,14 +104,7 @@ class _FormularioState extends State<Formulario> {
                   ),
                   Step(
                     title: const Text('Situacion Financiera'),
-                    content: Column(
-                      children: <Widget>[
-                        // ReactiveTextField(
-                        //   decoration:
-                        //       InputDecoration(labelText: 'Mobile Number'),
-                        // ),
-                      ],
-                    ),
+                    content: Column(),
                     isActive: _currentStep >= 2,
                     state: _currentStep >= 2
                         ? StepState.complete
@@ -128,14 +112,7 @@ class _FormularioState extends State<Formulario> {
                   ),
                   Step(
                     title: const Text('Informacion General'),
-                    content: Column(
-                      children: <Widget>[
-                        // ReactiveTextField(
-                        //   decoration:
-                        //       InputDecoration(labelText: 'Mobile Number'),
-                        // ),
-                      ],
-                    ),
+                    content: Column(),
                     isActive: _currentStep >= 3,
                     state: _currentStep >= 2
                         ? StepState.complete
@@ -143,14 +120,7 @@ class _FormularioState extends State<Formulario> {
                   ),
                   Step(
                     title: const Text('Ultimas consideraciones'),
-                    content: Column(
-                      children: <Widget>[
-                        // ReactiveTextField(
-                        //   decoration:
-                        //       InputDecoration(labelText: 'Mobile Number'),
-                        // ),
-                      ],
-                    ),
+                    content: Column(),
                     isActive: _currentStep >= 4,
                     state: _currentStep >= 2
                         ? StepState.complete
@@ -176,8 +146,8 @@ class _FormularioState extends State<Formulario> {
   void continued() {
     if (_currentStep == 0 && !formulario.infoPersonal.valid) {
       showError("Ingreso todos los campos", context);
-    } else {
-      _currentStep < 4 ? setState(() => _currentStep += 1) : null;
+    } else if (_currentStep < 4) {
+      setState(() => _currentStep += 1);
     }
   }
 
@@ -186,7 +156,7 @@ class _FormularioState extends State<Formulario> {
   }
 
   void cancel() {
-    _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
+    if (_currentStep > 0) setState(() => _currentStep -= 1);
   }
 
   Future<void> submit() async {
@@ -194,11 +164,8 @@ class _FormularioState extends State<Formulario> {
       await formulario.submit(context);
     } on DioError catch (e) {
       if (e.type == DioErrorType.other) {
-        print(e);
         showError("Error del servidor", context);
       } else if (e.type == DioErrorType.response) {
-        print(e.response);
-
         showError("Verifique la informacion", context);
       }
     }

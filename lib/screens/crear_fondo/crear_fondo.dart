@@ -36,10 +36,10 @@ class _CreacionFondoState extends State<CreacionFondo> {
     try {
       final response = await dioClient.get("$kapiUrl/users/me");
       if (!(response.data["is_form_complete"] as bool)) {
-        await AutoRouter.of(context).replace(const FormularioRoute());
+        await AutoRouter.of(context).replace(FormularioRoute(
+            tipo: response.data["kind_of_person_id"] as int ?? 1));
       }
-    } on DioError catch (e) {
-      print(e.response);
+    } on DioError catch (_) {
       showError("Error del servidor", context);
       await AutoRouter.of(context).pop();
     } finally {
@@ -85,10 +85,7 @@ class _CreacionFondoState extends State<CreacionFondo> {
                               vertical: getProportionateScreenHeight(20)),
                           child: DefaultButton(
                             label: "Invertir",
-                            func: () {
-                              AutoRouter.of(context)
-                                  .push(const FormularioRoute());
-                            },
+                            func: () {},
                           ),
                         )
                       ],

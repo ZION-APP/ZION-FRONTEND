@@ -21,19 +21,20 @@ class DefaultButton extends StatelessWidget {
         style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(MediaQuery.of(context).size.height * (8/812))),
+                  borderRadius: BorderRadius.circular(
+                      MediaQuery.of(context).size.height * (8 / 812))),
             ),
             backgroundColor: MaterialStateProperty.all<Color>(colorFondo),
             minimumSize: MaterialStateProperty.all<Size>(Size(
-                MediaQuery.of(context).size.height * (250/812),
-                MediaQuery.of(context).size.height * (50/812)))),
+                MediaQuery.of(context).size.height * (250 / 812),
+                MediaQuery.of(context).size.height * (50 / 812)))),
         onPressed: func as void Function(),
         child: Text(
           label,
           style: TextStyle(
               color: colorTexto,
-              fontSize: tamanoTexto ?? MediaQuery.of(context).size.height * (20/812)),
+              fontSize: tamanoTexto ??
+                  MediaQuery.of(context).size.height * (20 / 812)),
         ));
   }
 }

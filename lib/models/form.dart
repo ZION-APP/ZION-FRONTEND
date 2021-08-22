@@ -10,6 +10,7 @@ class FormularioForm {
     'apellido_paterno': FormControl<String>(),
     'apellido_materno': FormControl<String>(),
     'fecha_nacimiento': FormControl<DateTime>(),
+    'kind_of_person_id': FormControl<String>(),
   });
   final infoTrabajo = FormGroup({
     'fecha_ingreso_trabajo': FormControl<String>(),
@@ -34,7 +35,6 @@ class FormularioForm {
   }
 
   Future<void> submit(BuildContext context) async {
-    print(getValues());
     await dioClient.post("$kapiUrl/form/me", data: getValues());
   }
 }

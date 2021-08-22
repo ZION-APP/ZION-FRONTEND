@@ -4,6 +4,8 @@
 // AutoRouteGenerator
 // **************************************************************************
 
+// ignore_for_file: prefer_final_locals, prefer_const_constructors
+
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i21;
 
@@ -97,7 +99,10 @@ class AppRouter extends _i1.RootStackRouter {
           child: _i17.CreacionFondo(tipo: args.tipo, key: args.key));
     },
     FormularioRoute.name: (entry) {
-      return _i1.MaterialPageX(entry: entry, child: const _i18.Formulario());
+      var args = entry.routeData
+          .argsAs<FormularioRouteArgs>(orElse: () => FormularioRouteArgs());
+      return _i1.MaterialPageX(
+          entry: entry, child: _i18.Formulario(tipo: args.tipo, key: args.key));
     },
     BankAccountListRoute.name: (entry) {
       return _i1.MaterialPageX(
@@ -273,10 +278,21 @@ class CreacionFondoRouteArgs {
   final _i21.Key key;
 }
 
-class FormularioRoute extends _i1.PageRouteInfo {
-  const FormularioRoute() : super(name, path: '/formulario');
+class FormularioRoute extends _i1.PageRouteInfo<FormularioRouteArgs> {
+  FormularioRoute({int tipo, _i21.Key key})
+      : super(name,
+            path: '/formulario',
+            args: FormularioRouteArgs(tipo: tipo, key: key));
 
   static const String name = 'FormularioRoute';
+}
+
+class FormularioRouteArgs {
+  const FormularioRouteArgs({this.tipo, this.key});
+
+  final int tipo;
+
+  final _i21.Key key;
 }
 
 class BankAccountListRoute extends _i1.PageRouteInfo {
