@@ -1,5 +1,6 @@
 import 'package:zionapp/models/tipo_banco.dart';
 
+//ignore: avoid_classes_with_only_static_members
 class Validadores {
   static String validarCorreo(String correo) {
     return (RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(correo))
