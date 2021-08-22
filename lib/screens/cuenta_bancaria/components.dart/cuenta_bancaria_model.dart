@@ -42,6 +42,32 @@ class BankAccount{
     }
   }
 
+  int getBankTypeId() {
+    // ignore: unnecessary_this
+    switch (this.bankType) {
+      case 'Banco del Pacífico':
+        return 1;
+      case 'Banco de Guayaquil':
+        return 3;
+      case 'Produbanco':
+        return 5;
+      default:
+        return null;
+    }
+  }
+
+  int getAccountTypeId() {
+    // ignore: unnecessary_this
+    switch (this.accountType) {
+      case 'Cuenta de Ahorro':
+        return 1;
+      case 'Cuenta Corriente':
+        return 2;
+      default:
+        return null;
+    }
+  }
+
   @override
   String toString(){
     return "id = $id, name = $ownerName, Id number = $identityNumber, Account number = $numberAccount, Status = $status, Bank Type = $bankType, Account Type = $accountType";

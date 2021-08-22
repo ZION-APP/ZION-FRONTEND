@@ -126,30 +126,24 @@ void main() {
   test('validarValorMonetario1', () {
     String result;
     result = Validadores.validarValorMonetario('');
-    expect(result, 'Por favor ingrese un número como 100000.00');
+    expect(result, 'Por favor ingrese un número como 100000');
   });
 
   test('validarValorMonetario2', () {
     String result;
     result = Validadores.validarValorMonetario('A#dd231.3221dq');
-    expect(result, 'Por favor ingrese un número como 100000.00');
+    expect(result, 'Por favor ingrese un número como 100000');
   });
 
   test('validarValorMonetario3', () {
     String result;
     result = Validadores.validarValorMonetario('234123.2');
-    expect(result, 'Por favor ingrese un número como 100000.00');
+    expect(result, 'Por favor ingrese un número como 100000');
   });
 
   test('validarValorMonetario4', () {
     String result;
-    result = Validadores.validarValorMonetario('23731998.8223');
-    expect(result, 'Por favor ingrese un número como 100000.00');
-  });
-
-  test('validarValorMonetario5', () {
-    String result;
-    result = Validadores.validarValorMonetario('237398.82');
+    result = Validadores.validarValorMonetario('237398');
     expect(result, null);
   });
 

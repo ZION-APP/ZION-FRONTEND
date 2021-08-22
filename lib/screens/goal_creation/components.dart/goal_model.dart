@@ -4,7 +4,7 @@ class Goal{
   String name;
   int initAmount;
   int targetAmount;
-  int monthlyAmount;
+  double monthlyAmount;
   int currentAmount;
   String targetDate;
   String status;

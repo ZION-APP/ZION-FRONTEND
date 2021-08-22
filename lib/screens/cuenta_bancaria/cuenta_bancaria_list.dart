@@ -36,7 +36,9 @@ class _BankAccountListState extends State<BankAccountList> {
         );
         bankAccount.setTypes(res['financial_entity_id'] as int, res['bank_account_type_id'] as int);
         setState(() {
-          bankAccounts.add(bankAccount);
+          if(res['status'] == 'active'){
+            bankAccounts.add(bankAccount);
+          }
         });
       }
       debugPrint(bankAccounts.toString());
@@ -114,11 +116,66 @@ class _BankAccountListState extends State<BankAccountList> {
     final List<Widget> result = [];
     for (final bankAccount in bankAccounts){
       result.add(SizedBox(height: getProportionateScreenHeight(30)));
-      result.add(BankAccountBox(
-        numberAccount: bankAccount.numberAccount,
-        accountType: bankAccount.accountType,
-        bankType: bankAccount.bankType,
-      ));
+      result.add(
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: kSecondaryColor, width: 3),
+            borderRadius: BorderRadius.circular(10)
+          ),
+          child: SizedBox(
+            width: getProportionateScreenWidth(320),
+            child: Column(
+              children: [
+                BankAccountBox(
+                  numberAccount: bankAccount.numberAccount, 
+                  bankType: bankAccount.bankType, 
+                  accountType: bankAccount.accountType
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: getProportionateScreenHeight(20)),
+                  child: DefaultButton(
+                    func: () async {
+                      final int result = await Navigator.push(context, MaterialPageRoute(builder: (context) => CuentaBancaria(isUpdateForm: true, bankAccountId: bankAccount.id,)));
+                      debugPrint(result.toString());
+                      try {
+                        setState(() {
+                          bankAccounts = [];
+                        });
+                        await getBankAccountList();
+                      } catch (e) {
+                        debugPrint(e.toString());
+                      }
+                    },
+                    label: "Actualizar Cuenta",
+                  ),
+                ),
+                SizedBox(height: getProportionateScreenHeight(10)),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: getProportionateScreenHeight(20)),
+                  child: DefaultButton(
+                    func: () async {
+                      await removeBankAccount(bankAccount);
+                      try {
+                        setState(() {
+                          bankAccounts = [];
+                        });
+                        await getBankAccountList();
+                      } catch (e) {
+                        debugPrint(e.toString());
+                      }
+                    },
+                    colorFondo: Colors.red,
+                    label: "Eliminar Cuenta",
+                  ),
+                ),
+                SizedBox(height: getProportionateScreenHeight(10)),  
+              ],
+            )
+          )
+        )
+      );
     }
     result.add(SizedBox(height: getProportionateScreenHeight(50)));
     result.add(
@@ -127,7 +184,7 @@ class _BankAccountListState extends State<BankAccountList> {
             vertical: getProportionateScreenHeight(30)),
         child: DefaultButton(
           func: () async {
-            final int result = await Navigator.push(context, MaterialPageRoute(builder: (context) => const CuentaBancaria()));
+            final int result = await Navigator.push(context, MaterialPageRoute(builder: (context) => const CuentaBancaria(isUpdateForm: false,)));
             debugPrint(result.toString());
             try {
               await getAccountByID(result);
@@ -140,5 +197,24 @@ class _BankAccountListState extends State<BankAccountList> {
       ),
     );
     return result;
+  }
+
+  Future<void> removeBankAccount(BankAccount bankAccount) async {
+    final String token = await storage.read(key: 'token');
+    try{
+      // ignore: unused_local_variable
+      final  response = await dioClient.put('$kapiUrl/bank_accounts/me/${bankAccount.id}', 
+                                      options: Options(headers: {'Authorization': token}),
+                                      data: {
+                                        'owner_name':bankAccount.ownerName,
+                                        'identity_number':bankAccount.identityNumber,
+                                        'number_account':bankAccount.numberAccount,
+                                        'financial_entity_id':bankAccount.getBankTypeId(),
+                                        'bank_account_type_id':bankAccount.getAccountTypeId(),
+                                        'status':'inactive'
+                                      });
+    }catch(e) {
+      debugPrint(e.toString());
+    }
   }
 }

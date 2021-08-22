@@ -24,6 +24,7 @@ class _GoalSimulationState extends State<GoalSimulation> {
 
   Future<void> getGoalByID() async{
     try {
+      debugPrint(widget.goalId.toString());
       final String token = await storage.read(key: 'token');
       final Response res = await dioClient.get('$kapiUrl/goals/me/${widget.goalId}', 
                                       options: Options(headers: {'Authorization': token}));
@@ -33,7 +34,7 @@ class _GoalSimulationState extends State<GoalSimulation> {
         name: res.data['name'].toString(),
         initAmount: res.data['init_amount'] as int,
         targetAmount: res.data['target_amount'] as int,
-        monthlyAmount: res.data['montly_amount'] as int,
+        monthlyAmount: double.parse(res.data['montly_amount'].toString()),
         currentAmount: res.data['current_amount'] as int,
         targetDate: res.data['target_date'] as String,
         status: res.data['status'] as String

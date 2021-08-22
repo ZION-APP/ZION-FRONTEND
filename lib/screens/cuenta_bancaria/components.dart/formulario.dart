@@ -1,4 +1,3 @@
-import 'dart:developer' as developer;
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';
@@ -10,6 +9,8 @@ import 'package:zionapp/validator/validator.dart';
 
 // ignore: must_be_immutable
 class FormularioCuentaBancaria extends StatefulWidget {
+  int bankAccountId;
+  bool isUpdateForm;
   TextEditingController titularController;
   TextEditingController cedulaController;
   TipoBanco tipoBanco;
@@ -18,12 +19,14 @@ class FormularioCuentaBancaria extends StatefulWidget {
   GlobalKey<FormState> formKey;
 
   FormularioCuentaBancaria(
-      {this.titularController,
-      this.cedulaController,
-      this.tipoBanco,
-      this.numeroCuentaController,
-      this.tipoCuenta,
-      this.formKey});
+      { this.bankAccountId,
+      @required this.isUpdateForm,
+      @required this.titularController,
+      @required this.cedulaController,
+      @required this.tipoBanco,
+      @required this.numeroCuentaController,
+      @required this.tipoCuenta,
+      @required this.formKey});
 
   @override
   _FormularioCuentaBancariaState createState() =>
@@ -36,7 +39,9 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
   TipoCuenta _tipoCuentaSeleccionada;
 
   Future<void> createNewAccount() async {
-    accountId = null;
+    setState(() {
+      accountId = null;
+    });
     int bankNumber;
     int accTypeNumber;
     switch (_tipoBancoSeleccionado) {
@@ -63,7 +68,11 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
     }
     try {
       final String token = await storage.read(key: 'token');
-      final Response response = await dioClient.post('$kapiUrl/bank_accounts/me', 
+      String url;
+      Response response;
+      if(widget.isUpdateForm){
+        url = '$kapiUrl/bank_accounts/me/${widget.bankAccountId}';
+        response = await dioClient.put(url, 
                                       options: Options(headers: {'Authorization': token}),
                                       data: {
                                         'owner_name':widget.titularController.text,
@@ -72,9 +81,26 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
                                         'financial_entity_id':bankNumber,
                                         'bank_account_type_id':accTypeNumber
                                       });
-      setState(() {
-        accountId = response.data['id'] as int;
-      });
+        setState(() {
+          accountId = widget.bankAccountId;
+        });
+      }else{
+        url = '$kapiUrl/bank_accounts/me';
+        response = await dioClient.post(url, 
+                                      options: Options(headers: {'Authorization': token}),
+                                      data: {
+                                        'owner_name':widget.titularController.text,
+                                        'identity_number':widget.cedulaController.text,
+                                        'number_account':widget.numeroCuentaController.text,
+                                        'financial_entity_id':bankNumber,
+                                        'bank_account_type_id':accTypeNumber
+                                      });
+        setState(() {
+          accountId = response.data['id'] as int;
+        });
+      }
+      debugPrint(url);
+      debugPrint(accountId.toString());
       debugPrint(response.data.toString());
       widget.titularController.clear();
       widget.cedulaController.clear();
@@ -204,17 +230,19 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
                   vertical: getProportionateScreenHeight(30)),
               child: DefaultButton(
                 func: () async => {
-                  developer.log(
+                  debugPrint(
                       '${widget.titularController.text} ${widget.cedulaController.text} $_tipoBancoSeleccionado ${widget.numeroCuentaController.text} $_tipoCuentaSeleccionada'),
                   await createNewAccount(),
                   debugPrint((accountId != null).toString()),
-                  if (accountId != null){
+                  if (accountId != null && widget.isUpdateForm){
+                    Navigator.pop(context, accountId),
+                  }else if(accountId != null && (widget.isUpdateForm == false)){
                     Navigator.pop(context, accountId),
                   }else{
                     showErrorSnack(context, 'Los datos ingresados no son válidos')
                   }
                 },
-                label: "Registrar cuenta",
+                label: generateButtonText(),
                 colorFondo: kPrimaryColor,
                 colorTexto: kSecondaryColor,
               ),
@@ -229,5 +257,13 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
 
   double getProportionateScreenHeight(double input) {
     return MediaQuery.of(context).size.height * (input/812);
+  }
+
+  String generateButtonText() {
+    if(widget.isUpdateForm){
+      return 'Actualizar Cuenta';
+    }else{
+      return 'Registrar Cuenta';
+    }
   }
 }

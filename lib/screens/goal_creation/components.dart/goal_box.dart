@@ -9,8 +9,8 @@ import 'package:zionapp/size_config.dart';
 class GoalBox extends StatefulWidget {
   int idMeta;
   String nombreMeta;
-  double montoActual;
-  double metaTotal;
+  int montoActual;
+  int metaTotal;
 
   GoalBox(
       {@required this.idMeta,
@@ -26,153 +26,144 @@ class _GoalBoxState extends State<GoalBox> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: kSecondaryColor, width: 3),
-        borderRadius: BorderRadius.circular(10)
-      ),
-      child: SizedBox(
-        width: getProportionateScreenWidth(320),
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.grey[300])
-                )
-              ),
-              child: SizedBox(
-                width: getProportionateScreenWidth(280),
-                child: Column(
-                  children: [
-                    SizedBox(height: getProportionateScreenHeight(25)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Expanded(
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              'Meta',
-                              style: TextStyle(
-                                color: kSecondaryColor,
-                                fontSize: 25,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              widget.nombreMeta,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                                fontSize: 25,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: getProportionateScreenHeight(15))
-                  ],
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: Colors.grey[300])
+            )
+          ),
+          child: SizedBox(
+            width: getProportionateScreenWidth(280),
+            child: Column(
               children: [
-                SizedBox(width: getProportionateScreenWidth(20)),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: getProportionateScreenHeight(25)),
-                      const FittedBox(
+                SizedBox(height: getProportionateScreenHeight(25)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Expanded(
+                      child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          'Recaudado',
+                          'Meta',
                           style: TextStyle(
                             color: kSecondaryColor,
-                            fontSize: 19,
+                            fontSize: 25,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                    ]
-                  ),
-                ),
-                SizedBox(width: getProportionateScreenWidth(10)),
-                Expanded(
-                  flex: 2,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: getProportionateScreenHeight(25)),
-                       FittedBox(
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          '${widget.montoActual} de ${widget.metaTotal}',
+                          widget.nombreMeta,
                           style: const TextStyle(
                             color: Colors.grey,
-                            fontSize: 19,
+                            fontSize: 25,
                           ),
+                          textAlign: TextAlign.center,
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: getProportionateScreenWidth(20)),
+                SizedBox(height: getProportionateScreenHeight(15))
               ],
             ),
-            SizedBox(height: getProportionateScreenHeight(30)),
-            Row(
-              children: [
-                SizedBox(width: getProportionateScreenWidth(50)),
-                SizedBox(
-                  height: getProportionateScreenHeight(40),
-                  width: getProportionateScreenWidth(150),
-                  child: CustomPaint(
-                    foregroundPainter: GoalProgressPainter(
-                      total: widget.metaTotal,
-                      actual: widget.montoActual
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(width: getProportionateScreenWidth(20)),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: getProportionateScreenHeight(25)),
+                  const FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      'Recaudado',
+                      style: TextStyle(
+                        color: kSecondaryColor,
+                        fontSize: 19,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(width: getProportionateScreenWidth(50)),
-                Text(
-                  // ignore: prefer_interpolation_to_compose_strings
-                  ((widget.montoActual/widget.metaTotal)*100).toString() + '%',
-                  style: const TextStyle(
-                    color: kSecondaryColor,
-                    fontSize: 19,
-                  ),
-                ),
-              ],
+                ]
+              ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: getProportionateScreenHeight(30)),
-              child: DefaultButton(
-                func: () => {AutoRouter.of(context).push(GoalSimulationRoute(goalId: widget.idMeta))},
-                label: "Más Información",
-                colorFondo: kPrimaryColor,
-                colorTexto: kSecondaryColor,
+            SizedBox(width: getProportionateScreenWidth(10)),
+            Expanded(
+              flex: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: getProportionateScreenHeight(25)),
+                    FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      '${widget.montoActual} de ${widget.metaTotal}',
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 19,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(width: getProportionateScreenWidth(20)),
+          ],
+        ),
+        SizedBox(height: getProportionateScreenHeight(30)),
+        Row(
+          children: [
+            SizedBox(width: getProportionateScreenWidth(50)),
+            SizedBox(
+              height: getProportionateScreenHeight(40),
+              width: getProportionateScreenWidth(150),
+              child: CustomPaint(
+                foregroundPainter: GoalProgressPainter(
+                  total: widget.metaTotal,
+                  actual: widget.montoActual
+                ),
+              ),
+            ),
+            SizedBox(width: getProportionateScreenWidth(50)),
+            Text(
+              // ignore: prefer_interpolation_to_compose_strings
+              ((widget.montoActual/widget.metaTotal)*100).toString() + '%',
+              style: const TextStyle(
+                color: kSecondaryColor,
+                fontSize: 19,
               ),
             ),
           ],
         ),
-      ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+              vertical: getProportionateScreenHeight(30)),
+          child: DefaultButton(
+            func: () => {AutoRouter.of(context).push(GoalSimulationRoute(goalId: widget.idMeta))},
+            label: "Más Información",
+            colorFondo: kPrimaryColor,
+            colorTexto: kSecondaryColor,
+          ),
+        ),
+      ],
     );
   }
 }
 
 class GoalProgressPainter extends CustomPainter{
-  double total;
-  double actual;
+  int total;
+  int actual;
 
   GoalProgressPainter(
     {

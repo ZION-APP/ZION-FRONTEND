@@ -1,10 +1,10 @@
-import 'dart:developer' as developer;
+import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/components/input_default.dart';
 import 'package:zionapp/models/tipo_persona.dart';
-import 'package:zionapp/size_config.dart';
 import 'package:zionapp/validator/validator.dart';
 
 // ignore: must_be_immutable
@@ -31,6 +31,7 @@ class FormularioRegister extends StatefulWidget {
 }
 
 class _FormularioRegisterState extends State<FormularioRegister> {
+  int userId;
   TipoPersona _tipoSeleccionado;
 
   bool validateForm() {
@@ -46,6 +47,31 @@ class _FormularioRegisterState extends State<FormularioRegister> {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<void> createNewUser() async {
+    int tipoPersonaId;
+    if(widget.tipoPersona == TipoPersona.PersonaNatural){
+      tipoPersonaId = 1;
+    }else{
+      tipoPersonaId = 2;
+    }
+    try {
+      userId = null;
+      final Response response = await dioClient.post('$kapiUrl/auth/sign-up',
+                                      data: {
+                                        'identity_number':widget.cedulaController.text,
+                                        'username':widget.usuarioController.text,
+                                        'email':widget.correoController.text,
+                                        'password':widget.contrasenaController.text,
+                                        'kind_of_person_id':tipoPersonaId
+                                      });
+      setState(() {
+        userId = response.data['user_id'] as int;
+      });
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 
@@ -93,14 +119,17 @@ class _FormularioRegisterState extends State<FormularioRegister> {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(50)),
           child: DropdownButtonFormField(
+            key: const Key('TipoPersona'),
               hint: const Text('Tipo de persona'),
               value: _tipoSeleccionado,
               items: const [
                 DropdownMenuItem(
+                  key: Key('PersonaNatural'),
                   value: TipoPersona.PersonaNatural,
                   child: Text("Persona Natural"),
                 ),
                 DropdownMenuItem(
+                  key: Key('PersonaJuridica'),
                   value: TipoPersona.PersonaJuridica,
                   child: Text("Persona Jurídica"),
                 ),
@@ -155,11 +184,15 @@ class _FormularioRegisterState extends State<FormularioRegister> {
           padding:
               EdgeInsets.symmetric(vertical: getProportionateScreenHeight(30)),
           child: DefaultButton(
-            func: () => {
+            func: () async => {
               if (validateForm())
                 {
-                  developer.log(
-                      '${widget.usuarioController.text} ${widget.cedulaController.text} $_tipoSeleccionado ${widget.correoController.text} ${widget.contrasenaController.text} ${widget.contrasenaConfirmController.text}')
+                  debugPrint(
+                      '${widget.usuarioController.text} ${widget.cedulaController.text} $_tipoSeleccionado ${widget.correoController.text} ${widget.contrasenaController.text} ${widget.contrasenaConfirmController.text}'),
+                  await createNewUser(),
+                  if(userId != null){
+                    AutoRouter.of(context).pop()
+                  }
                 }
               else
                 {showErrorSnack(context, 'Los datos ingresados no son válidos')}
@@ -171,5 +204,13 @@ class _FormularioRegisterState extends State<FormularioRegister> {
         ),
       ]),
     );
+  }
+
+  double getProportionateScreenWidth(double input) {
+    return MediaQuery.of(context).size.width * (input/375);
+  }
+
+  double getProportionateScreenHeight(double input) {
+    return MediaQuery.of(context).size.height * (input/812);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:zionapp/models/tipo_banco.dart';
 
+//ignore: avoid_classes_with_only_static_members
 class Validadores {
   final String s = "a";
   static String validarCorreo(String correo) {
@@ -38,10 +39,9 @@ class Validadores {
   }
 
   static String validarValorMonetario(String value) {
-    return (RegExp(r'^[0-9]*\.[0-9]{2}$').hasMatch(value) &&
-            (value.length < 10))
+    return (RegExp(r'^[0-9]+$').hasMatch(value) && (value.length < 8))
         ? null
-        : "Por favor ingrese un número como 100000.00";
+        : "Por favor ingrese un número como 100000";
   }
 
   static String validarCedula(String cedula) {
