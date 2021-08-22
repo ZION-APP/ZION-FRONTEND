@@ -362,6 +362,6 @@ void main() {
         home: CuentaBancaria(isUpdateForm: false,),
       ),
     );
-    expect(find.text('Registrar cuenta'), findsOneWidget);
+    expect(find.text('Registrar Cuenta'), findsOneWidget);
   });
 }
