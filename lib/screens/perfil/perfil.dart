@@ -1,14 +1,10 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/components/show_error.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/cargando.dart';
 import 'package:zionapp/screens/perfil/components/info.dart';
-import 'package:zionapp/services/dio_client.dart';
 import 'package:zionapp/size_config.dart';
-
 import 'components/boton_cambiar_contrasena.dart';
 import 'components/foto.dart';
 
@@ -62,9 +58,7 @@ class _PerfilHomeState extends State<PerfilHome> {
 
   Future<void> _obtenerUsuario() async {
     try {
-      
-      final Response response = await dioClient
-          .get('$kapiUrl/users/me');
+      final Response response = await dioClient.get('$kapiUrl/users/me');
       setState(() {
         usuario = response.data;
         loading = false;
