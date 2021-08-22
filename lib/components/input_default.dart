@@ -7,11 +7,12 @@ class DefaultInput extends StatelessWidget {
   final String label;
   final TextInputType inputType;
   const DefaultInput(
-      {@required this.controller,
+      { Key key,
+      @required this.controller,
       this.validacion,
       @required this.isContrasena,
       this.label,
-      this.inputType});
+      this.inputType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

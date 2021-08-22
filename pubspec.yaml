@@ -44,8 +44,11 @@ dev_dependencies:
   auto_route_generator: ^1.0.2
 
   build_runner:
+  flutter_driver:
+    sdk: flutter
   flutter_test:
     sdk: flutter
+  test:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
