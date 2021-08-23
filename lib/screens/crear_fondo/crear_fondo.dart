@@ -17,7 +17,7 @@ class CreacionFondo extends StatefulWidget {
 }
 
 class _CreacionFondoState extends State<CreacionFondo> {
-  final formFondo = FondoForm();
+  FondoForm formFondo;
   List<DropdownMenuItem> fondosList;
   List<DropdownMenuItem> metas;
   List<DropdownMenuItem> cuentas;
@@ -25,6 +25,7 @@ class _CreacionFondoState extends State<CreacionFondo> {
   bool _loading = true;
   @override
   void initState() {
+    formFondo = FondoForm(tipoFondo: widget.tipo);
     iniciar();
     // TODO: implement initState
     super.initState();

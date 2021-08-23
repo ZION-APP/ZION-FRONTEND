@@ -45,6 +45,7 @@ const apiKeyToken =
 
 const fondos = {
   "alpha": {
+    "id": 2,
     "titulo": "Alpha",
     "imagen": "assets/img/alpha.png",
     "banner": "assets/img/inversion_alpha_banner.PNG",
@@ -77,6 +78,7 @@ const fondos = {
     ]
   },
   "omega": {
+    "id": 1,
     "titulo": "Omega",
     "imagen": "assets/img/omega.png",
     "banner": "assets/img/inversion_omega_banner.PNG",

@@ -7,6 +7,7 @@ import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/routes/router.gr.dart';
 
 class FondoForm {
+  String tipoFondo;
   final form = FormGroup({
     'fund_id': FormControl<int>(
       validators: [Validators.required],
@@ -26,22 +27,26 @@ class FondoForm {
         FormControl<double>(validators: [Validators.required], value: 0),
     'target_date': FormControl<String>(validators: [Validators.required]),
   });
-
+  FondoForm({this.tipoFondo});
   Future<List<DropdownMenuItem>> getTipoFondos(BuildContext context) async {
-    final List<DropdownMenuItem> fondos = [];
+    final List<DropdownMenuItem> fondo = [];
     try {
       final response = await dioClient.get("$kapiUrl/funds/catalogue");
 
       for (final item in response.data) {
-        fondos.add(DropdownMenuItem(
-          value: item["value"] as int,
+        final id = item["value"] as int;
+        fondo.add(DropdownMenuItem(
+          value: id,
           child: Text(item["label"] as String),
         ));
+        if (id == fondos[tipoFondo]["id"]) {
+          form.control("fund_id").value = id;
+        }
       }
     } catch (e) {
       showError("Error al obtener fondos", context);
     }
-    return fondos;
+    return fondo;
   }
 
   Future<List<DropdownMenuItem>> getMetas(BuildContext context) async {

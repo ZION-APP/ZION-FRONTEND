@@ -30,7 +30,7 @@ class _ReglamentoState extends State<Reglamento> {
           backgroundColor: kPrimaryColor,
         ),
         body: SfPdfViewer.network(
-            'https://www.consejodiscapacidades.gob.ec/wp-content/uploads/downloads/2015/04/reglamento-LOTAIP.pdf',
-            enableDoubleTapZooming: false));
+          'https://www.consejodiscapacidades.gob.ec/wp-content/uploads/downloads/2015/04/reglamento-LOTAIP.pdf',
+        ));
   }
 }

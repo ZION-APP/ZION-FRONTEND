@@ -119,16 +119,17 @@ class _FormularioState extends State<Formulario> {
                 ),
               ),
             ),
-          TextButton(
-            onPressed: onStepCancel,
-            style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(kDisableColor)),
-            child: const Text(
-              'REGRESAR',
-              style: TextStyle(color: kPrimaryLightColor),
+          if (_currentStep != 0)
+            TextButton(
+              onPressed: onStepCancel,
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(kDisableColor)),
+              child: const Text(
+                'REGRESAR',
+                style: TextStyle(color: kPrimaryLightColor),
+              ),
             ),
-          ),
         ],
       ),
     );
