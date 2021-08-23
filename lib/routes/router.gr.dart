@@ -4,6 +4,8 @@
 // AutoRouteGenerator
 // **************************************************************************
 
+// ignore_for_file: prefer_final_locals, prefer_const_constructors
+
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i21;
 

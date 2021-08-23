@@ -6,4 +6,3 @@ linter:
 
 analizer:
   exclude:
-    - lib/routes/router.gr.dart

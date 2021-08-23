@@ -45,7 +45,8 @@ class _FotoSectionState extends State<FotoSection> {
           SizedBox(
             width: double.infinity,
             child: Text(
-              "${widget.usuario["firstname"]}  ${widget.usuario["lastname"]}"  ?? "Sin nombre"  ,
+              "${widget.usuario["firstname"] ?? ""}  ${widget.usuario["lastname"] ?? ""}" ??
+                  "Sin nombre",
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: getProportionateScreenHeight(20),
