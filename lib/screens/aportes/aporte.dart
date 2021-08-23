@@ -19,7 +19,8 @@ class _AporteState extends State<Aporte> {
 
   Future<void> _obtenerUsuario() async {
     try {
-      final Response response = await dioClient.get('$kapiUrl/goals/me');
+      final Response response =
+          await dioClient.get('$kapiUrl/investment_funds/me');
       setState(() {
         aportes = response.data;
         loading = false;
