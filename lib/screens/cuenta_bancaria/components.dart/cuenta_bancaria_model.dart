@@ -18,10 +18,10 @@ class BankAccount{
 
   void setTypes(int financialEntityId, int bankAccountTypeId){
     switch (financialEntityId) {
-      case 1:
+      case 3:
         bankType = 'Banco del Pacífico';
         break;
-      case 3:
+      case 2:
         bankType = 'Banco de Guayaquil';
         break;
       case 5:
@@ -46,9 +46,9 @@ class BankAccount{
     // ignore: unnecessary_this
     switch (this.bankType) {
       case 'Banco del Pacífico':
-        return 1;
-      case 'Banco de Guayaquil':
         return 3;
+      case 'Banco de Guayaquil':
+        return 2;
       case 'Produbanco':
         return 5;
       default:
