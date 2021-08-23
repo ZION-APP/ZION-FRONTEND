@@ -5,19 +5,17 @@ void main() {
   FlutterDriver driver;
 
   group('Acceptance Test', () {
-
     //login
     final loginNameBox = find.byValueKey('loginUserName');
     final loginPassBox = find.byValueKey('loginPass');
     final loginButton = find.byValueKey('loginButton');
 
-
     setUpAll(() async {
-        driver = await FlutterDriver.connect();
+      driver = await FlutterDriver.connect();
     });
 
     tearDownAll(() async {
-      if(driver != null){
+      if (driver != null) {
         driver.close();
       }
     });

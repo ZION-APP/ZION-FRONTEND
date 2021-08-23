@@ -23,8 +23,7 @@ class _NotificacionesState extends State<Notificaciones> {
         notificaciones = response.data;
         loading = false;
       });
-    } on DioError catch (e) {
-      print(e);
+    } on DioError catch (_) {
       showError("Error del servidor", context);
     }
   }

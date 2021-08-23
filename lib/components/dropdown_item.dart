@@ -1,3 +1,5 @@
+// ignore_for_file: no_logic_in_create_state
+
 import 'package:flutter/material.dart';
 
 class ExpandingItems extends StatefulWidget {
@@ -9,8 +11,8 @@ class ExpandingItems extends StatefulWidget {
     this.contenido,
   });
 
-  _ExpandingItemsState createState() =>
-      _ExpandingItemsState(this.titulo, this.contenido);
+  @override
+  _ExpandingItemsState createState() => _ExpandingItemsState(titulo, contenido);
 }
 
 class _ExpandingItemsState extends State<ExpandingItems> {

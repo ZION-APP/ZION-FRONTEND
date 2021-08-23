@@ -23,17 +23,13 @@ class GoalBox extends StatefulWidget {
 }
 
 class _GoalBoxState extends State<GoalBox> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
           decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(color: Colors.grey[300])
-            )
-          ),
+              border: Border(bottom: BorderSide(color: Colors.grey[300]))),
           child: SizedBox(
             width: getProportionateScreenWidth(280),
             child: Column(
@@ -82,21 +78,20 @@ class _GoalBoxState extends State<GoalBox> {
             SizedBox(width: getProportionateScreenWidth(20)),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: getProportionateScreenHeight(25)),
-                  const FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      'Recaudado',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                        fontSize: 19,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: getProportionateScreenHeight(25)),
+                    const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        'Recaudado',
+                        style: TextStyle(
+                          color: kSecondaryColor,
+                          fontSize: 19,
+                        ),
                       ),
                     ),
-                  ),
-                ]
-              ),
+                  ]),
             ),
             SizedBox(width: getProportionateScreenWidth(10)),
             Expanded(
@@ -105,7 +100,7 @@ class _GoalBoxState extends State<GoalBox> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: getProportionateScreenHeight(25)),
-                    FittedBox(
+                  FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
                       '${widget.montoActual} de ${widget.metaTotal}',
@@ -130,15 +125,16 @@ class _GoalBoxState extends State<GoalBox> {
               width: getProportionateScreenWidth(150),
               child: CustomPaint(
                 foregroundPainter: GoalProgressPainter(
-                  total: widget.metaTotal,
-                  actual: widget.montoActual
-                ),
+                    total: widget.metaTotal, actual: widget.montoActual),
               ),
             ),
             SizedBox(width: getProportionateScreenWidth(50)),
             Text(
               // ignore: prefer_interpolation_to_compose_strings
-              ((widget.montoActual/widget.metaTotal)*100).toInt().toString() + '%',
+              ((widget.montoActual / widget.metaTotal) * 100)
+                      .toInt()
+                      .toString() +
+                  '%',
               style: const TextStyle(
                 color: kSecondaryColor,
                 fontSize: 19,
@@ -147,10 +143,13 @@ class _GoalBoxState extends State<GoalBox> {
           ],
         ),
         Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: getProportionateScreenHeight(30)),
+          padding:
+              EdgeInsets.symmetric(vertical: getProportionateScreenHeight(30)),
           child: DefaultButton(
-            func: () => {AutoRouter.of(context).push(GoalSimulationRoute(goalId: widget.idMeta))},
+            func: () => {
+              AutoRouter.of(context)
+                  .push(GoalSimulationRoute(goalId: widget.idMeta))
+            },
             label: "Más Información",
             colorFondo: kPrimaryColor,
             colorTexto: kSecondaryColor,
@@ -161,35 +160,26 @@ class _GoalBoxState extends State<GoalBox> {
   }
 }
 
-class GoalProgressPainter extends CustomPainter{
+class GoalProgressPainter extends CustomPainter {
   int total;
   int actual;
 
-  GoalProgressPainter(
-    {
-      this.total,
-      this.actual
-    }
-  );
+  GoalProgressPainter({this.total, this.actual});
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()..strokeWidth=3..strokeCap=StrokeCap.round;
+    final Paint paint = Paint()
+      ..strokeWidth = 3
+      ..strokeCap = StrokeCap.round;
     paint.color = Colors.blueGrey;
 
-    canvas.drawLine(
-      Offset(size.width * (1/total), size.height * 1/2),
-      Offset(size.width * (actual/total), size.height * 1/2),
-      paint
-    );
+    canvas.drawLine(Offset(size.width * (1 / total), size.height * 1 / 2),
+        Offset(size.width * (actual / total), size.height * 1 / 2), paint);
 
     paint.color = Colors.grey[300];
 
-    canvas.drawLine(
-      Offset(size.width * (actual/total), size.height * 1/2),
-      Offset(size.width , size.height * 1/2),
-      paint
-    );
+    canvas.drawLine(Offset(size.width * (actual / total), size.height * 1 / 2),
+        Offset(size.width, size.height * 1 / 2), paint);
   }
 
   @override

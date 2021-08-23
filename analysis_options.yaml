@@ -3,6 +3,7 @@ include: package:lint/analysis_options.yaml
 linter:
   rules:
     directives_ordering: false
+    require_trailing_commas: false
 
 analizer:
   exclude:

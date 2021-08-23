@@ -25,8 +25,7 @@ class _AporteState extends State<Aporte> {
         aportes = response.data;
         loading = false;
       });
-    } on DioError catch (e) {
-      print(e);
+    } on DioError catch (_) {
       showError("Error del servidor", context);
     }
   }

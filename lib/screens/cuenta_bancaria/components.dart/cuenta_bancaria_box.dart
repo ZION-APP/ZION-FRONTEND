@@ -8,8 +8,8 @@ class BankAccountBox extends StatefulWidget {
   String bankType;
   String accountType;
 
-  BankAccountBox({
-      @required this.numberAccount,
+  BankAccountBox(
+      {@required this.numberAccount,
       @required this.bankType,
       @required this.accountType});
 
@@ -18,17 +18,13 @@ class BankAccountBox extends StatefulWidget {
 }
 
 class _BankAccountBoxState extends State<BankAccountBox> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
           decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(color: Colors.grey[300])
-            )
-          ),
+              border: Border(bottom: BorderSide(color: Colors.grey[300]))),
           child: SizedBox(
             width: getProportionateScreenWidth(280),
             child: Column(
@@ -55,7 +51,10 @@ class _BankAccountBoxState extends State<BankAccountBox> {
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
-                          widget.numberAccount.substring(0,3) + '*'*(widget.numberAccount.length - 4) + widget.numberAccount.substring(widget.numberAccount.length - 1),
+                          widget.numberAccount.substring(0, 3) +
+                              '*' * (widget.numberAccount.length - 4) +
+                              widget.numberAccount
+                                  .substring(widget.numberAccount.length - 1),
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 25,
@@ -77,21 +76,20 @@ class _BankAccountBoxState extends State<BankAccountBox> {
             SizedBox(width: getProportionateScreenWidth(20)),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: getProportionateScreenHeight(25)),
-                  const FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      'Tipo de banco',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                        fontSize: 19,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: getProportionateScreenHeight(25)),
+                    const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        'Tipo de banco',
+                        style: TextStyle(
+                          color: kSecondaryColor,
+                          fontSize: 19,
+                        ),
                       ),
                     ),
-                  ),
-                ]
-              ),
+                  ]),
             ),
             SizedBox(width: getProportionateScreenWidth(10)),
             Expanded(
@@ -100,7 +98,7 @@ class _BankAccountBoxState extends State<BankAccountBox> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: getProportionateScreenHeight(25)),
-                    FittedBox(
+                  FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
                       widget.bankType,
@@ -123,21 +121,20 @@ class _BankAccountBoxState extends State<BankAccountBox> {
             SizedBox(width: getProportionateScreenWidth(20)),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: getProportionateScreenHeight(25)),
-                  const FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      'Tipo de cuenta',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                        fontSize: 19,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: getProportionateScreenHeight(25)),
+                    const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        'Tipo de cuenta',
+                        style: TextStyle(
+                          color: kSecondaryColor,
+                          fontSize: 19,
+                        ),
                       ),
                     ),
-                  ),
-                ]
-              ),
+                  ]),
             ),
             SizedBox(width: getProportionateScreenWidth(10)),
             Expanded(
@@ -146,7 +143,7 @@ class _BankAccountBoxState extends State<BankAccountBox> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: getProportionateScreenHeight(25)),
-                    FittedBox(
+                  FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
                       widget.accountType,

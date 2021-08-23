@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:zionapp/screens/register/register.dart';
 
 void main() {
-
   testWidgets('TestNombreUsuario1', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
@@ -11,12 +10,15 @@ void main() {
       ),
     );
     final nametbox = find.widgetWithText(TextFormField, 'Nombre de usuario');
-    await tester.enterText(nametbox, 'MyUserNameThatExcedsTheLimitsdasdadasdwasdwasdaw');
+    await tester.enterText(
+        nametbox, 'MyUserNameThatExcedsTheLimitsdasdadasdwasdwasdaw');
     await tester.pump();
     //testFunctionality
-    expect(find.text('MyUserNameThatExcedsTheLimitsdasdadasdwasdwasdaw'), findsOneWidget);
+    expect(find.text('MyUserNameThatExcedsTheLimitsdasdadasdwasdwasdaw'),
+        findsOneWidget);
     //test
-    expect(find.text('Por favor ingrese un nombre de usuario válido'), findsOneWidget);
+    expect(find.text('Por favor ingrese un nombre de usuario válido'),
+        findsOneWidget);
   });
 
   testWidgets('TestNombreUsuario2', (WidgetTester tester) async {
@@ -31,7 +33,8 @@ void main() {
     //testFunctionality
     expect(find.text('xd'), findsOneWidget);
     //test
-    expect(find.text('Por favor ingrese un nombre de usuario válido'), findsOneWidget);
+    expect(find.text('Por favor ingrese un nombre de usuario válido'),
+        findsOneWidget);
   });
 
   testWidgets('TestNombreUsuario3', (WidgetTester tester) async {
@@ -46,7 +49,8 @@ void main() {
     //testFunctionality
     expect(find.text('MyUserName'), findsOneWidget);
     //test
-    expect(find.text('Por favor ingrese un nombre de usuario válido'), findsNothing);
+    expect(find.text('Por favor ingrese un nombre de usuario válido'),
+        findsNothing);
   });
 
   testWidgets('TestCedulaRuc1', (WidgetTester tester) async {
@@ -230,7 +234,8 @@ void main() {
     //testFunctionality
     expect(find.text('asd'), findsOneWidget);
     //test
-    expect(find.text('La contraseña debe tener mínimo 8 caracteres'), findsOneWidget);
+    expect(find.text('La contraseña debe tener mínimo 8 caracteres'),
+        findsOneWidget);
   });
 
   testWidgets('TestContrasena2', (WidgetTester tester) async {
@@ -245,7 +250,8 @@ void main() {
     //testFunctionality
     expect(find.text('asdeurien'), findsOneWidget);
     //test
-    expect(find.text('La contraseña debe incluir por lo menos 1 Mayúscula'), findsOneWidget);
+    expect(find.text('La contraseña debe incluir por lo menos 1 Mayúscula'),
+        findsOneWidget);
   });
 
   testWidgets('TestContrasena3', (WidgetTester tester) async {
@@ -260,7 +266,8 @@ void main() {
     //testFunctionality
     expect(find.text('asdeurienD'), findsOneWidget);
     //test
-    expect(find.text('La contraseña debe incluir por lo menos 1 número'), findsOneWidget);
+    expect(find.text('La contraseña debe incluir por lo menos 1 número'),
+        findsOneWidget);
   });
 
   testWidgets('TestContrasena4', (WidgetTester tester) async {
@@ -275,7 +282,8 @@ void main() {
     //testFunctionality
     expect(find.text('asdeurienD3'), findsOneWidget);
     //test
-    expect(find.text('La contraseña debe incluir por lo menos 1 número'), findsNothing);
+    expect(find.text('La contraseña debe incluir por lo menos 1 número'),
+        findsNothing);
   });
 
   testWidgets('TestConfirmarContrasena1', (WidgetTester tester) async {
@@ -285,7 +293,8 @@ void main() {
       ),
     );
     final nametbox = find.widgetWithText(TextFormField, 'Contraseña');
-    final nametbox2 = find.widgetWithText(TextFormField, 'Confirmar contraseña');
+    final nametbox2 =
+        find.widgetWithText(TextFormField, 'Confirmar contraseña');
     await tester.enterText(nametbox, 'asdeurienD3');
     await tester.pump();
     await tester.enterText(nametbox2, 'asdeurienD');
@@ -303,7 +312,8 @@ void main() {
       ),
     );
     final nametbox = find.widgetWithText(TextFormField, 'Contraseña');
-    final nametbox2 = find.widgetWithText(TextFormField, 'Confirmar contraseña');
+    final nametbox2 =
+        find.widgetWithText(TextFormField, 'Confirmar contraseña');
     await tester.enterText(nametbox, 'asdeurienD3');
     await tester.pump();
     await tester.enterText(nametbox2, 'asdeurienD3');

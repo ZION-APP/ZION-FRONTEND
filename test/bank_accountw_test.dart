@@ -3,18 +3,24 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:zionapp/screens/cuenta_bancaria/cuenta_bancaria.dart';
 
 void main() {
-
   testWidgets('TestNombreTitular1', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
-    final nametbox = find.widgetWithText(TextFormField, 'Nombre completo del titular');
-    await tester.enterText(nametbox, 'MyUserNameThatExcedsTheLimitsdasdadasdwasdwasdawasdawdasdwdadwdasdwdasdw');
+    final nametbox =
+        find.widgetWithText(TextFormField, 'Nombre completo del titular');
+    await tester.enterText(nametbox,
+        'MyUserNameThatExcedsTheLimitsdasdadasdwasdwasdawasdawdasdwdadwdasdwdasdw');
     await tester.pump();
     //testFunctionality
-    expect(find.text('MyUserNameThatExcedsTheLimitsdasdadasdwasdwasdawasdawdasdwdadwdasdwdasdw'), findsOneWidget);
+    expect(
+        find.text(
+            'MyUserNameThatExcedsTheLimitsdasdadasdwasdwasdawasdawdasdwdadwdasdwdasdw'),
+        findsOneWidget);
     //test
     expect(find.text('Por favor ingrese un nombre válido'), findsOneWidget);
   });
@@ -22,10 +28,13 @@ void main() {
   testWidgets('TestNombreTitular2', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
-    final nametbox = find.widgetWithText(TextFormField, 'Nombre completo del titular');
+    final nametbox =
+        find.widgetWithText(TextFormField, 'Nombre completo del titular');
     await tester.enterText(nametbox, 'xd');
     await tester.pump();
     //testFunctionality
@@ -37,10 +46,13 @@ void main() {
   testWidgets('TestNombreUsuario3', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
-    final nametbox = find.widgetWithText(TextFormField, 'Nombre completo del titular');
+    final nametbox =
+        find.widgetWithText(TextFormField, 'Nombre completo del titular');
     await tester.enterText(nametbox, 'Mi Nombre Completo');
     await tester.pump();
     //testFunctionality
@@ -52,7 +64,9 @@ void main() {
   testWidgets('TestCedulaRuc1', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.widgetWithText(TextFormField, 'Número de cédula/RUC');
@@ -67,7 +81,9 @@ void main() {
   testWidgets('TestCedulaRuc2', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.widgetWithText(TextFormField, 'Número de cédula/RUC');
@@ -82,7 +98,9 @@ void main() {
   testWidgets('TestCedulaRuc3', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.widgetWithText(TextFormField, 'Número de cédula/RUC');
@@ -97,7 +115,9 @@ void main() {
   testWidgets('TestCedulaRuc4', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.widgetWithText(TextFormField, 'Número de cédula/RUC');
@@ -112,7 +132,9 @@ void main() {
   testWidgets('TestCedulaRuc5', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.widgetWithText(TextFormField, 'Número de cédula/RUC');
@@ -127,7 +149,9 @@ void main() {
   testWidgets('TestCedulaRuc6', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.widgetWithText(TextFormField, 'Número de cédula/RUC');
@@ -142,7 +166,9 @@ void main() {
   testWidgets('TestTipoBanco1', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoBanco'));
@@ -159,7 +185,9 @@ void main() {
   testWidgets('TestTipoBanco2', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoBanco'));
@@ -176,7 +204,9 @@ void main() {
   testWidgets('TestTipoBanco3', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoBanco'));
@@ -193,7 +223,9 @@ void main() {
   testWidgets('TestNumCuenta1', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoBanco'));
@@ -215,7 +247,9 @@ void main() {
   testWidgets('TestNumCuenta2', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoBanco'));
@@ -237,7 +271,9 @@ void main() {
   testWidgets('TestNumCuenta3', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoBanco'));
@@ -259,7 +295,9 @@ void main() {
   testWidgets('TestNumCuenta4', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoBanco'));
@@ -281,7 +319,9 @@ void main() {
   testWidgets('TestNumCuenta5', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoBanco'));
@@ -303,7 +343,9 @@ void main() {
   testWidgets('TestNumCuenta6', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoBanco'));
@@ -325,7 +367,9 @@ void main() {
   testWidgets('TestTipoCuenta1', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoCuenta'));
@@ -342,7 +386,9 @@ void main() {
   testWidgets('TestTipoCuenta2', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     final nametbox = find.byKey(const Key('TipoCuenta'));
@@ -359,7 +405,9 @@ void main() {
   testWidgets('TestButton', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: CuentaBancaria(isUpdateForm: false,),
+        home: CuentaBancaria(
+          isUpdateForm: false,
+        ),
       ),
     );
     expect(find.text('Registrar Cuenta'), findsOneWidget);

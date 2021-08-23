@@ -34,13 +34,14 @@ class _FormularioGoalUpdateState extends State<FormularioGoalUpdate> {
       final int currentAmount = int.parse(widget.currentAmountController.text);
       debugPrint(currentAmount.toString());
       // ignore: unused_local_variable
-      final Response response = await dioClient.put('$kapiUrl/goals/me/${widget.goalId}', 
-                                      options: Options(headers: {'Authorization': token}),
-                                      data: {
-                                        'name':widget.nombreController.text,
-                                        'current_amount':widget.currentAmountController.text,
-                                        'status':'active'
-                                      });
+      final Response response = await dioClient.put(
+          '$kapiUrl/goals/me/${widget.goalId}',
+          options: Options(headers: {'Authorization': token}),
+          data: {
+            'name': widget.nombreController.text,
+            'current_amount': widget.currentAmountController.text,
+            'status': 'active'
+          });
       widget.nombreController.clear();
       widget.currentAmountController.clear();
       setState(() {
@@ -102,17 +103,27 @@ class _FormularioGoalUpdateState extends State<FormularioGoalUpdate> {
                   vertical: getProportionateScreenHeight(30)),
               child: DefaultButton(
                 func: () async => {
-                  if (Validadores.validarNombreLargo(widget.nombreController.text) == null &&
-                      Validadores.validarValorMonetario(widget.currentAmountController.text) == null){
-                    debugPrint('${widget.nombreController.text} ${widget.currentAmountController.text}'),
-                    await updateGoal(),
-                    debugPrint(isSuccessful.toString()),
-                    if (isSuccessful){
-                      Navigator.pop(context, widget.goalId),
-                    }else{
-                      showErrorSnack(context, 'Los datos ingresados no son válidos')
+                  if (Validadores.validarNombreLargo(
+                              widget.nombreController.text) ==
+                          null &&
+                      Validadores.validarValorMonetario(
+                              widget.currentAmountController.text) ==
+                          null)
+                    {
+                      debugPrint(
+                          '${widget.nombreController.text} ${widget.currentAmountController.text}'),
+                      await updateGoal(),
+                      debugPrint(isSuccessful.toString()),
+                      if (isSuccessful)
+                        {
+                          Navigator.pop(context, widget.goalId),
+                        }
+                      else
+                        {
+                          showErrorSnack(
+                              context, 'Los datos ingresados no son válidos')
+                        }
                     }
-                  }
                 },
                 label: "Actualizar",
                 colorFondo: kPrimaryColor,
@@ -124,10 +135,10 @@ class _FormularioGoalUpdateState extends State<FormularioGoalUpdate> {
   }
 
   double getProportionateScreenWidth(double input) {
-    return MediaQuery.of(context).size.width * (input/375);
+    return MediaQuery.of(context).size.width * (input / 375);
   }
 
   double getProportionateScreenHeight(double input) {
-    return MediaQuery.of(context).size.height * (input/812);
+    return MediaQuery.of(context).size.height * (input / 812);
   }
 }

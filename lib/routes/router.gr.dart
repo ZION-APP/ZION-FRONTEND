@@ -4,6 +4,8 @@
 // AutoRouteGenerator
 // **************************************************************************
 
+// ignore_for_file: prefer_final_locals, prefer_const_constructors
+
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i23;
 
@@ -228,7 +230,7 @@ class RegisterRoute extends _i1.PageRouteInfo {
 }
 
 class CuentaBancariaRoute extends _i1.PageRouteInfo<CuentaBancariaRouteArgs> {
-  CuentaBancariaRoute({_i21.Key key, bool isUpdateForm, int bankAccountId})
+  CuentaBancariaRoute({_i23.Key key, bool isUpdateForm, int bankAccountId})
       : super(name,
             path: '/cuenta_bancaria',
             args: CuentaBancariaRouteArgs(
@@ -243,7 +245,7 @@ class CuentaBancariaRouteArgs {
   const CuentaBancariaRouteArgs(
       {this.key, this.isUpdateForm, this.bankAccountId});
 
-  final _i21.Key key;
+  final _i23.Key key;
 
   final bool isUpdateForm;
 
@@ -251,7 +253,7 @@ class CuentaBancariaRouteArgs {
 }
 
 class GoalCreationRoute extends _i1.PageRouteInfo<GoalCreationRouteArgs> {
-  GoalCreationRoute({_i21.Key key, bool isUpdateForm, int goalId})
+  GoalCreationRoute({_i23.Key key, bool isUpdateForm, int goalId})
       : super(name,
             path: '/goalcreation',
             args: GoalCreationRouteArgs(
@@ -263,7 +265,7 @@ class GoalCreationRoute extends _i1.PageRouteInfo<GoalCreationRouteArgs> {
 class GoalCreationRouteArgs {
   const GoalCreationRouteArgs({this.key, this.isUpdateForm, this.goalId});
 
-  final _i21.Key key;
+  final _i23.Key key;
 
   final bool isUpdateForm;
 
@@ -335,7 +337,7 @@ class CreacionFondoRouteArgs {
 }
 
 class FormularioRoute extends _i1.PageRouteInfo<FormularioRouteArgs> {
-  FormularioRoute({String tipoFondo, int tipoPersona, _i21.Key key})
+  FormularioRoute({String tipoFondo, int tipoPersona, _i23.Key key})
       : super(name,
             path: '/formulario',
             args: FormularioRouteArgs(
@@ -351,7 +353,7 @@ class FormularioRouteArgs {
 
   final int tipoPersona;
 
-  final _i21.Key key;
+  final _i23.Key key;
 }
 
 class BankAccountListRoute extends _i1.PageRouteInfo {

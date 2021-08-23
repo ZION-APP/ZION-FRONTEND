@@ -1,5 +1,4 @@
-
-class BankAccount{
+class BankAccount {
   int id;
   String ownerName;
   String identityNumber;
@@ -8,15 +7,14 @@ class BankAccount{
   String bankType;
   String accountType;
 
-  BankAccount({
-    this.id,
-    this.ownerName,
-    this.identityNumber,
-    this.numberAccount,
-    this.status
-  });
+  BankAccount(
+      {this.id,
+      this.ownerName,
+      this.identityNumber,
+      this.numberAccount,
+      this.status});
 
-  void setTypes(int financialEntityId, int bankAccountTypeId){
+  void setTypes(int financialEntityId, int bankAccountTypeId) {
     switch (financialEntityId) {
       case 1:
         bankType = 'Banco del Pacífico';
@@ -69,7 +67,7 @@ class BankAccount{
   }
 
   @override
-  String toString(){
+  String toString() {
     return "id = $id, name = $ownerName, Id number = $identityNumber, Account number = $numberAccount, Status = $status, Bank Type = $bankType, Account Type = $accountType";
   }
 }
