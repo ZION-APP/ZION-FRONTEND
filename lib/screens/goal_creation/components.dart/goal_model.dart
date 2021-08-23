@@ -1,10 +1,10 @@
 class Goal {
   int id;
   String name;
-  int initAmount;
-  int targetAmount;
-  double monthlyAmount;
-  int currentAmount;
+  num initAmount;
+  num targetAmount;
+  num monthlyAmount;
+  num currentAmount;
   String targetDate;
   String status;
   String tipoFondo;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';
+import 'package:zionapp/size_config.dart';
 
 class DefaultButton extends StatelessWidget {
   final Function func;
@@ -14,28 +15,31 @@ class DefaultButton extends StatelessWidget {
       this.func,
       this.colorFondo = kSecondaryColor,
       this.colorTexto = kPrimaryLightColor,
-      this.tamanoTexto}) : super(key: key);
+      this.tamanoTexto})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      MediaQuery.of(context).size.height * (8 / 812))),
-            ),
-            backgroundColor: MaterialStateProperty.all<Color>(colorFondo),
-            minimumSize: MaterialStateProperty.all<Size>(Size(
-                MediaQuery.of(context).size.height * (250 / 812),
-                MediaQuery.of(context).size.height * (50 / 812)))),
-        onPressed: func as void Function(),
-        child: Text(
-          label,
-          style: TextStyle(
-              color: colorTexto,
-              fontSize: tamanoTexto ??
-                  MediaQuery.of(context).size.height * (20 / 812)),
-        ));
+    return Padding(
+      padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(14)),
+      child: TextButton(
+          style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                        MediaQuery.of(context).size.height * (8 / 812))),
+              ),
+              backgroundColor: MaterialStateProperty.all<Color>(colorFondo),
+              minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity,
+                  MediaQuery.of(context).size.height * (50 / 812)))),
+          onPressed: func as void Function(),
+          child: Text(
+            label,
+            style: TextStyle(
+                color: colorTexto,
+                fontSize: tamanoTexto ?? getProportionateScreenHeight(20)),
+          )),
+    );
   }
 }

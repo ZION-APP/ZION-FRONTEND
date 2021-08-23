@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/input_default.dart';
 import 'package:zionapp/size_config.dart';
 
@@ -33,7 +32,7 @@ class _FormularioLoginState extends State<FormularioLogin> {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(50)),
+                    horizontal: getProportionateScreenWidth(14)),
                 child: DefaultInput(
                   key: const ValueKey('loginUserName'),
                   controller: widget.usuarioController,
@@ -44,10 +43,10 @@ class _FormularioLoginState extends State<FormularioLogin> {
               ),
             ],
           ),
-          SizedBox(height: getProportionateScreenHeight(20)),
+          SizedBox(height: getProportionateScreenHeight(30)),
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(50)),
+                horizontal: getProportionateScreenWidth(14)),
             child: DefaultInput(
               key: const ValueKey('loginPass'),
               controller: widget.contrasenaController,
@@ -55,24 +54,8 @@ class _FormularioLoginState extends State<FormularioLogin> {
               label: "Contraseña",
             ),
           ),
-          SizedBox(height: getProportionateScreenHeight(20)),
-          _recuerdame()
         ],
       ),
-    );
-  }
-
-  Widget _recuerdame() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Checkbox(
-          key: const ValueKey('checkbox'),
-            value: widget.recuerdame,
-            activeColor: kPrimaryColor,
-            onChanged: widget.recuerdameCallback as void Function(bool)),
-        const Text("Recuerdame")
-      ],
     );
   }
 }

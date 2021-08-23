@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/bloc/auth/auth_bloc.dart';
@@ -86,18 +87,22 @@ class _LoginState extends State<Login> {
 
   List<Widget> _botones() {
     return [
-      Flexible(
-        flex: 4,
-        child: SizedBox(
-          height: double.infinity,
-          child: Image.asset(
-            "assets/img/zion-logo.png",
-            width: getProportionateScreenWidth(300),
+      SizedBox(
+        height: SizeConfig.screenHeight * 0.3,
+        child: Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(14)),
+          child: SizedBox(
+            height: double.infinity,
+            child: Image.asset(
+              "assets/img/zion-logo.png",
+              width: double.infinity,
+            ),
           ),
         ),
       ),
-      Flexible(
-          flex: 3,
+      SizedBox(
+          height: SizeConfig.screenHeight * 0.18,
           child: FormularioLogin(
             usuarioController: usuarioController,
             contrasenaController: contrasenaController,
@@ -105,8 +110,8 @@ class _LoginState extends State<Login> {
             formKey: _formKey,
             recuerdameCallback: recuerdameCallback,
           )),
-      Flexible(
-        flex: 5,
+      SizedBox(
+        height: SizeConfig.screenHeight * 0.3,
         child: SizedBox(
           height: double.infinity,
           child: Column(
@@ -118,30 +123,16 @@ class _LoginState extends State<Login> {
                       vertical: getProportionateScreenHeight(15)),
                   child: DefaultButton(
                     key: const ValueKey('loginButton'),
-                    func: () => {
-                      logIn(context)
-                    },
-                    label: "Inicia Sesion",
+                    func: () => {logIn(context)},
+                    label: "Iniciar Sesión",
                     colorFondo: loading ? kDisableColor : kPrimaryColor,
                   ),
                 ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: getProportionateScreenHeight(15)),
-                child: DefaultButton(
-                  func: () => {context.router.push(const RegisterRoute())},
-                  label: "Registrate",
-                ),
+              _recuerdame(),
+              const Divider(
+                thickness: 1,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: getProportionateScreenHeight(15)),
-                child: DefaultButton(
-                  func: () =>
-                      {AutoRouter.of(context).push(const InformacionRoute())},
-                  label: "Mas Informacion",
-                ),
-              ),
+              registroLink(),
             ],
           ),
         ),
@@ -154,6 +145,66 @@ class _LoginState extends State<Login> {
       BlocProvider.of<LogInBloc>(context).add(IniciarSesion(
           usuarioController.text, contrasenaController.text, true));
     }
+  }
+
+  Widget _recuerdame() {
+    return Padding(
+      padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenHeight(14)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Checkbox(
+                  key: const ValueKey('checkbox'),
+                  value: recuerdame,
+                  activeColor: kSecondaryColor,
+                  onChanged: recuerdameCallback),
+              const Text("Recuérdame")
+            ],
+          ),
+          informacionLink()
+        ],
+      ),
+    );
+  }
+
+  Widget informacionLink() {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: getProportionateScreenHeight(10)),
+      child: GestureDetector(
+        onTap: () {
+          AutoRouter.of(context).push(const InformacionRoute());
+        },
+        child: const Text(
+          "¿Necesitas más información?",
+          style: TextStyle(color: kSecondaryColor),
+        ),
+      ),
+    );
+  }
+
+  Widget registroLink() {
+    final recognizer = TapGestureRecognizer()
+      ..onTap = () {
+        AutoRouter.of(context).push(const RegisterRoute());
+      };
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: getProportionateScreenHeight(10)),
+      child: RichText(
+          text: TextSpan(children: [
+        const TextSpan(
+            text: "¿No tienes una cuenta?  ",
+            style: TextStyle(color: kSecondaryColor)),
+        TextSpan(
+            text: "Registrate",
+            style: const TextStyle(
+                color: kPrimaryColor, fontWeight: FontWeight.bold),
+            recognizer: recognizer)
+      ])),
+    );
   }
 
   // ignore: avoid_positional_boolean_parameters

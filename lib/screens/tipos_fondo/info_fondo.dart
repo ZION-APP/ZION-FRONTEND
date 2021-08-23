@@ -19,6 +19,7 @@ class InfoFondo extends StatelessWidget {
         appBar: AppBar(
           title: Text(fondos[tipo]["titulo"] as String ?? "No existe fondo"),
           centerTitle: true,
+          backgroundColor: kSecondaryColor,
         ),
         body: Column(children: [
           Expanded(

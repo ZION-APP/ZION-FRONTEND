@@ -53,10 +53,9 @@ class _BankAccountListState extends State<BankAccountList> {
 
   Future<void> getAccountByID(int accountId) async {
     try {
-      final String token = await storage.read(key: 'token');
       final Response res = await dioClient.get(
-          '$kapiUrl/bank_accounts/me/$accountId',
-          options: Options(headers: {'Authorization': token}));
+        '$kapiUrl/bank_accounts/me/$accountId',
+      );
       debugPrint(res.data.toString());
       final BankAccount bankAccount = BankAccount(
         id: res.data['id'] as int,

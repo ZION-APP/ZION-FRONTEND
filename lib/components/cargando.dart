@@ -6,7 +6,7 @@ class Cargando extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: CircularProgressIndicator(
-        backgroundColor: kPrimaryColor,
+        valueColor: AlwaysStoppedAnimation<Color>(kPrimaryColor),
       ),
     );
   }

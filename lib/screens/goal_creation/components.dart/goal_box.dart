@@ -1,22 +1,21 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/constants_config.dart';
-import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/size_config.dart';
 
 // ignore: must_be_immutable
 class GoalBox extends StatefulWidget {
   int idMeta;
   String nombreMeta;
-  int montoActual;
-  int metaTotal;
+  num montoActual;
+  num metaTotal;
+  String tipoFondo;
 
   GoalBox(
       {@required this.idMeta,
       @required this.nombreMeta,
       @required this.montoActual,
-      @required this.metaTotal});
+      @required this.metaTotal,
+      @required this.tipoFondo});
 
   @override
   _GoalBoxState createState() => _GoalBoxState();
@@ -28,134 +27,96 @@ class _GoalBoxState extends State<GoalBox> {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.grey[300]))),
-          child: SizedBox(
-            width: getProportionateScreenWidth(280),
-            child: Column(
-              children: [
-                SizedBox(height: getProportionateScreenHeight(25)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Expanded(
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          'Meta',
-                          style: TextStyle(
-                            color: kSecondaryColor,
-                            fontSize: 25,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          widget.nombreMeta,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 25,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: getProportionateScreenHeight(15))
-              ],
-            ),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(width: getProportionateScreenWidth(20)),
-            Expanded(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: getProportionateScreenHeight(25)),
-                    const FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        'Recaudado',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                          fontSize: 19,
-                        ),
-                      ),
-                    ),
-                  ]),
-            ),
-            SizedBox(width: getProportionateScreenWidth(10)),
-            Expanded(
-              flex: 2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          color: const Color(0xFFF3CF7A),
+          child: Column(
+            children: [
+              SizedBox(height: getProportionateScreenHeight(25)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(height: getProportionateScreenHeight(25)),
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      '${widget.montoActual} de ${widget.metaTotal}',
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 19,
-                      ),
+                  Text(
+                    widget.nombreMeta,
+                    style: const TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: 25,
                     ),
-                  )
+                    textAlign: TextAlign.center,
+                  ),
                 ],
               ),
-            ),
-            SizedBox(width: getProportionateScreenWidth(20)),
-          ],
+              SizedBox(height: getProportionateScreenHeight(15))
+            ],
+          ),
         ),
+        entryCard(
+            "Recaudado:", '\$${widget.montoActual} de \$${widget.metaTotal}'),
+        entryCard("Tipo de fondo:", widget.tipoFondo),
         SizedBox(height: getProportionateScreenHeight(30)),
-        Row(
-          children: [
-            SizedBox(width: getProportionateScreenWidth(50)),
-            SizedBox(
-              height: getProportionateScreenHeight(40),
-              width: getProportionateScreenWidth(150),
-              child: CustomPaint(
-                foregroundPainter: GoalProgressPainter(
-                    total: widget.metaTotal, actual: widget.montoActual),
-              ),
-            ),
-            SizedBox(width: getProportionateScreenWidth(50)),
-            Text(
-              // ignore: prefer_interpolation_to_compose_strings
-              ((widget.montoActual / widget.metaTotal) * 100)
-                      .toInt()
-                      .toString() +
-                  '%',
-              style: const TextStyle(
-                color: kSecondaryColor,
-                fontSize: 19,
-              ),
-            ),
-          ],
-        ),
         Padding(
           padding:
-              EdgeInsets.symmetric(vertical: getProportionateScreenHeight(30)),
-          child: DefaultButton(
-            func: () => {
-              AutoRouter.of(context)
-                  .push(GoalSimulationRoute(goalId: widget.idMeta))
-            },
-            label: "Más Información",
-            colorFondo: kPrimaryColor,
-            colorTexto: kSecondaryColor,
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                // ignore: prefer_interpolation_to_compose_strings
+                ((widget.montoActual / widget.metaTotal) * 100)
+                        .toInt()
+                        .toString() +
+                    '%',
+                style: const TextStyle(
+                  color: kSecondaryColor,
+                  fontSize: 19,
+                ),
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(40),
+                width: getProportionateScreenWidth(250),
+                child: CustomPaint(
+                  foregroundPainter: GoalProgressPainter(
+                      total: widget.metaTotal.toInt(),
+                      actual: widget.montoActual.toInt()),
+                ),
+              ),
+            ],
           ),
         ),
       ],
+    );
+  }
+
+  Padding entryCard(String titulo, String descripcion) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          vertical: getProportionateScreenHeight(10),
+          horizontal: getProportionateScreenWidth(20)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            titulo,
+            style: const TextStyle(
+              color: kSecondaryColor,
+              fontSize: 19,
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  descripcion,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 19,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zionapp/components/show_error.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/cargando.dart';
+import 'package:zionapp/size_config.dart';
 
 class Aporte extends StatefulWidget {
   const Aporte({Key key}) : super(key: key);
@@ -39,65 +40,69 @@ class _AporteState extends State<Aporte> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          margin: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-          child: ListView(
-            children: [
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: kDisableColor),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Column(
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      const Text(
-                        "Abre un nuevo fondo",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      // ignore: prefer_const_constructors
-                      SizedBox(
-                        height: 10,
-                      ),
-                      const Text(
-                          "Elige el fondo que mejor se adapte a tus necesidades ")
-                    ],
-                  ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(14),
+                vertical: getProportionateScreenHeight(14)),
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: kDisableColor),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    const Text(
+                      "Abre un nuevo fondo",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    // ignore: prefer_const_constructors
+                    SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                        "Elige el fondo que mejor se adapte a tus necesidades ")
+                  ],
                 ),
               ),
-              const SizedBox(height: 20),
-              const Text(
-                "Fondos Activos",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    color: kPrimaryColor),
-                textAlign: TextAlign.center,
-              ),
-              // ignore: avoid_unnecessary_containers
-              Container(
-                  child: !loading
-                      ? Column(
-                          children: [
-                            for (var item in aportes)
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Fondo(
-                                    titulo: item["name"] as String,
-                                    montoInicial: item["init_amount"] as num,
-                                    montoObjetivo: item["target_amount"] as num,
-                                    montoMensual: item["montly_amount"] as num,
-                                    montoActual: item["current_amount"] as num),
-                              ),
-                          ],
-                        )
-                      : Cargando())
-            ],
-          )),
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            "Fondos Activos",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: kPrimaryColor),
+            textAlign: TextAlign.center,
+          ),
+          // ignore: avoid_unnecessary_containers
+          Container(
+              child: !loading
+                  ? Column(
+                      children: [
+                        for (var item in aportes)
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: getProportionateScreenWidth(14)),
+                            child: Fondo(
+                                titulo: item["name"] as String,
+                                montoInicial: item["init_amount"] as num,
+                                montoObjetivo: item["target_amount"] as num,
+                                montoMensual: item["montly_amount"] as num,
+                                montoActual: item["current_amount"] as num),
+                          ),
+                      ],
+                    )
+                  : Cargando())
+        ],
+      ),
     );
   }
 }

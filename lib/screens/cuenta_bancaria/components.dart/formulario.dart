@@ -19,7 +19,7 @@ class FormularioCuentaBancaria extends StatefulWidget {
   GlobalKey<FormState> formKey;
 
   FormularioCuentaBancaria(
-      { this.bankAccountId,
+      {this.bankAccountId,
       @required this.isUpdateForm,
       @required this.titularController,
       @required this.cedulaController,
@@ -67,34 +67,29 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
       default:
     }
     try {
-      final String token = await storage.read(key: 'token');
       String url;
       Response response;
-      if(widget.isUpdateForm){
+      if (widget.isUpdateForm) {
         url = '$kapiUrl/bank_accounts/me/${widget.bankAccountId}';
-        response = await dioClient.put(url, 
-                                      options: Options(headers: {'Authorization': token}),
-                                      data: {
-                                        'owner_name':widget.titularController.text,
-                                        'identity_number':widget.cedulaController.text,
-                                        'number_account':widget.numeroCuentaController.text,
-                                        'financial_entity_id':bankNumber,
-                                        'bank_account_type_id':accTypeNumber
-                                      });
+        response = await dioClient.put(url, data: {
+          'owner_name': widget.titularController.text,
+          'identity_number': widget.cedulaController.text,
+          'number_account': widget.numeroCuentaController.text,
+          'financial_entity_id': bankNumber,
+          'bank_account_type_id': accTypeNumber
+        });
         setState(() {
           accountId = widget.bankAccountId;
         });
-      }else{
+      } else {
         url = '$kapiUrl/bank_accounts/me';
-        response = await dioClient.post(url, 
-                                      options: Options(headers: {'Authorization': token}),
-                                      data: {
-                                        'owner_name':widget.titularController.text,
-                                        'identity_number':widget.cedulaController.text,
-                                        'number_account':widget.numeroCuentaController.text,
-                                        'financial_entity_id':bankNumber,
-                                        'bank_account_type_id':accTypeNumber
-                                      });
+        response = await dioClient.post(url, data: {
+          'owner_name': widget.titularController.text,
+          'identity_number': widget.cedulaController.text,
+          'number_account': widget.numeroCuentaController.text,
+          'financial_entity_id': bankNumber,
+          'bank_account_type_id': accTypeNumber
+        });
         setState(() {
           accountId = response.data['id'] as int;
         });
@@ -150,6 +145,7 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(50)),
               child: DefaultInput(
+                inputType: TextInputType.number,
                 controller: widget.cedulaController,
                 isContrasena: false,
                 validacion: Validadores.validarCedula,
@@ -161,7 +157,7 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(50)),
               child: DropdownButtonFormField(
-                key: const Key('TipoBanco'),
+                  key: const Key('TipoBanco'),
                   hint: const Text('Tipo de banco'),
                   value: _tipoBancoSeleccionado,
                   items: const [
@@ -204,7 +200,7 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(50)),
               child: DropdownButtonFormField(
-                key: const Key('TipoCuenta'),
+                  key: const Key('TipoCuenta'),
                   hint: const Text('Tipo de cuenta'),
                   value: _tipoCuentaSeleccionada,
                   items: const [
@@ -234,13 +230,19 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
                       '${widget.titularController.text} ${widget.cedulaController.text} $_tipoBancoSeleccionado ${widget.numeroCuentaController.text} $_tipoCuentaSeleccionada'),
                   await createNewAccount(),
                   debugPrint((accountId != null).toString()),
-                  if (accountId != null && widget.isUpdateForm){
-                    Navigator.pop(context, accountId),
-                  }else if(accountId != null && (widget.isUpdateForm == false)){
-                    Navigator.pop(context, accountId),
-                  }else{
-                    showErrorSnack(context, 'Los datos ingresados no son válidos')
-                  }
+                  if (accountId != null && widget.isUpdateForm)
+                    {
+                      Navigator.pop(context, accountId),
+                    }
+                  else if (accountId != null && (widget.isUpdateForm == false))
+                    {
+                      Navigator.pop(context, accountId),
+                    }
+                  else
+                    {
+                      showErrorSnack(
+                          context, 'Los datos ingresados no son válidos')
+                    }
                 },
                 label: generateButtonText(),
                 colorFondo: kPrimaryColor,
@@ -252,17 +254,17 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
   }
 
   double getProportionateScreenWidth(double input) {
-    return MediaQuery.of(context).size.width * (input/375);
+    return MediaQuery.of(context).size.width * (input / 375);
   }
 
   double getProportionateScreenHeight(double input) {
-    return MediaQuery.of(context).size.height * (input/812);
+    return MediaQuery.of(context).size.height * (input / 812);
   }
 
   String generateButtonText() {
-    if(widget.isUpdateForm){
+    if (widget.isUpdateForm) {
       return 'Actualizar Cuenta';
-    }else{
+    } else {
       return 'Registrar Cuenta';
     }
   }

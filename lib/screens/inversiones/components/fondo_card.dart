@@ -15,43 +15,49 @@ class FondoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Image.asset(
-        fondos[tipo]["banner"] as String,
-        width: getProportionateScreenWidth(300),
-      ),
-      Container(
-        width: getProportionateScreenWidth(300),
-        height: SizeConfig.screenHeight * 0.25,
-        decoration:
-            BoxDecoration(border: Border.all(color: kSecondaryColor, width: 4)),
-        child: Column(
-          children: [
-            _rowTable("Rendimiento Promedio",
-                fondos[tipo]["ren_promedio"] as String ?? "??"),
-            _rowTable("Permanencia minima",
-                fondos[tipo]["min_permanencia"] as String ?? "??"),
-            _rowTable("Inversion Inicial",
-                fondos[tipo]["inversion_inicial"] as String ?? "??"),
-            Flexible(
-              flex: 4,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: getProportionateScreenHeight(20)),
-                child: DefaultButton(
-                  func: () =>
-                      {AutoRouter.of(context).push(InfoFondoRoute(tipo: tipo))},
-                  label: "Invertir en este fondo",
-                  colorFondo: kPrimaryColor,
-                  colorTexto: kSecondaryColor,
-                  tamanoTexto: getProportionateScreenHeight(16),
+    return Padding(
+      padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(14)),
+      child: Column(children: [
+        Image.asset(
+          fondos[tipo]["banner"] as String,
+          width: double.infinity,
+          fit: BoxFit.fill,
+        ),
+        Container(
+          width: double.infinity,
+          height: SizeConfig.screenHeight * 0.25,
+          decoration: BoxDecoration(
+              border: Border.all(color: kSecondaryColor, width: 4)),
+          child: Column(
+            children: [
+              _rowTable("Rendimiento Promedio",
+                  fondos[tipo]["ren_promedio"] as String ?? "??"),
+              _rowTable("Permanencia minima",
+                  fondos[tipo]["min_permanencia"] as String ?? "??"),
+              _rowTable("Inversion Inicial",
+                  fondos[tipo]["inversion_inicial"] as String ?? "??"),
+              Flexible(
+                flex: 4,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: getProportionateScreenHeight(20)),
+                  child: DefaultButton(
+                    func: () => {
+                      AutoRouter.of(context).push(InfoFondoRoute(tipo: tipo))
+                    },
+                    label: "Invertir en este fondo",
+                    colorFondo: kPrimaryColor,
+                    colorTexto: kSecondaryColor,
+                    tamanoTexto: getProportionateScreenHeight(16),
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      )
-    ]);
+            ],
+          ),
+        )
+      ]),
+    );
   }
 
   Widget _rowTable(String titulo, String descripcion) {

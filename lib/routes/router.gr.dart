@@ -4,7 +4,7 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-// ignore_for_file: prefer_final_locals, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_final_locals
 
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i23;
@@ -91,7 +91,8 @@ class AppRouter extends _i1.RootStackRouter {
           orElse: () => GoalSimulationRouteArgs());
       return _i1.MaterialPageX(
           entry: entry,
-          child: _i13.GoalSimulation(key: args.key, goalId: args.goalId));
+          child: _i13.GoalSimulation(
+              key: args.key, goalId: args.goalId, removeGoal: args.removeGoal));
     },
     GoalListRoute.name: (entry) {
       return _i1.MaterialPageX(entry: entry, child: const _i14.GoalList());
@@ -273,20 +274,23 @@ class GoalCreationRouteArgs {
 }
 
 class GoalSimulationRoute extends _i1.PageRouteInfo<GoalSimulationRouteArgs> {
-  GoalSimulationRoute({_i23.Key key, int goalId})
+  GoalSimulationRoute({_i23.Key key, int goalId, Function removeGoal})
       : super(name,
             path: '/goalsimulation',
-            args: GoalSimulationRouteArgs(key: key, goalId: goalId));
+            args: GoalSimulationRouteArgs(
+                key: key, goalId: goalId, removeGoal: removeGoal));
 
   static const String name = 'GoalSimulationRoute';
 }
 
 class GoalSimulationRouteArgs {
-  const GoalSimulationRouteArgs({this.key, this.goalId});
+  const GoalSimulationRouteArgs({this.key, this.goalId, this.removeGoal});
 
   final _i23.Key key;
 
   final int goalId;
+
+  final Function removeGoal;
 }
 
 class GoalListRoute extends _i1.PageRouteInfo {

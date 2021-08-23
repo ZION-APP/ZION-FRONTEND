@@ -101,7 +101,7 @@ class _BankAccountBoxState extends State<BankAccountBox> {
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      widget.bankType,
+                      widget.bankType ?? "No existe",
                       style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 19,

@@ -33,6 +33,10 @@ InputDecoration inputDecoration(BuildContext context, String label) {
   return InputDecoration(
       labelText: label,
       border: const OutlineInputBorder(),
+      labelStyle: const TextStyle(color: kSecondaryColor),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: kSecondaryColor),
+      ),
       contentPadding: EdgeInsets.symmetric(
           vertical: MediaQuery.of(context).size.width * (10 / 375),
           horizontal: MediaQuery.of(context).size.height * (5 / 812)));

@@ -1,10 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:zionapp/constants_config.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/components/input_default.dart';
 import 'package:zionapp/models/tipo_persona.dart';
+import 'package:zionapp/routes/router.gr.dart';
 import 'package:zionapp/validator/validator.dart';
 
 // ignore: must_be_immutable
@@ -52,21 +55,21 @@ class _FormularioRegisterState extends State<FormularioRegister> {
 
   Future<void> createNewUser() async {
     int tipoPersonaId;
-    if(widget.tipoPersona == TipoPersona.PersonaNatural){
+    if (widget.tipoPersona == TipoPersona.PersonaNatural) {
       tipoPersonaId = 1;
-    }else{
+    } else {
       tipoPersonaId = 2;
     }
     try {
       userId = null;
-      final Response response = await dioClient.post('$kapiUrl/auth/sign-up',
-                                      data: {
-                                        'identity_number':widget.cedulaController.text,
-                                        'username':widget.usuarioController.text,
-                                        'email':widget.correoController.text,
-                                        'password':widget.contrasenaController.text,
-                                        'kind_of_person_id':tipoPersonaId
-                                      });
+      final Response response =
+          await dioClient.post('$kapiUrl/auth/sign-up', data: {
+        'identity_number': widget.cedulaController.text,
+        'username': widget.usuarioController.text,
+        'email': widget.correoController.text,
+        'password': widget.contrasenaController.text,
+        'kind_of_person_id': tipoPersonaId
+      });
       setState(() {
         userId = response.data['user_id'] as int;
       });
@@ -95,7 +98,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
         SizedBox(height: getProportionateScreenHeight(40)),
         Padding(
           padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(50)),
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(14)),
           child: DefaultInput(
             controller: widget.usuarioController,
             isContrasena: false,
@@ -106,7 +109,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
         SizedBox(height: getProportionateScreenHeight(25)),
         Padding(
           padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(50)),
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(14)),
           child: DefaultInput(
             controller: widget.cedulaController,
             isContrasena: false,
@@ -117,9 +120,9 @@ class _FormularioRegisterState extends State<FormularioRegister> {
         SizedBox(height: getProportionateScreenHeight(25)),
         Padding(
           padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(50)),
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(14)),
           child: DropdownButtonFormField(
-            key: const Key('TipoPersona'),
+              key: const Key('TipoPersona'),
               hint: const Text('Tipo de persona'),
               value: _tipoSeleccionado,
               items: const [
@@ -144,7 +147,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
         SizedBox(height: getProportionateScreenHeight(25)),
         Padding(
           padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(50)),
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(14)),
           child: DefaultInput(
             controller: widget.correoController,
             isContrasena: false,
@@ -155,7 +158,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
         SizedBox(height: getProportionateScreenHeight(25)),
         Padding(
           padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(50)),
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(14)),
           child: DefaultInput(
             controller: widget.contrasenaController,
             isContrasena: true,
@@ -166,7 +169,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
         SizedBox(height: getProportionateScreenHeight(25)),
         Padding(
           padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(50)),
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(14)),
           child: DefaultInput(
             controller: widget.contrasenaConfirmController,
             isContrasena: true,
@@ -182,7 +185,7 @@ class _FormularioRegisterState extends State<FormularioRegister> {
         SizedBox(height: getProportionateScreenHeight(25)),
         Padding(
           padding:
-              EdgeInsets.symmetric(vertical: getProportionateScreenHeight(30)),
+              EdgeInsets.symmetric(vertical: getProportionateScreenHeight(10)),
           child: DefaultButton(
             func: () async => {
               if (validateForm())
@@ -190,27 +193,65 @@ class _FormularioRegisterState extends State<FormularioRegister> {
                   debugPrint(
                       '${widget.usuarioController.text} ${widget.cedulaController.text} $_tipoSeleccionado ${widget.correoController.text} ${widget.contrasenaController.text} ${widget.contrasenaConfirmController.text}'),
                   await createNewUser(),
-                  if(userId != null){
-                    AutoRouter.of(context).pop()
-                  }
+                  if (userId != null) {AutoRouter.of(context).pop()}
                 }
               else
                 {showErrorSnack(context, 'Los datos ingresados no son válidos')}
             },
             label: "Registrar cuenta",
             colorFondo: kPrimaryColor,
-            colorTexto: kSecondaryColor,
           ),
         ),
+        informacionLink(),
+        const Divider(
+          thickness: 1,
+        ),
+        inicioLink()
       ]),
     );
   }
 
+  Widget informacionLink() {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: getProportionateScreenHeight(10)),
+      child: GestureDetector(
+        onTap: () {
+          AutoRouter.of(context).push(const InformacionRoute());
+        },
+        child: const Text(
+          "¿Necesitas más información?",
+          style: TextStyle(color: kSecondaryColor),
+        ),
+      ),
+    );
+  }
+
+  Widget inicioLink() {
+    final recognizer = TapGestureRecognizer()
+      ..onTap = () {
+        AutoRouter.of(context).pop();
+      };
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: getProportionateScreenHeight(10)),
+      child: RichText(
+          text: TextSpan(children: [
+        const TextSpan(
+            text: "¿Ya tienes una cuenta?  ",
+            style: TextStyle(color: kSecondaryColor)),
+        TextSpan(
+            text: "Iniciar sesión",
+            style: const TextStyle(
+                color: kPrimaryColor, fontWeight: FontWeight.bold),
+            recognizer: recognizer)
+      ])),
+    );
+  }
+
   double getProportionateScreenWidth(double input) {
-    return MediaQuery.of(context).size.width * (input/375);
+    return MediaQuery.of(context).size.width * (input / 375);
   }
 
   double getProportionateScreenHeight(double input) {
-    return MediaQuery.of(context).size.height * (input/812);
+    return MediaQuery.of(context).size.height * (input / 812);
   }
 }
