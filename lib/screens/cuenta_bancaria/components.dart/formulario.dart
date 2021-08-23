@@ -46,10 +46,10 @@ class _FormularioCuentaBancariaState extends State<FormularioCuentaBancaria> {
     int accTypeNumber;
     switch (_tipoBancoSeleccionado) {
       case TipoBanco.BancoGuayaquil:
-        bankNumber = 3;
+        bankNumber = 2;
         break;
       case TipoBanco.BancoPacifico:
-        bankNumber = 1;
+        bankNumber = 3;
         break;
       case TipoBanco.BancoProdubanco:
         bankNumber = 5;
