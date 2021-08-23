@@ -82,6 +82,7 @@ class _MenuHomeState extends State<MenuHome> {
             ),
             OptionMenuItem(
               titulo: "Notificaciones",
+              ruta: const NotificacionesRoute(),
             ),
             OptionMenuItem(
               titulo: "Términos de Servicio",
