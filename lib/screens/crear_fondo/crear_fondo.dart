@@ -1,12 +1,10 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:zionapp/components/button_default.dart';
 import 'package:zionapp/components/cargando.dart';
-import 'package:zionapp/components/input_default.dart';
-import 'package:zionapp/components/show_error.dart';
+import 'package:zionapp/components/date_picker_default.dart';
 import 'package:zionapp/constants_config.dart';
-import 'package:zionapp/routes/router.gr.dart';
+import 'package:zionapp/screens/crear_fondo/componentes/fondo_form.dart';
 import 'package:zionapp/size_config.dart';
 
 // ignore: must_be_immutable
@@ -19,34 +17,17 @@ class CreacionFondo extends StatefulWidget {
 }
 
 class _CreacionFondoState extends State<CreacionFondo> {
-  final _formKey = GlobalKey<FormState>();
-  final _metaController = TextEditingController();
-  final _montoInicial = TextEditingController();
-  final _aportacionMensual = TextEditingController();
-  final _cuentaADebitar = TextEditingController();
+  final formFondo = FondoForm();
+  List<DropdownMenuItem> fondosList;
+  List<DropdownMenuItem> metas;
+  List<DropdownMenuItem> cuentas;
+
   bool _loading = true;
   @override
   void initState() {
-    getPerfil();
+    iniciar();
     // TODO: implement initState
     super.initState();
-  }
-
-  Future<void> getPerfil() async {
-    try {
-      final response = await dioClient.get("$kapiUrl/users/me");
-      if (!(response.data["is_form_complete"] as bool)) {
-        await AutoRouter.of(context).replace(FormularioRoute(
-            tipo: response.data["kind_of_person_id"] as int ?? 1));
-      }
-    } on DioError catch (_) {
-      showError("Error del servidor", context);
-      await AutoRouter.of(context).pop();
-    } finally {
-      setState(() {
-        _loading = false;
-      });
-    }
   }
 
   @override
@@ -60,53 +41,124 @@ class _CreacionFondoState extends State<CreacionFondo> {
       resizeToAvoidBottomInset: false,
       body: _loading
           ? Cargando()
-          : ListView(
-              children: [
-                Container(
-                    color: kSecondaryColor,
-                    height: SizeConfig.screenHeight * 0.10,
-                    child:
-                        Image.asset(fondos[widget.tipo]["imagen"] as String)),
-                Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        input(_metaController, "Meta a seleccionar"),
-                        input(_montoInicial, "Seleccione monto inicial",
-                            inputType: TextInputType.number),
-                        input(_aportacionMensual, "Aportacion mensual",
-                            inputType: TextInputType.number),
-                        input(
-                          _cuentaADebitar,
-                          "Cuenta a debitar",
+          : Theme(
+              data: ThemeData(
+                  primarySwatch: MaterialColor(0xFFD0AF68, colorPrimary)),
+              child: ListView(
+                children: [
+                  Container(
+                      color: kSecondaryColor,
+                      height: SizeConfig.screenHeight * 0.10,
+                      child:
+                          Image.asset(fondos[widget.tipo]["imagen"] as String)),
+                  ReactiveForm(
+                      formGroup: formFondo.form,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getProportionateScreenWidth(50),
+                            vertical: getProportionateScreenHeight(40)),
+                        child: Column(
+                          children: [
+                            ReactiveTextField(
+                              formControlName: "name",
+                              decoration:
+                                  inputDecoration(context, 'Nombre del fondo'),
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(20),
+                            ),
+                            ReactiveDropdownField(
+                              formControlName: "fund_id",
+                              items: fondosList,
+                              decoration: inputDecoration(
+                                  context, "Seleccione un fondo"),
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(20),
+                            ),
+                            ReactiveDropdownField(
+                              formControlName: "goal_id",
+                              items: metas,
+                              decoration: inputDecoration(
+                                  context, "Seleccione una meta"),
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(20),
+                            ),
+                            ReactiveDropdownField(
+                              isExpanded: true,
+                              formControlName: "bank_account_id",
+                              items: cuentas,
+                              decoration: inputDecoration(
+                                  context, "Seleccione una cuenta bancaria"),
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(20),
+                            ),
+                            ReactiveTextField<double>(
+                              formControlName: "init_amount",
+                              decoration:
+                                  inputDecoration(context, 'Monto inicial'),
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(20),
+                            ),
+                            ReactiveTextField<double>(
+                              formControlName: "target_amount",
+                              decoration:
+                                  inputDecoration(context, 'Monto objetivo'),
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(20),
+                            ),
+                            const DatePickerDefault(
+                              control: "target_date",
+                              labelText: "Fecha hasta su objetivo",
+                            ),
+                            ReactiveFormConsumer(
+                                builder: (context, form, child) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: getProportionateScreenHeight(20)),
+                                child: DefaultButton(
+                                    label: "Invertir",
+                                    colorFondo: formFondo.form.valid
+                                        ? kSecondaryColor
+                                        : kDisableColor,
+                                    func: formFondo.form.valid ? submit : null),
+                              );
+                            })
+                          ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: getProportionateScreenHeight(20)),
-                          child: DefaultButton(
-                            label: "Invertir",
-                            func: () {},
-                          ),
-                        )
-                      ],
-                    )),
-              ],
+                      )),
+                ],
+              ),
             ),
     );
   }
 
-  Widget input(TextEditingController _controller, String label,
-      {TextInputType inputType}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          vertical: getProportionateScreenHeight(15),
-          horizontal: getProportionateScreenWidth(15)),
-      child: DefaultInput(
-        controller: _controller,
-        isContrasena: false,
-        label: label,
-        inputType: inputType,
-      ),
-    );
+  Future<void> submit() async {
+    setState(() {
+      _loading = true;
+    });
+    await formFondo.submit(context);
+    setState(() {
+      _loading = false;
+    });
+  }
+
+  Future<void> iniciar() async {
+    final snapshot = await Future.wait<dynamic>([
+      formFondo.getPerfil(context, widget.tipo),
+      formFondo.getTipoFondos(context),
+      formFondo.getMetas(context),
+      formFondo.getCuentasBancarias(context)
+    ]);
+    fondosList = snapshot[1] as List<DropdownMenuItem>;
+    metas = snapshot[2] as List<DropdownMenuItem>;
+    cuentas = snapshot[3] as List<DropdownMenuItem>;
+    setState(() {
+      _loading = false;
+    });
   }
 }

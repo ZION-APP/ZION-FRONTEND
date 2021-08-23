@@ -7,11 +7,11 @@ class GraficoInversores extends StatelessWidget {
   final String tipo;
   GraficoInversores(this.tipo, {Key key}) : super(key: key);
   final List<_SalesData> data = [
-    _SalesData('Jan', 35),
-    _SalesData('Feb', -28),
-    _SalesData('Mar', 34),
-    _SalesData('Apr', 32),
-    _SalesData('May', 40)
+    _SalesData('Jan', 5.4),
+    _SalesData('Feb', 3.2),
+    _SalesData('Mar', 6.2),
+    _SalesData('Apr', 4.8),
+    _SalesData('May', 5.5)
   ];
   @override
   Widget build(BuildContext context) {

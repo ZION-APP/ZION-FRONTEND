@@ -9,19 +9,18 @@ const kPrimaryLightColor = Color(0xFFFFFFFF);
 const kDangerColor = Color(0xFFA81B1B);
 const kDisableColor = Color(0xFFB1B1B1);
 Map<int, Color> colorPrimary = const {
-  50:Color(0xFFD0AF68),
-  100:Color(0xFFD0AF68),
-  200:Color(0xFFD0AF68),
-  300:Color(0xFFD0AF68),
-  400:Color(0xFFD0AF68),
-  500:Color(0xFFD0AF68),
-  600:Color(0xFFD0AF68),
-  700:Color(0xFFD0AF68),
-  800:Color(0xFFD0AF68),
-  900:Color(0xFFD0AF68),
-  
+  50: Color(0xFFD0AF68),
+  100: Color(0xFFD0AF68),
+  200: Color(0xFFD0AF68),
+  300: Color(0xFFD0AF68),
+  400: Color(0xFFD0AF68),
+  500: Color(0xFFD0AF68),
+  600: Color(0xFFD0AF68),
+  700: Color(0xFFD0AF68),
+  800: Color(0xFFD0AF68),
+  900: Color(0xFFD0AF68),
 };
-final Dio dioClient= DioClient().dio;
+final Dio dioClient = DioClient().dio;
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
@@ -30,10 +29,20 @@ const kPrimaryGradientColor = LinearGradient(
 const storage = FlutterSecureStorage();
 const kAnimationDuration = Duration(milliseconds: 200);
 const kAnimationMiliseconds = 500;
+InputDecoration inputDecoration(BuildContext context, String label) {
+  return InputDecoration(
+      labelText: label,
+      border: const OutlineInputBorder(),
+      contentPadding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.width * (10 / 375),
+          horizontal: MediaQuery.of(context).size.height * (5 / 812)));
+}
+
 const kapiUrl =
     "http://35.224.191.131:3000/v1/api"; //No poner ip 127.0.0.1 ni localhost
 const apiKeyToken =
     "42c05414538d7fe7f49bb2594849739795dc9fbdda41ce23076a9594edcd6567";
+
 const fondos = {
   "alpha": {
     "titulo": "Alpha",

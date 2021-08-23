@@ -4,8 +4,6 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-// ignore_for_file: prefer_final_locals, prefer_const_constructors
-
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i21;
 
@@ -38,9 +36,7 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i2.Login());
     },
     HomeRoute.name: (entry) {
-      // ignore: prefer_final_locals
       var args =
-          // ignore: prefer_const_constructors
           entry.routeData.argsAs<HomeRouteArgs>(orElse: () => HomeRouteArgs());
       return _i1.MaterialPageX(
           entry: entry, child: _i3.Home(key: args.key, titulo: args.titulo));
@@ -67,9 +63,7 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i10.Register());
     },
     CuentaBancariaRoute.name: (entry) {
-      // ignore: prefer_final_locals
       var args = entry.routeData.argsAs<CuentaBancariaRouteArgs>(
-          // ignore: prefer_const_constructors
           orElse: () => CuentaBancariaRouteArgs());
       return _i1.MaterialPageX(
           entry: entry,
@@ -79,9 +73,7 @@ class AppRouter extends _i1.RootStackRouter {
               bankAccountId: args.bankAccountId));
     },
     GoalCreationRoute.name: (entry) {
-      // ignore: prefer_final_locals
       var args = entry.routeData
-          // ignore: prefer_const_constructors
           .argsAs<GoalCreationRouteArgs>(orElse: () => GoalCreationRouteArgs());
       return _i1.MaterialPageX(
           entry: entry,
@@ -91,9 +83,7 @@ class AppRouter extends _i1.RootStackRouter {
               goalId: args.goalId));
     },
     GoalSimulationRoute.name: (entry) {
-      // ignore: prefer_final_locals
       var args = entry.routeData.argsAs<GoalSimulationRouteArgs>(
-          // ignore: prefer_const_constructors
           orElse: () => GoalSimulationRouteArgs());
       return _i1.MaterialPageX(
           entry: entry,
@@ -103,9 +93,7 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i14.GoalList());
     },
     InfoFondoRoute.name: (entry) {
-      // ignore: prefer_final_locals
       var pathParams = entry.routeData.pathParams;
-      // ignore: prefer_final_locals
       var args = entry.routeData.argsAs<InfoFondoRouteArgs>(
           orElse: () => InfoFondoRouteArgs(tipo: pathParams.getString('tipo')));
       return _i1.MaterialPageX(
@@ -115,9 +103,7 @@ class AppRouter extends _i1.RootStackRouter {
       return _i1.MaterialPageX(entry: entry, child: const _i16.Reglamento());
     },
     CreacionFondoRoute.name: (entry) {
-      // ignore: prefer_final_locals
       var args = entry.routeData.argsAs<CreacionFondoRouteArgs>(
-          // ignore: prefer_const_constructors
           orElse: () => CreacionFondoRouteArgs());
       return _i1.MaterialPageX(
           entry: entry,
@@ -127,7 +113,11 @@ class AppRouter extends _i1.RootStackRouter {
       var args = entry.routeData
           .argsAs<FormularioRouteArgs>(orElse: () => FormularioRouteArgs());
       return _i1.MaterialPageX(
-          entry: entry, child: _i18.Formulario(tipo: args.tipo, key: args.key));
+          entry: entry,
+          child: _i18.Formulario(
+              tipoFondo: args.tipoFondo,
+              tipoPersona: args.tipoPersona,
+              key: args.key));
     },
     BankAccountListRoute.name: (entry) {
       return _i1.MaterialPageX(
@@ -228,7 +218,7 @@ class RegisterRoute extends _i1.PageRouteInfo {
 }
 
 class CuentaBancariaRoute extends _i1.PageRouteInfo<CuentaBancariaRouteArgs> {
-  CuentaBancariaRoute({_i20.Key key, bool isUpdateForm, int bankAccountId})
+  CuentaBancariaRoute({_i21.Key key, bool isUpdateForm, int bankAccountId})
       : super(name,
             path: '/cuenta_bancaria',
             args: CuentaBancariaRouteArgs(
@@ -243,7 +233,7 @@ class CuentaBancariaRouteArgs {
   const CuentaBancariaRouteArgs(
       {this.key, this.isUpdateForm, this.bankAccountId});
 
-  final _i20.Key key;
+  final _i21.Key key;
 
   final bool isUpdateForm;
 
@@ -251,7 +241,7 @@ class CuentaBancariaRouteArgs {
 }
 
 class GoalCreationRoute extends _i1.PageRouteInfo<GoalCreationRouteArgs> {
-  GoalCreationRoute({_i20.Key key, bool isUpdateForm, int goalId})
+  GoalCreationRoute({_i21.Key key, bool isUpdateForm, int goalId})
       : super(name,
             path: '/goalcreation',
             args: GoalCreationRouteArgs(
@@ -263,7 +253,7 @@ class GoalCreationRoute extends _i1.PageRouteInfo<GoalCreationRouteArgs> {
 class GoalCreationRouteArgs {
   const GoalCreationRouteArgs({this.key, this.isUpdateForm, this.goalId});
 
-  final _i20.Key key;
+  final _i21.Key key;
 
   final bool isUpdateForm;
 
@@ -335,18 +325,21 @@ class CreacionFondoRouteArgs {
 }
 
 class FormularioRoute extends _i1.PageRouteInfo<FormularioRouteArgs> {
-  FormularioRoute({int tipo, _i21.Key key})
+  FormularioRoute({String tipoFondo, int tipoPersona, _i21.Key key})
       : super(name,
             path: '/formulario',
-            args: FormularioRouteArgs(tipo: tipo, key: key));
+            args: FormularioRouteArgs(
+                tipoFondo: tipoFondo, tipoPersona: tipoPersona, key: key));
 
   static const String name = 'FormularioRoute';
 }
 
 class FormularioRouteArgs {
-  const FormularioRouteArgs({this.tipo, this.key});
+  const FormularioRouteArgs({this.tipoFondo, this.tipoPersona, this.key});
 
-  final int tipo;
+  final String tipoFondo;
+
+  final int tipoPersona;
 
   final _i21.Key key;
 }

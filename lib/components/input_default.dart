@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zionapp/constants_config.dart';
 
 class DefaultInput extends StatelessWidget {
   final TextEditingController controller;
@@ -21,12 +22,7 @@ class DefaultInput extends StatelessWidget {
       keyboardType: inputType ?? TextInputType.text,
       obscureText: isContrasena,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      decoration: InputDecoration(
-          labelText: label,
-          border: const OutlineInputBorder(),
-          contentPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.width * (10/375),
-              horizontal: MediaQuery.of(context).size.height * (5/812))),
+      decoration: inputDecoration(context, label),
     );
   }
 }
