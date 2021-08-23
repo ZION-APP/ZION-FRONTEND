@@ -117,6 +117,7 @@ class _LoginState extends State<Login> {
                   padding: EdgeInsets.symmetric(
                       vertical: getProportionateScreenHeight(15)),
                   child: DefaultButton(
+                    key: const ValueKey('loginButton'),
                     func: () => {
                       logIn(context)
                     },

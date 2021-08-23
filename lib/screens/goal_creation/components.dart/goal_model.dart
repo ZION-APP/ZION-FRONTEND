@@ -8,6 +8,7 @@ class Goal{
   int currentAmount;
   String targetDate;
   String status;
+  String tipoFondo;
 
   Goal({
     this.id,
@@ -19,6 +20,14 @@ class Goal{
     this.targetDate,
     this.status
   });
+
+  void setTipoFondo(int id){
+    if(id == 1){
+      tipoFondo = 'Omega';
+    }else{
+      tipoFondo = 'Alpha';
+    }
+  }
 
   @override
   String toString(){

@@ -9,11 +9,12 @@ class DefaultButton extends StatelessWidget {
   final double tamanoTexto;
 
   const DefaultButton(
-      {@required this.label,
+      {Key key,
+      @required this.label,
       this.func,
       this.colorFondo = kSecondaryColor,
       this.colorTexto = kPrimaryLightColor,
-      this.tamanoTexto});
+      this.tamanoTexto}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

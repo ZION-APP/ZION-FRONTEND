@@ -35,10 +35,11 @@ class _FormularioLoginState extends State<FormularioLogin> {
                 padding: EdgeInsets.symmetric(
                     horizontal: getProportionateScreenWidth(50)),
                 child: DefaultInput(
+                  key: const ValueKey('loginUserName'),
                   controller: widget.usuarioController,
                   isContrasena: false,
                   //validacion: Validadores.validarCorreo,
-                  label: "Correo electronico",
+                  label: "Nombre de Usuario",
                 ),
               ),
             ],
@@ -48,9 +49,10 @@ class _FormularioLoginState extends State<FormularioLogin> {
             padding: EdgeInsets.symmetric(
                 horizontal: getProportionateScreenWidth(50)),
             child: DefaultInput(
+              key: const ValueKey('loginPass'),
               controller: widget.contrasenaController,
               isContrasena: true,
-              label: "Contrasena",
+              label: "Contraseña",
             ),
           ),
           SizedBox(height: getProportionateScreenHeight(20)),
@@ -65,6 +67,7 @@ class _FormularioLoginState extends State<FormularioLogin> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Checkbox(
+          key: const ValueKey('checkbox'),
             value: widget.recuerdame,
             activeColor: kPrimaryColor,
             onChanged: widget.recuerdameCallback as void Function(bool)),

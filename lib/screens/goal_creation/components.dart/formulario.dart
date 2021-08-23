@@ -8,7 +8,7 @@ import 'package:zionapp/validator/validator.dart';
 
 // ignore: must_be_immutable
 class FormularioGoalCreation extends StatefulWidget {
-  String tipoFondo;
+  int tipoFondoId;
   TextEditingController nombreController;
   TextEditingController totalController;
   TextEditingController inversionInicialController;
@@ -48,7 +48,7 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
       final Response response = await dioClient.post('$kapiUrl/goals/me', 
                                       options: Options(headers: {'Authorization': token}),
                                       data: {
-                                        'type':widget.tipoFondo,
+                                        'fund_id':widget.tipoFondoId,
                                         'name':widget.nombreController.text,
                                         'init_amount':initAmount,
                                         'target_amount':targetAmount,
@@ -137,9 +137,9 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
                     setState(() {
                       _tipoSeleccionado = value as TipoFondo;
                       if(_tipoSeleccionado == TipoFondo.Omega){
-                        widget.tipoFondo = "Omega";
+                        widget.tipoFondoId = 1;
                       }else{
-                        widget.tipoFondo = "Alpha";
+                        widget.tipoFondoId = 2;
                       }
                     });
                   }
@@ -191,7 +191,7 @@ class _FormularioGoalCreationState extends State<FormularioGoalCreation> {
                       Validadores.validarValorMonetario(widget.totalController.text) ==null &&
                       _dateTime != null &&
                       Validadores.validarValorMonetario(widget.inversionInicialController.text) == null){
-                    debugPrint('${widget.nombreController.text} ${widget.totalController.text} ${_dateTime.month}/${_dateTime.day}/${_dateTime.year} ${widget.inversionInicialController.text} ${widget.tipoFondo.toString()}'),
+                    debugPrint('${widget.nombreController.text} ${widget.totalController.text} ${_dateTime.month}/${_dateTime.day}/${_dateTime.year} ${widget.inversionInicialController.text} ${widget.tipoFondoId.toString()}'),
                     await createNewGoal(),
                     debugPrint((goalId != null).toString()),
                     if (goalId != null){
